@@ -1,0 +1,6 @@
+Multi-step Form
+
+1. One step per question
+2. Left pane for navigation between steps
+3. UI - pending , will be common theme for all stages
+4. Dark-light theme
