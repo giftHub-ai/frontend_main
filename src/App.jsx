@@ -11,7 +11,7 @@ function App() {
   };
 
   return (
-    <div className="w-full border-2">
+    <div className="w-full border-2 ">
       <div className="border max-w-xl mx-auto p-4">
         <form className="w-full" onSubmit={handleSubmit(handleFormSubmit)}>
           <InputComponent

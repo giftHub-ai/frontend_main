@@ -8,7 +8,7 @@ const InputComponent = ({
   placeholder,
 }) => {
   return (
-    <div className="w-full flex flex-col sm:flex-row sm:items-center sm:justify-center">
+    <div className="w-full flex flex-col sm:flex-row sm:items-center sm:justify-center ">
       <label
         className="mb-2 sm:mx-4 text-sm font-medium text-gray-900 dark:text-white"
         htmlFor={labelId}
