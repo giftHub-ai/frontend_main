@@ -1,4 +1,5 @@
 import InputComponent from "./components/InputComponent";
+import SubmitButton from "./components/SubmitButton";
 import "./index.css";
 import { useForm } from "react-hook-form";
 
@@ -10,9 +11,9 @@ function App() {
   };
 
   return (
-    <div className="w-full h-full border-2 flex justify-center items-center ">
-      <form onSubmit={handleSubmit(handleFormSubmit)}>
-        <div className="border w-full h-full flex flex-col justify-between items-start">
+    <div className="w-full border-2">
+      <div className="border max-w-xl mx-auto p-4">
+        <form className="w-full" onSubmit={handleSubmit(handleFormSubmit)}>
           <InputComponent
             labelName={"Age: "}
             labelId={"age"}
@@ -22,14 +23,18 @@ function App() {
             registerKey={"age"}
             placeholder={"23"}
           ></InputComponent>
-          <button
-            className="px-5 py-2 my-6 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-sm text-sm  dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-            type="submit"
-          >
-            Submit
-          </button>
-        </div>
-      </form>
+          <InputComponent
+            labelName={"Gender: "}
+            labelId={"gender"}
+            type={"text"}
+            register={register}
+            validations={{ required: true }}
+            registerKey={"gender"}
+            placeholder={"Male/Female"}
+          ></InputComponent>
+          <SubmitButton text={`Submit`}></SubmitButton>
+        </form>
+      </div>
     </div>
   );
 }
