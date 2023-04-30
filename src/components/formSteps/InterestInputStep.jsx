@@ -22,7 +22,7 @@ const InterestInputStep = () => {
   const setUserDetails = useContext(UserDispatchContext);
   return (
     <div className="flex flex-col justify-between  h-full">
-      <h1 className={inputDetails.headingStyle}>Pick Recipient's Interests</h1>
+      <h1 className={`heading-style`}>Pick Recipient's Interests</h1>
       <div className="grid grid-cols-4 my-8 ml-24 gap-4">
         {interest.map((item, ind) => {
           return (
