@@ -16,7 +16,7 @@ const interest = [
   " Dance",
   " Movies",
 ];
-const InterestInputStep = ({ nextStep, prevStep }) => {
+const InterestInputStep = () => {
   const [selectedInterest, setInterest] = useState([]);
   const inputDetails = React.useContext(UserContext);
   const setUserDetails = useContext(UserDispatchContext);

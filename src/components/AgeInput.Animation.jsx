@@ -1,5 +1,4 @@
 import React, {useState,useEffect} from "react";
-
 const AgeInputAnimation = ({setDisplayAgeInput}) => {
   const minLimit = 0;
   const maxLimit = 100;
