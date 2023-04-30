@@ -1,12 +1,14 @@
-function SubmitButton({ text }) {
+import React from 'react'
+function Button({ text }) {
   return (
     <button
-      className="px-5 py-2 my-6 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-sm text-sm  dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+      className="p-2 text-[#fffff] hover:bg-dark bg-light  font-medium rounded-lg text-lg  focus:outline-none dark:focus:ring-blue-800"
       type="submit"
+    
     >
       {text}
     </button>
   );
 }
 
-export default SubmitButton;
+export default Button;

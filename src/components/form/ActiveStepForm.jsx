@@ -32,7 +32,7 @@ const ActiveStepForm = ({
     );
   } else {
     return (
-      <div className={buildClassName(``)}>
+      <div className={buildClassName(` w-[65%] text-text  h-[80%] `)}>
         <StepToFormMapper
           stepNamesMap={stepNamesMap}
           activeStep={activeStep}

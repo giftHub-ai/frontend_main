@@ -2,7 +2,17 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
+    colors: {
+      bg:"#FF5F9E",
+      dark:"#B3005E",
+      light:"#E90064",
+      text:"#060047",
+      green:"#008000",
+      white:"#ffffff"
+    },
+
     extend: {
+    
       keyframes: {
         typing: {
           "0%": {

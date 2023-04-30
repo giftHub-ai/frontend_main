@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import Button from "../Button";
 
 const AgeInputStep = ({ nextStep }) => {
-  const minLimit = 10;
-  const maxLimit = 50;
+  const minLimit = 0;
+  const maxLimit = 100;
   const { register, handleSubmit } = useForm();
   const generateRandomNumber = () =>
     Math.floor(Math.random() * maxLimit + minLimit);
@@ -14,9 +15,10 @@ const AgeInputStep = ({ nextStep }) => {
     clearInterval(interval);
   };
   const onSubmit = (event) => {
-    console.log(event);
     if (event.age !== "" && event.age !== undefined && event.age !== null) {
       nextStep();
+    } else {
+      window.alert("Enter field first!");
     }
   };
 
@@ -28,9 +30,10 @@ const AgeInputStep = ({ nextStep }) => {
   }, []);
 
   return (
-    <div className="border w-full flex items-center justify-center">
+    <div className="flex  flex-col justify-center ">
+      <h1 className=" font-bold text-2xl text-center ">Enter Recipient's Age</h1>
       {!displayAgeInput && (
-        <div className="w-max" onClick={handleClick}>
+        <div className="" onClick={handleClick}>
           <div className="border border-orange-300 p-4 rounded-md">
             <div className="border animate-typing overflow-hidden whitespace-nowrap border-r-4 border-r-black pr-4 text-5xl font-bold">
               {age}
@@ -38,25 +41,24 @@ const AgeInputStep = ({ nextStep }) => {
           </div>
         </div>
       )}
+
       {displayAgeInput && (
-        <form
-          className="w-full flex items-center justify-evenly"
-          onSubmit={handleSubmit(onSubmit)}
-        >
-          <input
-            type="number"
-            min={10}
-            max={50}
-            className="w-max p-2 border border-orange-300 outline-none rounded-md text-3xl font-bold remove-arrows"
-            {...register("age")}
-          ></input>
-          <button
-            className="w-max p-4 bg-orange-300 rounded-md text-3xl font-bold"
-            type="submit"
-          >
-            Next
-          </button>
-        </form>
+        <div className="flex-col">
+          <form className=" " onSubmit={handleSubmit(onSubmit)}>
+            <input
+              type="number"
+              min={2}
+              max={100}
+              className=" p-2 border border-orange-300 outline-none rounded-md text-3xl font-bold remove-arrows"
+              {...register("age")}
+            ></input>
+            <div className="float-right">
+              <Button className="p-4 font-bold " type="submit" text="Next">
+                Next
+              </Button>
+            </div>
+          </form>
+        </div>
       )}
     </div>
   );

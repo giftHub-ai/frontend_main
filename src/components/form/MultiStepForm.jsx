@@ -15,7 +15,7 @@ const MultiStepForm = () => {
   const nextStep = () => setActiveStep((prev) => prev + 1);
   const prevStep = () => setActiveStep((prev) => prev - 1);
   return (
-    <div className="border border-red-400 w-full flex">
+    <div className="w-screen bg-[#FF5F9E] flex items-center h-screen gap-x-8">
       <StepperPane
         className={`w-max`}
         stepNames={stepNames}
@@ -23,7 +23,7 @@ const MultiStepForm = () => {
         setActiveStep={setActiveStep}
       ></StepperPane>
       <ActiveStepForm
-        className={`w-max`}
+        className={``}
         stepNames={stepNames}
         activeStep={activeStep}
         nextStep={nextStep}
