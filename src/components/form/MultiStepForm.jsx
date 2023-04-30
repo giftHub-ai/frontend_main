@@ -17,12 +17,13 @@ const MultiStepForm = () => {
   return (
     <div className="border border-red-400 w-full flex">
       <StepperPane
-        className={`w-2/6`}
+        className={`w-max`}
         stepNames={stepNames}
+        activeStep={activeStep}
         setActiveStep={setActiveStep}
       ></StepperPane>
       <ActiveStepForm
-        className={`w-4/6`}
+        className={`w-max`}
         stepNames={stepNames}
         activeStep={activeStep}
         nextStep={nextStep}
