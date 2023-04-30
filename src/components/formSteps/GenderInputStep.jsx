@@ -2,6 +2,7 @@ import React from "react";
 import female from "../../assets/Female.png";
 import male from "../../assets/Male.png";
 import Button from "../Button";
+import PrevNext from "../PrevNext";
 
 const GenderInputStep = () => {
   return (
@@ -14,11 +15,7 @@ const GenderInputStep = () => {
           <img src={female} alt="female"></img>
         </div>
       </div>
-      <div className="float-right">
-        <Button className="p-4 font-bold " type="submit" text="Next">
-          Next
-        </Button>
-      </div>
+  <PrevNext/>
     </div>
   );
 };

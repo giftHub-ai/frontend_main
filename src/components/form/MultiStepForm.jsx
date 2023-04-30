@@ -11,23 +11,17 @@ const stepNames = [
   "budget_input_step",
 ];
 const MultiStepForm = () => {
-  const [activeStep, setActiveStep] = useState(1);
-  const nextStep = () => setActiveStep((prev) => prev + 1);
-  const prevStep = () => setActiveStep((prev) => prev - 1);
+
   return (
-    <div className="w-screen bg-[#FF5F9E] flex items-center h-screen gap-x-8">
+    <div className="w-[80vw] mx-auto  flex items-center h-screen gap-x-8 z-90">
       <StepperPane
-        className={`w-max`}
+
         stepNames={stepNames}
-        activeStep={activeStep}
-        setActiveStep={setActiveStep}
+
       ></StepperPane>
       <ActiveStepForm
-        className={``}
+    
         stepNames={stepNames}
-        activeStep={activeStep}
-        nextStep={nextStep}
-        prevStep={prevStep}
       ></ActiveStepForm>
     </div>
   );

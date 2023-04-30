@@ -1,19 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
+import { UserContext, UserDispatchContext } from "../Context";
 
-const StepperPane = ({ className, stepNames, activeStep, setActiveStep }) => {
+const StepperPane = ({ className, stepNames}) => {
   const buildClassName = (appClassName) => {
     const defaultClassName = " w-max ";
     return `${defaultClassName} ${className} ${appClassName}`;
   };
+  const inputDetails = React.useContext(UserContext);
+  const setUserDetails = useContext(UserDispatchContext);
   return (
     <div className={buildClassName(``)}>
+
       {stepNames.map((step, index) => (
         <Step
           key={index}
           stepName={step}
           index={index}
-          activeStep={activeStep}
-          setActiveStep={setActiveStep}
+          activeStep={inputDetails.activeStep}
+          setActiveStep={setUserDetails.setActiveStep}
         ></Step>
       ))}
     </div>
@@ -39,7 +43,7 @@ const Step = ({ stepName, index, activeStep, setActiveStep }) => {
     setActiveStep(index + 1);
   };
   return (
-    <div className="h-[10vh] ml-20 ">
+    <div className="h-[10vh]">
       <div
         onClick={handleClick}
         className={buildClassName(`flex  items-center justify-between mx-4`)}
