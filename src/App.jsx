@@ -1,12 +1,23 @@
 import MultiStepForm from "./components/form/MultiStepForm";
+import { UserProvider } from "./components/Context";
 import "./index.css";
-
 function App() {
+
+  
+
   return (
-    <div className="w-full h-screen">
-      <div className="border max-w-3xl mx-auto p-4">
+    <div className="font-sans bg-[#FF5F9E]">
+      <UserProvider>
         <MultiStepForm></MultiStepForm>
-      </div>
+      </UserProvider>
+      <img
+        src="./images/boygift.svg"
+        className="absolute right-0 top-24  "
+      ></img>
+      {/* <img
+        src="./images/girlgift.svg"
+        className="absolute left-0 top-16 "
+      ></img> */}
     </div>
   );
 }

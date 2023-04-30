@@ -1,18 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import AgeInputStep from "../formSteps/AgeInputStep";
 import BudgetInputStep from "../formSteps/BudgetInputStep";
 import GenderInputStep from "../formSteps/GenderInputStep";
 import InterestInputStep from "../formSteps/InterestInputStep";
 import OccasionInputStep from "../formSteps/OccasionInputStep";
 import RelationshipInputStep from "../formSteps/RelationshipInputStep";
-
+import { UserContext, UserDispatchContext } from "../Context";
 const ActiveStepForm = ({
   className,
   stepNames,
-  activeStep,
-  nextStep,
-  prevStep,
+
 }) => {
+  const inputDetails = React.useContext(UserContext);
+  const setUserDetails = useContext(UserDispatchContext);
+
   const buildClassName = (appClassName) => {
     const defaultClassName = "p-2 ";
     return `${defaultClassName} ${className} ${appClassName}`;
@@ -32,12 +33,13 @@ const ActiveStepForm = ({
     );
   } else {
     return (
-      <div className={buildClassName(``)}>
+      <div className={buildClassName(` w-[65%] text-text  h-[80%]`)}>
         <StepToFormMapper
+        
           stepNamesMap={stepNamesMap}
-          activeStep={activeStep}
-          nextStep={nextStep}
-          prevStep={prevStep}
+          activeStep={inputDetails.activeStep}
+          nextStep={setUserDetails.nextStep}
+          prevStep={setUserDetails.prevStep}
         ></StepToFormMapper>
       </div>
     );
