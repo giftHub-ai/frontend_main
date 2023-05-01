@@ -8,8 +8,8 @@ const headingStyle = "font-bold text-2xl text-center "
 function UserProvider({ children }) {
   const [userInput, setUserInput] = useState({
     age: -1,
-    gender: undefined,
-    interest: undefined,
+    gender: "",
+    interest: "",
   });
   
   const [displayAgeInput, setDisplayAgeInput] = useState(false);

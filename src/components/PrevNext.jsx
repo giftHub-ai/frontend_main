@@ -2,17 +2,17 @@ import React, { useContext } from "react";
 import Button from "./Button";
 import { UserContext, UserDispatchContext } from "./Context";
 
-const PrevNext = ({ parameter,input }) => {
+const PrevNext = ({ input ,alreadyFilled}) => {
   const inputDetails = React.useContext(UserContext);
   const setUserDetails = useContext(UserDispatchContext);
   const checkNext = (input) => {
-    if (input !== "" && input !== undefined && input !== null) {
-      console.log(input);
-      inputDetails.userInput.age=input;
-      console.log(inputDetails.userInput);
+    if (alreadyFilled===true || (input !== "" && input !== undefined && input !== null)) {
+      // console.log(input);
+      // inputDetails.userInput.age=input;
+      // console.log(inputDetails.userInput);
       setUserDetails.nextStep();
     } else {
-      window.alert("Enter field first!");
+      window.alert("Make sure you have given response!");
     }
   };
   return (
