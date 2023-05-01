@@ -3,16 +3,16 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     colors: {
-      bg:"#FF5F9E",
-      dark:"#B3005E",
-      light:"#E90064",
-      text:"#060047",
-      green:"#008000",
-      white:"#ffffff"
+      background: "#FF5F9E",
+      dark: "#B3005E",
+      light: "#E90064",
+      text: "#060047",
+      green: "#008000",
+      white: "#ffffff",
+      interestHover: "#f8fafc",
     },
 
     extend: {
-    
       keyframes: {
         typing: {
           "0%": {

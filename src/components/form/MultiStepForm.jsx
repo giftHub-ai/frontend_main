@@ -1,23 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
 import ActiveStepForm from "./ActiveStepForm";
-import StepperPane from "./StepperPane";
 
 const stepNames = [
-  "age_input_step",
-  "gender_input_step",
-  "interest_input_step",
-  "relationship_input_step",
-  "occasion_input_step",
-  "budget_input_step",
+  "Age",
+  "Gender",
+  "Interest",
+  "Relationship",
+  "Occasion",
+  "Budget",
 ];
 const MultiStepForm = () => {
-
   return (
-    <div className="w-max lg:w-[80vw] mx-auto  flex items-center h-screen gap-x-8 z-90">
-      <StepperPane
-        stepNames={stepNames}
-      ></StepperPane>
+    <div className="border w-full mt-20 mx-2 sm:mx-4 md:mx-8 lg:mx-32 flex z-90">
+      {/* <StepperPane className={"lg:w-4/12"} stepNames={stepNames}></StepperPane> */}
       <ActiveStepForm
+        className={"w-full"}
         stepNames={stepNames}
       ></ActiveStepForm>
     </div>

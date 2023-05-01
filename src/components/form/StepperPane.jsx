@@ -1,16 +1,15 @@
 import React, { useContext } from "react";
 import { UserContext, UserDispatchContext } from "../Context";
 
-const StepperPane = ({ className, stepNames}) => {
+const StepperPane = ({ className, stepNames }) => {
   const buildClassName = (appClassName) => {
-    const defaultClassName = " w-max ";
+    const defaultClassName = "";
     return `${defaultClassName} ${className} ${appClassName}`;
   };
   const inputDetails = React.useContext(UserContext);
   const setUserDetails = useContext(UserDispatchContext);
   return (
     <div className={buildClassName(`hidden lg:block`)}>
-
       {stepNames.map((step, index) => (
         <Step
           key={index}
@@ -29,7 +28,7 @@ export default StepperPane;
 const Step = ({ stepName, index, activeStep, setActiveStep }) => {
   const buildClassName = (className) => {
     const defaultClassName =
-      "w-full p-2 mb-2 font-semibold rounded-lg hover:cursor-pointer ";
+      "w-full p-2 font-semibold rounded-lg hover:cursor-pointer ";
     let activeClassName = "";
     if (activeStep === index + 1) {
       activeClassName = "bg-light text-gray-100 hover:bg-gray-700";
@@ -43,10 +42,10 @@ const Step = ({ stepName, index, activeStep, setActiveStep }) => {
     setActiveStep(index + 1);
   };
   return (
-    <div className="h-[10vh]">
+    <div className="my-8 mx-4">
       <div
         onClick={handleClick}
-        className={buildClassName(`flex  items-center justify-between mx-4`)}
+        className={buildClassName(`flex items-center justify-between`)}
       >
         {index + 1} {stepName}
         <span className="flex items-center justify-center w-4 h-4 bg-white rounded-full ring-4 ring-green">

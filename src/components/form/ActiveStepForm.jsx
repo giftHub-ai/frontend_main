@@ -1,16 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
-import AgeInputStep from "../formSteps/AgeInputStep";
-import BudgetInputStep from "../formSteps/BudgetInputStep";
-import GenderInputStep from "../formSteps/GenderInputStep";
-import InterestInputStep from "../formSteps/InterestInputStep";
-import OccasionInputStep from "../formSteps/OccasionInputStep";
-import RelationshipInputStep from "../formSteps/RelationshipInputStep";
 import { UserContext, UserDispatchContext } from "../Context";
-const ActiveStepForm = ({
-  className,
-  stepNames,
-
-}) => {
+import AgeInputStep from "../formSteps/Age/AgeInputStep";
+import BudgetInputStep from "../formSteps/Budget/BudgetInputStep";
+import GenderInputStep from "../formSteps/Gender/GenderInputStep";
+import InterestInputStep from "../formSteps/Interest/InterestInputStep";
+import OccasionInputStep from "../formSteps/Occasion/OccasionInputStep";
+import RelationshipInputStep from "../formSteps/Relationship/RelationshipInputStep";
+const ActiveStepForm = ({ className, stepNames }) => {
   const inputDetails = React.useContext(UserContext);
   const setUserDetails = useContext(UserDispatchContext);
 
@@ -33,9 +29,8 @@ const ActiveStepForm = ({
     );
   } else {
     return (
-      <div className={buildClassName(`lg:w-[65%] text-text  h-[80%]`)}>
+      <div className={buildClassName(``)}>
         <StepToFormMapper
-        
           stepNamesMap={stepNamesMap}
           activeStep={inputDetails.activeStep}
           nextStep={setUserDetails.nextStep}
@@ -59,10 +54,10 @@ const ErrorComponent = ({ message }) => {
 const StepToFormMapper = ({ stepNamesMap, activeStep, prevStep, nextStep }) => {
   switch (stepNamesMap.get(activeStep)) {
     // 1
-    case "age_input_step":
+    case "Age":
       return <AgeInputStep nextStep={nextStep}></AgeInputStep>;
     // 2
-    case "gender_input_step":
+    case "Gender":
       return (
         <GenderInputStep
           nextStep={nextStep}
@@ -70,7 +65,7 @@ const StepToFormMapper = ({ stepNamesMap, activeStep, prevStep, nextStep }) => {
         ></GenderInputStep>
       );
     // 3
-    case "interest_input_step":
+    case "Interest":
       return (
         <InterestInputStep
           nextStep={nextStep}
@@ -78,7 +73,7 @@ const StepToFormMapper = ({ stepNamesMap, activeStep, prevStep, nextStep }) => {
         ></InterestInputStep>
       );
     // 4
-    case "relationship_input_step":
+    case "Relationship":
       return (
         <RelationshipInputStep
           nextStep={nextStep}
@@ -86,7 +81,7 @@ const StepToFormMapper = ({ stepNamesMap, activeStep, prevStep, nextStep }) => {
         ></RelationshipInputStep>
       );
     // 5
-    case "occasion_input_step":
+    case "Occasion":
       return (
         <OccasionInputStep
           nextStep={nextStep}
@@ -94,7 +89,7 @@ const StepToFormMapper = ({ stepNamesMap, activeStep, prevStep, nextStep }) => {
         ></OccasionInputStep>
       );
     // 6
-    case "budget_input_step":
+    case "Budget":
       return <BudgetInputStep prevStep={prevStep}></BudgetInputStep>;
     // 7
     default:

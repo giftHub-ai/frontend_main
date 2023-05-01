@@ -1,8 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
-import PrevNext from "../PrevNext";
-import AgeInputAnimation from "../AgeInput.Animation";
-import { UserContext, UserDispatchContext } from "../Context";
-
+import AgeInputAnimation from "../../AgeInput.Animation";
+import { UserContext, UserDispatchContext } from "../../Context";
+import PrevNext from "../../PrevNext";
 
 const AgeInputStep = () => {
   const inputDetails = React.useContext(UserContext);
@@ -12,18 +11,16 @@ const AgeInputStep = () => {
   const [alreadyFilled, setAlreadyFilled] = useState(false);
   useEffect(() => {
     ageValue = inputDetails.userInput.age;
-    if (ageValue !== -1) {setAlreadyFilled(true);
-}
-
+    if (ageValue !== -1) {
+      setAlreadyFilled(true);
+    }
   }, []);
 
   const handleChange = (event) => {
-
-    let curage= event.target.value;
+    let curage = event.target.value;
     setAge(curage);
-    
-    inputDetails.userInput.age =curage;
-  
+
+    inputDetails.userInput.age = curage;
   };
 
   // const handleAgeInputChange = (e) => {
@@ -32,7 +29,7 @@ const AgeInputStep = () => {
   // };
 
   return (
-    <div className="h-full flex flex-col justify-between  ">
+    <div className="w-full h-full flex flex-col justify-between">
       <h1 className={`heading-style`}>Enter Recipient's Age</h1>
       <div className="flex   justify-center items-between">
         {!inputDetails.displayAgeInput && (
@@ -55,14 +52,13 @@ const AgeInputStep = () => {
             ></input>
           </div>
         )}
-     
       </div>
       {alreadyFilled && (
-          <div className="text-center">
-            <h2>Current Age Input value: {inputDetails.userInput.age}</h2>
-          </div>
-        )}  
-      <PrevNext  input={age} alreadyFilled={alreadyFilled} />
+        <div className="text-center">
+          <h2>Current Age Input value: {inputDetails.userInput.age}</h2>
+        </div>
+      )}
+      <PrevNext input={age} alreadyFilled={alreadyFilled} />
     </div>
   );
 };
