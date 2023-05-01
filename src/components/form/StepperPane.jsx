@@ -9,7 +9,7 @@ const StepperPane = ({ className, stepNames}) => {
   const inputDetails = React.useContext(UserContext);
   const setUserDetails = useContext(UserDispatchContext);
   return (
-    <div className={buildClassName(``)}>
+    <div className={buildClassName(`hidden lg:block`)}>
 
       {stepNames.map((step, index) => (
         <Step

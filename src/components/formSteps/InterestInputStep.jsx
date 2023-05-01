@@ -23,7 +23,7 @@ const InterestInputStep = () => {
   return (
     <div className="flex flex-col justify-between  h-full">
       <h1 className={`heading-style`}>Pick Recipient's Interests</h1>
-      <div className="grid grid-cols-4 my-8 ml-24 gap-4">
+      <div className="grid lg:grid-cols-4 grid-cols-3 my-8 lg:ml-24 gap-4">
         {interest.map((item, ind) => {
           return (
             <div
@@ -31,7 +31,7 @@ const InterestInputStep = () => {
                 setInterest([...selectedInterest, item]);
               }}
               key={ind}
-              className="w-[125px] h-[100px] bg-white drop-shadow-lg shadow-lg p-8 flex justify-center items-center border rounded-lg hover:cursor-pointer   "
+              className=" w-min h-[50px] lg:w-[125px] lg:h-[100px]  bg-white drop-shadow-lg shadow-lg lg:p-8 p-2 flex justify-center items-center border rounded-lg hover:cursor-pointer   "
             >
               {item}
             </div>

@@ -13,14 +13,11 @@ const stepNames = [
 const MultiStepForm = () => {
 
   return (
-    <div className="w-[80vw] mx-auto  flex items-center h-screen gap-x-8 z-90">
+    <div className="w-max lg:w-[80vw] mx-auto  flex items-center h-screen gap-x-8 z-90">
       <StepperPane
-
         stepNames={stepNames}
-
       ></StepperPane>
       <ActiveStepForm
-    
         stepNames={stepNames}
       ></ActiveStepForm>
     </div>

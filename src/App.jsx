@@ -12,7 +12,7 @@ function App() {
       </UserProvider>
       <img
         src="./images/boygift.svg"
-        className="absolute right-0 top-24  "
+        className="hidden lg:block absolute right-0 top-24  "
       ></img>
       {/* <img
         src="./images/girlgift.svg"
