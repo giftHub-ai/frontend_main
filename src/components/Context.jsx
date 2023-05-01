@@ -9,15 +9,21 @@ function UserProvider({ children }) {
     gender: "",
     interest: "",
   });
-  
+
   const [displayAgeInput, setDisplayAgeInput] = useState(false);
-  const [activeStep, setActiveStep] = useState(1);
+  const [activeStep, setActiveStep] = useState(4);
   const nextStep = () => setActiveStep((prev) => prev + 1);
   const prevStep = () => setActiveStep((prev) => prev - 1);
   return (
-    <UserContext.Provider value={{ userInput, activeStep,displayAgeInput }}>
+    <UserContext.Provider value={{ userInput, activeStep, displayAgeInput }}>
       <UserDispatchContext.Provider
-        value={{ setUserInput, setActiveStep, nextStep, prevStep,setDisplayAgeInput }}
+        value={{
+          setUserInput,
+          setActiveStep,
+          nextStep,
+          prevStep,
+          setDisplayAgeInput,
+        }}
       >
         {children}
       </UserDispatchContext.Provider>

@@ -29,9 +29,9 @@ const AgeInputStep = () => {
   // };
 
   return (
-    <div className="w-full h-full flex flex-col justify-between">
+    <div className="w-full h-full">
       <h1 className={`heading-style`}>Enter Recipient's Age</h1>
-      <div className="flex   justify-center items-between">
+      <div className="flex justify-center items-between">
         {!inputDetails.displayAgeInput && (
           <AgeInputAnimation
             setDisplayAgeInput={setUserDetails.setDisplayAgeInput}
