@@ -6,5 +6,7 @@
   .remove-arrows {
     @apply [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none;
   }
+  .heading-style {
+    @apply font-bold text-2xl text-center;
+  }
 }
-

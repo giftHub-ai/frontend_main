@@ -1,10 +1,8 @@
 import React, { createContext, useState } from "react";
 
-
 const UserContext = createContext(undefined);
 const UserDispatchContext = createContext(undefined);
 
-const headingStyle = "font-bold text-2xl text-center "
 function UserProvider({ children }) {
   const [userInput, setUserInput] = useState({
     age: -1,
@@ -17,8 +15,10 @@ function UserProvider({ children }) {
   const nextStep = () => setActiveStep((prev) => prev + 1);
   const prevStep = () => setActiveStep((prev) => prev - 1);
   return (
-    <UserContext.Provider value={{userInput,headingStyle,activeStep,displayAgeInput}}>
-      <UserDispatchContext.Provider value={{setUserInput,setActiveStep,nextStep,prevStep,setDisplayAgeInput}}>
+    <UserContext.Provider value={{ userInput, activeStep,displayAgeInput }}>
+      <UserDispatchContext.Provider
+        value={{ setUserInput, setActiveStep, nextStep, prevStep,setDisplayAgeInput }}
+      >
         {children}
       </UserDispatchContext.Provider>
     </UserContext.Provider>

@@ -3,6 +3,7 @@ import PrevNext from "../PrevNext";
 import AgeInputAnimation from "../AgeInput.Animation";
 import { UserContext, UserDispatchContext } from "../Context";
 
+
 const AgeInputStep = () => {
   const inputDetails = React.useContext(UserContext);
   const setUserDetails = useContext(UserDispatchContext);
@@ -25,9 +26,14 @@ const AgeInputStep = () => {
   
   };
 
+  // const handleAgeInputChange = (e) => {
+  //   setUserDetails((userInfo) => (userInfo.age = e.target.value));
+  //   console.log(userDetails);
+  // };
+
   return (
     <div className="h-full flex flex-col justify-between  ">
-      <h1 className={inputDetails.headingStyle}>Enter Recipient's Age</h1>
+      <h1 className={`heading-style`}>Enter Recipient's Age</h1>
       <div className="flex   justify-center items-between">
         {!inputDetails.displayAgeInput && (
           <AgeInputAnimation

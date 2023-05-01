@@ -27,7 +27,7 @@ const GenderInputStep = () => {
 
   return (
     <div className="">
-      <h1 className={inputDetails.headingStyle}>Pick Recipient's Gender</h1>
+      <h1 className={`heading-style`}>Pick Recipient's Gender</h1>
       <div className="w-full flex justify-evenly ">
         <div className={`${imgStyle} ${gender=="Male"?"bg-dark":null}`} onClick={() => handleClick("Male")}>
           <img src={male} alt="male"></img>
