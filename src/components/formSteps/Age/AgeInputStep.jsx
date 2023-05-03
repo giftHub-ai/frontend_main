@@ -9,6 +9,7 @@ const AgeInputStep = () => {
   let ageValue;
   const [age, setAge] = useState(null);
   const [alreadyFilled, setAlreadyFilled] = useState(false);
+  
   useEffect(() => {
     ageValue = inputDetails.userInput.age;
     if (ageValue !== -1) {
@@ -19,14 +20,8 @@ const AgeInputStep = () => {
   const handleChange = (event) => {
     let curage = event.target.value;
     setAge(curage);
-
     inputDetails.userInput.age = curage;
   };
-
-  // const handleAgeInputChange = (e) => {
-  //   setUserDetails((userInfo) => (userInfo.age = e.target.value));
-  //   console.log(userDetails);
-  // };
 
   return (
     <div className="w-full h-full">

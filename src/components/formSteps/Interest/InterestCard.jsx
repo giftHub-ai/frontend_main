@@ -10,16 +10,17 @@ const InterestCard = ({
 }) => {
   const buildInterestBoxClassName = (className, isActive) => {
     const defaultClassName =
-      "h-[100px] font-semibold text-md drop-shadow-md shadow-sm flex justify-center items-center border-2 border-white rounded-lg hover:cursor-pointer";
+      "h-[100px] font-semibold text-md drop-shadow-md shadow-sm flex justify-center items-center border-2 border-white rounded-lg hover:cursor-pointer hover:bg-light ";
     const activeClassName = isActive
       ? "bg-dark hover:bg-light text-white"
       : "bg-white hover:bg-interestHover";
     return `${defaultClassName} ${className} ${activeClassName}`;
   };
+
   return (
     <div
       onClick={() => {
-        setInterest([...selectedInterest, interest]);
+        setInterest(interest);
         setActiveInterest(index);
       }}
       key={index}

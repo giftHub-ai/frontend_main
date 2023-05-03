@@ -22,8 +22,10 @@ const GenderInputStep = () => {
   };
   useEffect(() => {
     genderValue = inputDetails.userInput.gender;
-    if (genderValue !== "") setAlreadyFilled(true);
-    setGender(genderValue);
+    if (genderValue !== "") {
+      setAlreadyFilled(true);
+      setGender(genderValue);
+    }
   }, []);
 
   return (
@@ -43,11 +45,11 @@ const GenderInputStep = () => {
             ))
           : null}
       </div>
-      {alreadyFilled && (
+      {/* {alreadyFilled && (
         <div className="text-center">
           <h2>Current Gender Input value: {gender}</h2>
         </div>
-      )}
+      )} */}
       <PrevNext input={gender} alreadyFilled={alreadyFilled} />
     </div>
   );

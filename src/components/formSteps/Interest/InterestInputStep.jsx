@@ -1,9 +1,9 @@
-import React, { useContext, useState } from "react";
-import { UserContext, UserDispatchContext } from "../../Context";
+import React, { useContext, useEffect, useState } from "react";
+import { UserContext,UserDispatchContext } from "../../Context";
 import PrevNext from "../../PrevNext";
 import InterestCard from "./InterestCard";
 const interest = [
-  " Art",
+  "Art",
   "Writing",
   "Beauty",
   "Photography",
@@ -11,16 +11,36 @@ const interest = [
   "Sports",
   "Reading",
   "Music",
-  " Yoga",
+  "Yoga",
   "Technology",
-  " Dance",
-  " Movies",
+  "Dance",
+  "Movies",
 ];
 const InterestInputStep = () => {
-  const [selectedInterest, setInterest] = useState([]);
+  const [selectedInterest, setInterest] = useState();
+  const [activeInterest, setActiveInterest] = useState(null);
+  const [alreadyFilled, setAlreadyFilled] = useState(false);
+  
   const inputDetails = React.useContext(UserContext);
   const setUserDetails = useContext(UserDispatchContext);
-  const [activeInterest, setActiveInterest] = useState(null);
+  let interestValue=null;
+  useEffect(() => {
+    interestValue = inputDetails.userInput.interestV;
+    console.log(interestValue);
+    if (interestValue !== "") {
+      setAlreadyFilled(true);
+      setActiveInterest(interest.indexOf(interestValue));
+    }
+  }, []);
+
+  useEffect(() => {
+    inputDetails.userInput.interestV = selectedInterest;
+    setAlreadyFilled(true);
+    // setUserDetails.setUserInput({...inputDetails.userInput,interestV:selectedInterest});
+    console.log(inputDetails.userInput);
+  }, [selectedInterest]);
+
+ 
 
   return (
     <div className="border w-full px-4">
@@ -46,7 +66,7 @@ const InterestInputStep = () => {
           </div>
         )}
       </div>
-      <PrevNext />
+      <PrevNext input={selectedInterest} alreadyFilled={alreadyFilled} />
     </div>
   );
 };

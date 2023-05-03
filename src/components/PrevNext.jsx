@@ -15,6 +15,7 @@ const PrevNext = ({ input ,alreadyFilled}) => {
       window.alert("Make sure you have given response!");
     }
   };
+  
   return (
     <div className="flex justify-between">
       <div

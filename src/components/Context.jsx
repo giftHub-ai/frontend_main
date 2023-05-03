@@ -7,7 +7,10 @@ function UserProvider({ children }) {
   const [userInput, setUserInput] = useState({
     age: -1,
     gender: "",
-    interest: "",
+    interestV: "",
+    relationship:"",
+    occasion:"",
+    budget:""
   });
 
   const [displayAgeInput, setDisplayAgeInput] = useState(false);
