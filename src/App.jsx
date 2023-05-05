@@ -1,12 +1,13 @@
-import { UserProvider } from "./components/Context";
-import MultiStepForm from "./components/form/MultiStepForm";
+import HomePage from "./HomePage";
 import "./index.css";
 function App() {
   return (
-    <div className="w-screen min-h-screen overflow-y-scroll flex items-center justify-center font-sans border">
-      <UserProvider>
+    <div className="w-screen min-h-screen overflow-y-scroll font-sans">
+      {/* <div className="w-screen min-h-screen overflow-y-scroll flex items-center justify-center font-sans border"> */}
+      {/* <UserProvider>
         <MultiStepForm></MultiStepForm>
-      </UserProvider>
+      </UserProvider> */}
+      <HomePage className="w-full"></HomePage>
       {/* <img
         src={maleGift}
         className="hidden lg:block absolute right-0 top-24"
