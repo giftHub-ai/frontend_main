@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { UserContext,UserDispatchContext } from "../../Context";
 import PrevNext from "../../PrevNext";
 import InterestCard from "./InterestCard";
-const interest = [
+const InterestArray = [
   "Art",
   "Writing",
   "Beauty",
@@ -17,41 +17,39 @@ const interest = [
   "Movies",
 ];
 const InterestInputStep = () => {
-  const [selectedInterest, setInterest] = useState();
+  const [selectedInterest, setInterest] = useState(undefined);
   const [activeInterest, setActiveInterest] = useState(null);
   const [alreadyFilled, setAlreadyFilled] = useState(false);
-  
   const inputDetails = React.useContext(UserContext);
   const setUserDetails = useContext(UserDispatchContext);
-  let interestValue=null;
-  useEffect(() => {
-    interestValue = inputDetails.userInput.interestV;
-    console.log(interestValue);
-    if (interestValue !== "") {
-      setAlreadyFilled(true);
-      setActiveInterest(interest.indexOf(interestValue));
-    }
-  }, []);
 
-  useEffect(() => {
-    inputDetails.userInput.interestV = selectedInterest;
+  const setSelectedInterest=(interest)=>{
+    inputDetails.userInput.interest = interest;
     setAlreadyFilled(true);
-    // setUserDetails.setUserInput({...inputDetails.userInput,interestV:selectedInterest});
     console.log(inputDetails.userInput);
-  }, [selectedInterest]);
+  }
 
- 
+  let interestValue;
+  useEffect(() => {
+    console.log(typeof(inputDetails.userInput.interest));
+    interestValue = inputDetails.userInput.interest;
+    console.log("interest value",interestValue);
+    if (interestValue!== "") {
+      setAlreadyFilled(true);
+      setActiveInterest(InterestArray.indexOf(interestValue));
+    }
+  }, []); 
 
   return (
     <div className="border w-full px-4">
       <h1 className="w-full py-4 heading-style">Pick Recipient's Interests</h1>
       <div className="w-full py-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {interest && interest.length ? (
-          interest.map((interest, index) => {
+        {InterestArray && InterestArray.length ? (
+          InterestArray.map((interest, index) => {
             return (
               <InterestCard
                 key={index}
-                setInterest={setInterest}
+                setInterest={setSelectedInterest}
                 setActiveInterest={setActiveInterest}
                 active={activeInterest === index}
                 interest={interest}
@@ -72,19 +70,3 @@ const InterestInputStep = () => {
 };
 
 export default InterestInputStep;
-
-{
-  /* <div
-                onClick={() => {
-                  setInterest([...selectedInterest, item]);
-                  setActiveInterest(index);
-                }}
-                key={index}
-                className={buildInterestBoxClassName(
-                  "",
-                  activeInterest === index
-                )}
-              >
-                {item}
-              </div> */
-}

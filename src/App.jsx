@@ -10,8 +10,8 @@ function App() {
       {/* <img
         src={maleGift}
         className="hidden lg:block absolute right-0 top-24"
-      ></img>
-      <img src={girlGift} className="absolute left-0 top-16 "></img> */}
+      ></img>*/}
+      {/* <img src={girlGift} className="absolute left-0 top-16 "></img>  */}
     </div>
   );
 }

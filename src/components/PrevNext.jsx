@@ -34,6 +34,7 @@ const PrevNext = ({ input ,alreadyFilled}) => {
           checkNext(input);
         }}
       >
+        {console.log(alreadyFilled)}
         <Button className="p-4 font-bold " text="Next " />
       </div>
     </div>
