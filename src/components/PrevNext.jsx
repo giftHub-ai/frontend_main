@@ -1,21 +1,30 @@
 import React, { useContext } from "react";
 import Button from "./Button";
 import { UserContext, UserDispatchContext } from "./Context";
+import iziToast from "izitoast";
 
-const PrevNext = ({ input ,alreadyFilled}) => {
+const PrevNext = ({ input, alreadyFilled }) => {
   const inputDetails = React.useContext(UserContext);
   const setUserDetails = useContext(UserDispatchContext);
   const checkNext = (input) => {
-    if (alreadyFilled===true || (input !== "" && input !== undefined && input !== null)) {
+    if (
+      alreadyFilled === true ||
+      (input !== "" && input !== undefined && input !== null)
+    ) {
       // console.log(input);
       // inputDetails.userInput.age=input;
       // console.log(inputDetails.userInput);
       setUserDetails.nextStep();
     } else {
-      window.alert("Make sure you have given response!");
+    //   iziToast.error({
+    //     title: 'Error',
+    //     message: 'Illegal operation',
+    //     position: 'topRight',
+    // });
+      // window.alert("Make sure you have given response!");
     }
   };
-  
+
   return (
     <div className="flex justify-between">
       <div

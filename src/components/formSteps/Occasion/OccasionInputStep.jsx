@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { UserContext,UserDispatchContext } from "../../Context";
 import PrevNext from "../../PrevNext";
 import InterestCard from "../Interest/InterestCard";
-const interest = [
+const InterestArray = [
   "Anniversary",
   "Baby & Expecting",
   "Birthday",
@@ -23,35 +23,35 @@ const OccasionInputStep = () => {
   
   const inputDetails = React.useContext(UserContext);
   const setUserDetails = useContext(UserDispatchContext);
-  let interestValue=null;
+
+
+  const setSelectedInterest=(interest)=>{
+    inputDetails.userInput.occasion = interest;
+    setAlreadyFilled(true);
+    console.log(inputDetails.userInput);
+  }
+
+ let interestValue;
   useEffect(() => {
     interestValue = inputDetails.userInput.occasion;
     console.log(interestValue);
-    if (interestValue !== "") {
+    if (interestValue!== "") {
       setAlreadyFilled(true);
-      setActiveInterest(interest.indexOf(interestValue));
+      setActiveInterest(InterestArray.indexOf(interestValue));
     }
-  }, []);
+  }, []); 
 
-  useEffect(() => {
-    inputDetails.userInput.occasion = selectedInterest;
-    setAlreadyFilled(true);
-    // setUserDetails.setUserInput({...inputDetails.userInput,interestV:selectedInterest});
-    console.log(inputDetails.userInput);
-  }, [selectedInterest]);
-
- 
-
+  
   return (
     <div className="border w-full px-4">
       <h1 className="w-full py-4 heading-style">Pick occasion which you'r buying in</h1>
       <div className="w-full py-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {interest && interest.length ? (
-          interest.map((interest, index) => {
+        {InterestArray && InterestArray.length ? (
+          InterestArray.map((interest, index) => {
             return (
               <InterestCard
                 key={index}
-                setInterest={setInterest}
+                setInterest={setSelectedInterest}
                 setActiveInterest={setActiveInterest}
                 active={activeInterest === index}
                 interest={interest}

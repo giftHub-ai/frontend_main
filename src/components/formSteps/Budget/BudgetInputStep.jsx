@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { UserContext,UserDispatchContext } from "../../Context";
 import PrevNext from "../../PrevNext";
 import InterestCard from "../Interest/InterestCard";
-const interest = [
+const InterestArray = [
  "200",
  "500",
  "1000",
@@ -11,7 +11,6 @@ const interest = [
  "10,000",
  "50,000",
   "Doesn't matters",
-
 ];
 const BudgetInputStep = () => {
   const [selectedInterest, setInterest] = useState();
@@ -20,35 +19,32 @@ const BudgetInputStep = () => {
   
   const inputDetails = React.useContext(UserContext);
   const setUserDetails = useContext(UserDispatchContext);
-  let interestValue=null;
-  useEffect(() => {
-    interestValue = inputDetails.userInput.occasion;
-    console.log(interestValue);
-    if (interestValue !== "") {
-      setAlreadyFilled(true);
-      setActiveInterest(interest.indexOf(interestValue));
-    }
-  }, []);
 
-  useEffect(() => {
-    inputDetails.userInput.occasion = selectedInterest;
+  const setSelectedInterest=(interest)=>{
+    inputDetails.userInput.budget = interest;
     setAlreadyFilled(true);
-    // setUserDetails.setUserInput({...inputDetails.userInput,interestV:selectedInterest});
     console.log(inputDetails.userInput);
-  }, [selectedInterest]);
-
- 
-
+  }
+ let interestValue;
+  useEffect(() => {
+   
+    interestValue = inputDetails.userInput.budget;
+    console.log("interest value",interestValue);
+    if (interestValue!== "") {
+      setAlreadyFilled(true);
+      setActiveInterest(InterestArray.indexOf(interestValue));
+    }
+  }, []); 
   return (
     <div className="border w-full px-4">
       <h1 className="w-full py-4 heading-style">Pick your average budget(INR)</h1>
       <div className="w-full py-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {interest && interest.length ? (
-          interest.map((interest, index) => {
+        {InterestArray && InterestArray.length ? (
+          InterestArray.map((interest, index) => {
             return (
               <InterestCard
                 key={index}
-                setInterest={setInterest}
+                setInterest={setSelectedInterest}
                 setActiveInterest={setActiveInterest}
                 active={activeInterest === index}
                 interest={interest}
@@ -59,17 +55,12 @@ const BudgetInputStep = () => {
           })
         ) : (
           <div className="w-full text-center font-semibold p-4 text-xl">
-            occasions were not found
+            interests were not found
           </div>
         )}
       </div>
       <PrevNext input={selectedInterest} alreadyFilled={alreadyFilled} />
-
-    
     </div>
   );
 };
-
-
-
 export default BudgetInputStep;

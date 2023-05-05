@@ -24,7 +24,7 @@ const AgeInputStep = () => {
   };
 
   return (
-    <div className="w-full h-full">
+    <div className="w-full px-4 backdrop-blur-sm flex flex-col justify-between h-full">
       <h1 className={`heading-style`}>Enter Recipient's Age</h1>
       <div className="flex justify-center items-between">
         {!inputDetails.displayAgeInput && (

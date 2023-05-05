@@ -21,7 +21,6 @@ const InterestInputStep = () => {
   const [activeInterest, setActiveInterest] = useState(null);
   const [alreadyFilled, setAlreadyFilled] = useState(false);
   const inputDetails = React.useContext(UserContext);
-  const setUserDetails = useContext(UserDispatchContext);
 
   const setSelectedInterest=(interest)=>{
     inputDetails.userInput.interest = interest;
@@ -31,7 +30,6 @@ const InterestInputStep = () => {
 
   let interestValue;
   useEffect(() => {
-    console.log(typeof(inputDetails.userInput.interest));
     interestValue = inputDetails.userInput.interest;
     console.log("interest value",interestValue);
     if (interestValue!== "") {
@@ -41,7 +39,7 @@ const InterestInputStep = () => {
   }, []); 
 
   return (
-    <div className="border w-full px-4">
+    <div className="w-full px-4 backdrop-blur-sm flex flex-col justify-between h-full ">
       <h1 className="w-full py-4 heading-style">Pick Recipient's Interests</h1>
       <div className="w-full py-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {InterestArray && InterestArray.length ? (

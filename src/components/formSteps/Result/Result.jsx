@@ -16,7 +16,7 @@ const Result = () => {
     });
   }, []);
 
-  if (loading === true) return <div className="">loading</div>;
+  if (loading === true) return <div className="">loading   <PrevNext /></div>;
   else
     return (
       <div>

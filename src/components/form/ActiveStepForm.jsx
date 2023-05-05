@@ -98,7 +98,7 @@ const StepToFormMapper = ({ stepNamesMap, activeStep, prevStep, nextStep }) => {
         ></BudgetInputStep>
       );
     case "Result":
-      return (<Result ></Result>);
+      return <Result nextStep={nextStep} prevStep={prevStep}></Result>;
     // 7
     default:
       return <ErrorComponent message={"default case reached"}></ErrorComponent>;

@@ -10,7 +10,7 @@ const InterestCard = ({
 }) => {
   const buildInterestBoxClassName = (className, isActive) => {
     const defaultClassName =
-      "h-[100px] font-semibold text-md drop-shadow-md shadow-sm flex justify-center items-center border-2 border-white rounded-lg hover:cursor-pointer hover:bg-light ";
+      "h-[100px] font-semibold text-md drop-shadow-md shadow-sm flex justify-center items-center border-2 border-white rounded-lg hover:cursor-pointer hover:bg-light hover:text-white   ";
     const activeClassName = isActive
       ? "bg-dark hover:bg-light text-white"
       : "bg-white hover:bg-interestHover";

@@ -3,7 +3,7 @@ import MultiStepForm from "./components/form/MultiStepForm";
 import "./index.css";
 function App() {
   return (
-    <div className="w-screen min-h-screen overflow-y-scroll flex items-center justify-center font-sans border">
+    <div className="w-screen min-h-screen overflow-y-scroll flex items-center justify-center font-sans border bg-[url('/images/banner1.webp')]">
       <UserProvider>
         <MultiStepForm></MultiStepForm>
       </UserProvider>

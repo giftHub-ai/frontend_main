@@ -29,7 +29,7 @@ const GenderInputStep = () => {
   }, []);
 
   return (
-    <div className="w-full">
+    <div className="w-full  backdrop-blur-sm">
       <h1 className={`w-full heading-style`}>Pick Recipient's Gender</h1>
       <div className="w-full flex justify-evenly ">
         {genders && genders.length
