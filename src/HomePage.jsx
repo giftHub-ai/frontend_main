@@ -28,14 +28,14 @@ const PageContent = ({setFormDisplay}) => {
   return (
     <main className="mx-4 flex flex-col-reverse md:grid md:grid-cols-2">
       <div className="m-4 flex flex-col items-start justify-center md:pl-16">
-        <div className="font-bold text-3xl md:text-4xl py-4 flex flex-col">
+        <div className="font-bold text-3xl md:text-5xl py-4 flex flex-col ">
           <span>Gift</span>
           <span>Recommendation</span>
           <span>System</span>
+          <span>by Customer Segmentation</span>
         </div>
-        <div className="w-full text-xs">
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
+        <div className="w-full text-md">
+         An advanced recommendation system by customer segmentation using Machine Learning
         </div>
         <StartButton setFormDisplay={setFormDisplay}></StartButton>
       </div>

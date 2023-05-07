@@ -56,25 +56,25 @@ def ok():
         'Budget':[budget],
         'MaxBudeget':[500],
         'Gift':["null"],
-        'Rating':[4.2],
+        'Rating':[2],
         'Link':["null"],
         'Image Link':["null"],
         'Interest':[intrest]
 
      }
-     print(user_input) 
+     # print(user_input) 
 
      dataset = pd.read_csv(r"C:\Users\hp\OneDrive\Documents\Major Project\Recommendation\frontend_main\dataset.csv") 
      neww = pdd.DataFrame(user_input);
      neww.to_csv(r"C:\Users\hp\OneDrive\Documents\Major Project\Recommendation\frontend_main\dataset.csv", mode='a', index=False, header=False)
-    # dataset.head(150)
-    
+     # dataset.head(150)
+     print(dataset.iloc[:,9])
 
 
 
      df = pd.DataFrame(dataset)
      newdf = df.copy()
-     print(dataset)
+     # print(dataset)
     
 
 
@@ -165,7 +165,7 @@ def ok():
 # visualizer.show()
      k= visualizer.elbow_value_
 
-     print(k)
+     # print(k)
 
     
 
@@ -225,27 +225,23 @@ def ok():
 
 
      recommended_products = Newdata[Newdata['Rating'] >= 3]
-     recommended_products = recommended_products[recommended_products['Occasion'] == dataset2['Occasion'].iloc[-1]]
-     recommended_products = recommended_products[recommended_products['Relationship'] == dataset2['Relationship'].iloc[-1]]
-     recommended_products = recommended_products.sort_values(by=['Rating'],ascending=False)
-# recommended_products  
+     # recommended_products = recommended_products[recommended_products['Occasion'] == dataset2['Occasion'].iloc[-1]]
+     # recommended_products = recommended_products[recommended_products['Relationship'] == dataset2['Relationship'].iloc[-1]]
+     # recommended_products = recommended_products.sort_values(by=['Rating'],ascending=False)
+       
      print(recommended_products)
 
-     print(recommended_products['Gift'])
+     # print(recommended_products['Gift'])
      data = {}
      
    
 
-     # print(recommended_products['Gift'])
+     print(recommended_products['Gift'])
      i=5
      for index, row in recommended_products.iterrows():
       if i>0 :
         data['Gift'+ str(i)] = row['Gift']
         i=i-1
-
-    
-
-     
      return jsonify(data)
 
 
