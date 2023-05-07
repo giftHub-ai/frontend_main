@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
 import Button from "./Button";
 import { UserContext, UserDispatchContext } from "./Context";
-import iziToast from "izitoast";
+import Toast from "./Toast";
+import toast from "react-hot-toast";
 
 const PrevNext = ({ input, alreadyFilled }) => {
   const inputDetails = React.useContext(UserContext);
@@ -16,37 +17,39 @@ const PrevNext = ({ input, alreadyFilled }) => {
       // console.log(inputDetails.userInput);
       setUserDetails.nextStep();
     } else {
-    //   iziToast.error({
-    //     title: 'Error',
-    //     message: 'Illegal operation',
-    //     position: 'topRight',
-    // });
+      toast.error("Make sure you have given response!", {
+        duration: 2000,
+        position: "top-right",
+      });
       // window.alert("Make sure you have given response!");
     }
   };
 
   return (
-    <div className="flex justify-between">
-      <div
-        className={`items-start ${
-          inputDetails.activeStep == 1 ? "invisible" : null
-        }`}
-        onClick={() => {
-          setUserDetails.prevStep();
-        }}
-      >
-        <Button className="p-4 font-bold " text="Prev " />
+    <>    
+        <Toast />
+      <div className="flex justify-between">
+        <div
+          className={`items-start ${
+            inputDetails.activeStep == 1 ? "invisible" : null
+          }`}
+          onClick={() => {
+            setUserDetails.prevStep();
+          }}
+        >
+          <Button className="p-4 font-bold " text="Prev " />
+        </div>
+        <div
+          className="items-start "
+          onClick={() => {
+            checkNext(input);
+          }}
+        >
+          {/* {console.log(alreadyFilled)} */}
+          <Button className="p-4 font-bold " text="Next " />
+        </div>
       </div>
-      <div
-        className="items-start "
-        onClick={() => {
-          checkNext(input);
-        }}
-      >
-        {console.log(alreadyFilled)}
-        <Button className="p-4 font-bold " text="Next " />
-      </div>
-    </div>
+    </>
   );
 };
 

@@ -36,7 +36,7 @@ const BudgetInputStep = () => {
     }
   }, []); 
   return (
-    <div className="border w-full px-4">
+    <div className="w-full px-4  flex flex-col justify-between h-full">
       <h1 className="w-full py-4 heading-style">Pick your average budget(INR)</h1>
       <div className="w-full py-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {InterestArray && InterestArray.length ? (

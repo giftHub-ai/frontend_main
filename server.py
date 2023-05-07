@@ -23,30 +23,30 @@ matplotlib.use('SVG')
 from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
-cors = CORS(app)
+
 api = Api(app)
 # importing libraries    
 
 
-def getMappingDictionary(unique_data):
-    mappingDictionary = {}
-    for i in range(len(unique_data)):
-        mappingDictionary[unique_data[i]] = i
-    return mappingDictionary
 
 
 
 
 @app.route('/incomes', methods=['POST'])
+@cross_origin()
 def ok():
-    
-     age = request.form.get('age')
-     gender = request.form.get('gender')
-     intrest = request.form.get('interest')
-     relatioship = request.form.get('relationship')
-     occasion = request.form.get('occasion')
-     budget = request.form.get('budget')
+   
+     content = request.json
+     age = content['age']
+     gender =content['gender']
+     intrest =content['interest']
+     relatioship = content['relationship']
+     occasion = content['occasion']
+     budget = content['budget']
      # rating = request.form.get('Rating')
+     
+     print(age)
+     
     
      user_input = {
         'Age':[age],
@@ -63,15 +63,18 @@ def ok():
 
      }
      print(user_input) 
-     dataset = pd.read_csv('dataset.csv') 
+
+     dataset = pd.read_csv(r"C:\Users\hp\OneDrive\Documents\Major Project\Recommendation\frontend_main\dataset.csv") 
      neww = pdd.DataFrame(user_input);
-     neww.to_csv('dataset.csv', mode='a', index=False, header=False)
+     neww.to_csv(r"C:\Users\hp\OneDrive\Documents\Major Project\Recommendation\frontend_main\dataset.csv", mode='a', index=False, header=False)
     # dataset.head(150)
+    
 
 
 
      df = pd.DataFrame(dataset)
      newdf = df.copy()
+     print(dataset)
     
 
 
@@ -96,6 +99,8 @@ def ok():
      def modifyDatasetColumn(columnName, mapping_dict):
       dataset[columnName] = dataset[columnName].map(mapping_dict)
 
+      
+   
 
 
 
@@ -112,12 +117,12 @@ def ok():
      modifyDataset('Gender')
     #  print(dataset.head())
 
-     modifyDataset('Relationship')
-# dataset.head()
+#      modifyDataset('Relationship')
+# # dataset.head()
 
 
-     modifyDataset('Occasion')
-# dataset.head()
+#      modifyDataset('Occasion')
+# # dataset.head()
 
 
      modifyDataset('Interest')
@@ -139,7 +144,7 @@ def ok():
      df.drop(['Relationship','Occasion','Budget','MaxBudget','Gift','Rating','Link','Image Link'],axis=1, inplace=True)
      
 
-     print(df)
+     # print(df)
 
 
 
