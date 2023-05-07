@@ -12,9 +12,6 @@ const PrevNext = ({ input, alreadyFilled }) => {
       alreadyFilled === true ||
       (input !== "" && input !== undefined && input !== null)
     ) {
-      // console.log(input);
-      // inputDetails.userInput.age=input;
-      // console.log(inputDetails.userInput);
       setUserDetails.nextStep();
     } else {
       toast.error("Make sure you have given response!", {
@@ -26,8 +23,8 @@ const PrevNext = ({ input, alreadyFilled }) => {
   };
 
   return (
-    <>    
-        <Toast />
+    <>
+      <Toast />
       <div className="flex justify-between">
         <div
           className={`items-start ${

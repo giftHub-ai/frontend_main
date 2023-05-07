@@ -30,14 +30,14 @@ const NavBar = ({ className }) => {
             className="m-4 p-2 border border-background rounded-sm"
             handleMenuClick={handleMenuClick}
           ></MenuIcon>
-          <LoginButton buttonText={`Login`}></LoginButton>
+          <LoginButton buttonText={''}></LoginButton>
         </div>
       )}
       {/* for screen-width >= sm */}
       <div className="max-sm:hidden py-4 px-8 flex flex-col items-start sm:flex-row sm:justify-between sm:items-baseline">
         <AppLogo></AppLogo>
         <NavOptions navKeys={navKeys}></NavOptions>
-        <LoginButton buttonText={`Login`}></LoginButton>
+        <LoginButton buttonText={``}></LoginButton>
       </div>
     </div>
   );

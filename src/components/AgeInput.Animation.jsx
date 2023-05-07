@@ -20,8 +20,8 @@ let interval=null;
 
   return (
     <div className="" onClick={handleClick}>
-      <div className="border p-4 rounded-md">
-        <div className="border animate-typing overflow-hidden whitespace-nowrap border-r-12 border-r-black pr-4 text-5xl font-bold">
+      <div className="border p-2 px-8 rounded-md">
+        <div className="border-r pr-4 animate-typing overflow-hidden whitespace-nowrap border-r-12 border-r-black  text-3xl font-bold">
           {age}
         </div>
       </div>
