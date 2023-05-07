@@ -22,12 +22,14 @@ const GenderInputStep = () => {
   };
   useEffect(() => {
     genderValue = inputDetails.userInput.gender;
-    if (genderValue !== "") setAlreadyFilled(true);
-    setGender(genderValue);
+    if (genderValue !== "") {
+      setAlreadyFilled(true);
+      setGender(genderValue);
+    }
   }, []);
 
   return (
-    <div className="w-full">
+    <div className="w-full  backdrop-blur-sm">
       <h1 className={`w-full heading-style`}>Pick Recipient's Gender</h1>
       <div className="w-full flex justify-evenly ">
         {genders && genders.length
@@ -43,11 +45,11 @@ const GenderInputStep = () => {
             ))
           : null}
       </div>
-      {alreadyFilled && (
+      {/* {alreadyFilled && (
         <div className="text-center">
           <h2>Current Gender Input value: {gender}</h2>
         </div>
-      )}
+      )} */}
       <PrevNext input={gender} alreadyFilled={alreadyFilled} />
     </div>
   );

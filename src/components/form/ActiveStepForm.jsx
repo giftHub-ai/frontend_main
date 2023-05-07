@@ -6,6 +6,7 @@ import GenderInputStep from "../formSteps/Gender/GenderInputStep";
 import InterestInputStep from "../formSteps/Interest/InterestInputStep";
 import OccasionInputStep from "../formSteps/Occasion/OccasionInputStep";
 import RelationshipInputStep from "../formSteps/Relationship/RelationshipInputStep";
+import Result from "../formSteps/Result/Result";
 const ActiveStepForm = ({ className, stepNames }) => {
   const inputDetails = React.useContext(UserContext);
   const setUserDetails = useContext(UserDispatchContext);
@@ -90,7 +91,14 @@ const StepToFormMapper = ({ stepNamesMap, activeStep, prevStep, nextStep }) => {
       );
     // 6
     case "Budget":
-      return <BudgetInputStep prevStep={prevStep}></BudgetInputStep>;
+      return (
+        <BudgetInputStep
+          nextStep={nextStep}
+          prevStep={prevStep}
+        ></BudgetInputStep>
+      );
+    case "Result":
+      return <Result nextStep={nextStep} prevStep={prevStep}></Result>;
     // 7
     default:
       return <ErrorComponent message={"default case reached"}></ErrorComponent>;
