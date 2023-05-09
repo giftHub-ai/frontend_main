@@ -14,6 +14,7 @@ export default {
       text: "#060047",
       green: "#008000",
       white: "#ffffff",
+      yellowStar: "#f7db3c",
       interestHover: "#f8fafc",
     },
 
