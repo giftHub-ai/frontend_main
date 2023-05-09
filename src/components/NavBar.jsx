@@ -75,7 +75,7 @@ const NavOptions = ({ navKeys }) => (
 );
 
 const LoginButton = ({ buttonText }) => (
-  <button className="text-light rounded-md px-4 mx-4 py-2 text-3xl font-semibold hover:text-dark hover:bg-background hover:bg-opacity-5 hover:border-white">
+  <button className="text-light rounded-md px-4 mx-4 py-2 text-2xl font-semibold hover:text-dark hover:bg-background hover:bg-opacity-5 hover:border-white">
     {buttonText}
   </button>
 );

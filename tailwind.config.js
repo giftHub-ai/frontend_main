@@ -1,6 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  variants: {
+    float: ["responsive", "direction"],
+    margin: ["responsive", "direction"],
+    padding: ["responsive", "direction"],
+  },
   theme: {
     colors: {
       background: "#FF5F9E",
