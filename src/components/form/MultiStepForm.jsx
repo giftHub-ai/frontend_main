@@ -8,7 +8,7 @@ const stepNames = [
   "Relationship",
   "Occasion",
   "Budget",
-  "Result"
+  "Result",
 ];
 const MultiStepForm = () => {
   return (

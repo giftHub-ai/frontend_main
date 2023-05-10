@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import giftLogo from "../assets/giftLogo1.png";
 
 const navKeys = ["Home", "About", "Tiger", "Elephant"];
 
@@ -14,7 +15,8 @@ const NavBar = ({ className }) => {
     <div className={buildClassName(``)}>
       {/* for screen-width < sm */}
       {isMenuOpen ? (
-        <div className="sm:hidden w-full flex flex-row justify-between">
+        /* display nav menu if menu is open */
+        <div className="sm:hidden w-full flex flex-row justify-between drop-shadow-none shadow-md">
           <div className={"py-4 px-8 flex flex-col items-start"}>
             <AppLogo></AppLogo>
             <NavOptions navKeys={navKeys}></NavOptions>
@@ -25,19 +27,22 @@ const NavBar = ({ className }) => {
           ></CloseIcon>
         </div>
       ) : (
-        <div className="sm:hidden w-full flex justify-between">
+        /* display hamburger and login button if menu is not open */
+        <div className="sm:hidden w-full flex items-center justify-between drop-shadow-none shadow-md">
           <MenuIcon
-            className="m-4 p-2 border border-background rounded-sm"
+            className="m-4 p-2 hover:bg-background hover:bg-opacity-20 rounded-md"
             handleMenuClick={handleMenuClick}
           ></MenuIcon>
           <LoginButton buttonText={''}></LoginButton>
         </div>
       )}
       {/* for screen-width >= sm */}
-      <div className="max-sm:hidden py-4 px-8 flex flex-col items-start sm:flex-row sm:justify-between sm:items-baseline">
+      <div className="max-sm:hidden py-4 px-8 flex flex-col items-start sm:flex-row sm:justify-between sm:items-center drop-shadow-none shadow-background shadow-sm">
         <AppLogo></AppLogo>
-        <NavOptions navKeys={navKeys}></NavOptions>
-        <LoginButton buttonText={``}></LoginButton>
+        <div className="flex flex-row items-baseline">
+          <NavOptions navKeys={navKeys}></NavOptions>
+          <LoginButton buttonText={``}></LoginButton>
+        </div>
       </div>
     </div>
   );
@@ -45,11 +50,18 @@ const NavBar = ({ className }) => {
 
 export default NavBar;
 
-const AppLogo = () => <div className="hidden md:block"></div>;
+const AppLogo = () => (
+  <div className="hidden sm:flex flex-row items-center">
+    <div className="hidden lg:block mx-2 text-2xl font-semibold text-dark">
+      Gift Store
+    </div>
+    <img className="w-16 h-16" src={giftLogo} alt="giftLogo"></img>
+  </div>
+);
 
 const NavButton = ({ option }) => (
-  <div className="px-4 py-2 mx-4 font-semibold border-2 border-white hover:border-b-background hover:text-light hover:cursor-pointer">
-    {option}
+  <div className="px-4 py-2 mx-4 font-semibold hover:text-light hover:cursor-pointer transition ease-linear delay-200 text-center">
+    {option.toUpperCase()}
   </div>
 );
 
@@ -63,7 +75,7 @@ const NavOptions = ({ navKeys }) => (
 );
 
 const LoginButton = ({ buttonText }) => (
-  <button className="px-4 mx-4 py-2 text-3xl font-semibold text-background hover:text-dark">
+  <button className="text-light rounded-md px-4 mx-4 py-2 text-2xl font-semibold hover:text-dark hover:bg-background hover:bg-opacity-5 hover:border-white">
     {buttonText}
   </button>
 );

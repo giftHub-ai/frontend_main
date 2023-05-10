@@ -7,9 +7,31 @@
     @apply [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none;
   }
   .heading-style {
-    @apply font-bold text-2xl text-[3rem] text-center ;
+    @apply font-bold text-2xl text-[3rem] text-center;
   }
   .gender-img-style {
     @apply p-2 m-2 hover:bg-light rounded-lg cursor-pointer;
+  }
+  .rating_bar {
+    width: 100px;
+    height: 20px;
+    display: inline-block;
+    display: inline;
+    unicode-bidi: bidi-override;
+    direction: rtl;
+  }
+
+  .rating_bar > span:before {
+    content: "\2605";
+    color: #c7c5c5;
+    height: 20px;
+    width: 100px;
+    cursor: pointer;
+    font-size: 2em;
+  }
+
+  .rating_bar > span:hover:before,
+  .rating_bar span:hover ~ span:before {
+    color: #f7db3c;
   }
 }
