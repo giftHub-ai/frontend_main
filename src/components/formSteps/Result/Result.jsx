@@ -40,15 +40,15 @@ const Result = () => {
     }}
   , []);
 
- const result = Object.keys(data).map((key) => {
-    return (
-      <div key={key}>
-        <p>
-          {key}: {data[key]}
-        </p>
-      </div>
-    );
-  }); 
+//  const result = Object.keys(data).map((key) => {
+//     return (
+//       <div key={key}>
+//         <p>
+//           {key}: {data[key]}
+//         </p>
+//       </div>
+//     );
+//   }); 
 
   if (loading === true)
     return (
