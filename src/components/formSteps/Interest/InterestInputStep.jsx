@@ -5,16 +5,16 @@ import InterestCard from "./InterestCard";
 const InterestArray = [
   "Art",
   "Writing",
-  "Beauty",
-  "Photography",
+  "Reading",
+  "Fashion",
   "Travel",
   "Sports",
-  "Reading",
+  "Health",
   "Music",
-  "Yoga",
   "Technology",
-  "Dance",
   "Movies",
+  "Food",
+  "any",
 ];
 const InterestInputStep = () => {
   const [selectedInterest, setInterest] = useState(undefined);

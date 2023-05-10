@@ -13,7 +13,6 @@ const InterestArray = [
  "For Him",
  "Friend",
  "Husband",
- "Kids",
  "Mother",
  "Sister",
  "Son",
