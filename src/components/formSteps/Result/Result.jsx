@@ -5,12 +5,12 @@ import { UserContext } from "../../Context";
 import _ from "underscore";
 import toast from "react-hot-toast";
 import Toast from "../../Toast";
-
+import GiftCard from "../../GiftCard"
 const Result = () => {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [data, setData] = useState(null);
   const inputDetails = React.useContext(UserContext);
-
+/*
   useEffect(() => {
     const userInputValues = inputDetails.userInput;
     const usersName = JSON.stringify(userInputValues);
@@ -38,7 +38,7 @@ const Result = () => {
       console.log("run");
       // setData(data || null);
     }}
-  , []);
+  , []);*/
 
 //  const result = Object.keys(data).map((key) => {
 //     return (
@@ -62,9 +62,10 @@ const Result = () => {
       <div>
         <Toast />
         <div className="">
-          {data.Gift1}
+          {/* {data.Gift1}
           {data.Gift2}
-          {data.Gift3}
+          {data.Gift3} */}
+          <GiftCard/>
           {/* {result} */}
 
           {/* {    console.log("data  ",data)}
