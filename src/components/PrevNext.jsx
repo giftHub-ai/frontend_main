@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 const PrevNext = ({ input, alreadyFilled }) => {
   const inputDetails = React.useContext(UserContext);
   const setUserDetails = useContext(UserDispatchContext);
+
   const checkNext = (input) => {
     if (
       alreadyFilled === true ||
@@ -43,7 +44,8 @@ const PrevNext = ({ input, alreadyFilled }) => {
           }}
         >
           {/* {console.log(alreadyFilled)} */}
-          <Button className="p-4 font-bold " text="Next " />
+          <div className={`${inputDetails.activeStep == 7?"hidden":  null }`}>
+          <Button className={`p-4 font-bold `}  text="Next " /></div>
         </div>
       </div>
     </>

@@ -41,7 +41,7 @@ const AgeInputStep = () => {
   };
 
   return (
-    <div className="w-full px-4 backdrop-blur-sm flex flex-col justify-between h-full">
+    <div className="w-full px-4  flex flex-col justify-between h-full">
        <Toast />
       <h1 className={`heading-style`}>Enter Recipient's Age</h1>
       <div className="flex justify-center items-between">
@@ -55,7 +55,7 @@ const AgeInputStep = () => {
           <div className="flex-col">
             <input
               type="number"
-              min="2"
+              min="0"
               max="150"
               className=" p-2 pr-4 border border-orange-300 outline-none rounded-md text-3xl font-bold remove-arrows"
               onChange={() => {

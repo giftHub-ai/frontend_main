@@ -37,7 +37,7 @@ const GiftCard = () => {
     setRating(rate);
   };
   return (
-    <div className="p-2 m-2 max-w-sm rounded overflow-hidden shadow-lg">
+    <div className="p-2 m-2 w-[20rem] max-w-sm rounded overflow-hidden shadow-lg bg-white">
       {/* image */}
       <div className="w-full rounded-md">
         <img className="rounded-md" src={giftImage} alt="gift_image"></img>
@@ -47,6 +47,7 @@ const GiftCard = () => {
       {/* rating and buy button */}
       <div className="w-full flex flex-row items-center justify-between">
         <div className="rounded-md mr-1">
+          <h6 className="text-[1rem] font-thin">How helpful this is</h6>
           <Rating
             onClick={handleRating}
             initialValue={rating}

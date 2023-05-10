@@ -15,7 +15,7 @@ const HomePage = ({ className }) => {
       {!formDisplay ? (
         <PageContent setFormDisplay={setFormDisplay}></PageContent>
       ) : (
-        <div className="w-screen min-h-screen overflow-y-scroll flex items-center justify-center font-sans border bg-[url('/images/banner1.webp')]">
+        <div className="w-screen min-h-screen overflow-y-scroll flex items-center justify-center font-sans bg-[url('/images/banner1.webp')]">
           <UserProvider>
             <MultiStepForm></MultiStepForm>
           </UserProvider>

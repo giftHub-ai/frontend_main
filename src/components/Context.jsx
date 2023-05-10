@@ -14,7 +14,7 @@ function UserProvider({ children }) {
   });
 
   const [displayAgeInput, setDisplayAgeInput] = useState(false);
-  const [activeStep, setActiveStep] = useState(7);
+  const [activeStep, setActiveStep] = useState(1);
   const nextStep = () => setActiveStep((prev) => prev + 1);
   const prevStep = () => setActiveStep((prev) => prev - 1);
   return (

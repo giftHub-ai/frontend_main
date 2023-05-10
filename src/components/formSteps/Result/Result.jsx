@@ -59,12 +59,15 @@ const Result = () => {
     );
   else
     return (
-      <div>
+      <div className="w-full  flex flex-col justify-evenly h-full">
         <Toast />
-        <div className="">
+        <h1 className="text-center text-[3rem]">Recommendation</h1>
+        <div className="flex flex-col sm:flex-row  justify-between ">
           {/* {data.Gift1}
           {data.Gift2}
           {data.Gift3} */}
+          <GiftCard/>
+          <GiftCard/>
           <GiftCard/>
           {/* {result} */}
 
