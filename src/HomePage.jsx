@@ -11,9 +11,9 @@ const HomePage = ({ className }) => {
   const [formDisplay, setFormDisplay] = useState(false);
   return (
     <div className={buildClassName(``)}>
-      <NavBar className="w-full"></NavBar>
       {!formDisplay ? (
-        <PageContent setFormDisplay={setFormDisplay}></PageContent>
+       <><NavBar className="w-full"></NavBar>
+        <PageContent setFormDisplay={setFormDisplay}></PageContent></> 
       ) : (
         <div className="w-screen min-h-screen overflow-y-scroll flex items-center justify-center font-sans bg-[url('/images/banner1.webp')]">
           <UserProvider>

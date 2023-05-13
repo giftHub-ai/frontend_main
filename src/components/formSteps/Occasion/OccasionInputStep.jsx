@@ -9,13 +9,11 @@ const InterestArray = [
   "Christmas",
   "Diwali",
   "Father's Day",
-  "Friendship",
+  "Friendship Day",
   "Mother's Day",
-  "Navaratri",
   "New Year's",
   "Raksha Bandhan",
-  "Retirement",
-  "Any  "
+  "Any"
 ];
 const OccasionInputStep = () => {
   const [selectedInterest, setInterest] = useState();

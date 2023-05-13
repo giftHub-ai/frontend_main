@@ -10,7 +10,7 @@ const InterestArray = [
  "5000",
  "10,000",
  "50,000",
-  "Doesn't matters",
+ "Doesn't matters",
 ];
 const BudgetInputStep = () => {
   const [selectedInterest, setInterest] = useState();
@@ -29,7 +29,6 @@ const BudgetInputStep = () => {
   useEffect(() => {
    
     interestValue = inputDetails.userInput.budget;
-    console.log("interest value",interestValue);
     if (interestValue!== "") {
       setAlreadyFilled(true);
       setActiveInterest(InterestArray.indexOf(interestValue));
@@ -55,7 +54,7 @@ const BudgetInputStep = () => {
           })
         ) : (
           <div className="w-full text-center font-semibold p-4 text-xl">
-            interests were not found
+            Budgets were not found
           </div>
         )}
       </div>

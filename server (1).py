@@ -9,6 +9,7 @@ import pandas as pdd
 import plotly.express as px
 
 from sklearn.cluster import KMeans
+from sklearn.preprocessing import OneHotEncoder
 from yellowbrick.cluster import KElbowVisualizer
 from sklearn.datasets import make_blobs
 
@@ -29,46 +30,40 @@ api = Api(app)
 
 
 
-@app.route('/addEntry',methods=['POST'])
+@app.route('/addEntry',methods=['GET'])
 @cross_origin()
 def okk():
      
-     content = request.json
-     print(content)
-     age = content['age']
-     gender =content['gender']
-     intrest =content['interest']
-     relatioship = content['relationship']
-     occasion = content['occasion']
-     budget = content['budget']
-     rating =  content['rating']
-     Link =  content['Link']
-     Image_Link =  content['ImageLink']
-     MaxBudget =  content['budget']
-     GiftName =  content['Gift']
+     # content = request.json
+     # age = content['age']
+     # gender =content['gender']
+     # intrest =content['interest']
+     # relatioship = content['relationship']
+     # occasion = content['occasion']
+     # budget = content['budget']
+     # rating =  content['rating']
+     # Link =  content['gitflink']
+     # Image_Link =  content['ImageLink']
+     # MaxBudget =  content['maxbudget']
+     # GiftName =  content['giftName']
      
      user_input = {
-        'Age':[age],
-        'Gender':[gender],
-        'Relationship':[relatioship],
-        'Occasion':[occasion],
-        'Budget':[budget],
-        'MaxBudget':[MaxBudget],
-        'Gift':[GiftName],
-        'Rating':[rating],
-        'Link':[Link],
-        'Image Link':[Image_Link],
-        'Interest':[intrest]
+        'Age':[34],
+        'Gender':['Male'],
+        'Relationship':['Son'],
+        'Occasion':['Birthday'],
+        'Budget':[3000],
+        'MaxBudget':[4000],
+        'Gift':['Null'],
+        'Rating':[2],
+        'Link':["https//instagram"],
+        'Image Link':['https'],
+        'Interest':['Sports']
      }
      
      dataset = pd.read_csv(r"C:\Users\hp\OneDrive\Documents\Major Project\Recommendation\frontend_main\dataset.csv",error_bad_lines=False) 
      neww = pdd.DataFrame(user_input);
      neww.to_csv(r"C:\Users\hp\OneDrive\Documents\Major Project\Recommendation\frontend_main\dataset.csv", mode='a', index=False, header=False)
-
-     # dataset = dataset[dataset['Gift'] != 'null']
-     # dataset.to_csv(r"C:\Users\hp\OneDrive\Documents\Major Project\Recommendation\frontend_main\dataset.csv", mode='w', index=False, header=False)
-     
-
      
      return 'OK';
      
@@ -91,40 +86,39 @@ def ok():
      relatioship = content['relationship']
      occasion = content['occasion']
      budget = content['budget']
-     # rating = request.form.get('Rating') 
-     print(age)
+     rating = request.form.get('Rating')
      
-
+    
+    
      user_input = {
         'Age':[age],
         'Gender':[gender],
         'Relationship':[relatioship],
         'Occasion':[occasion],
-        'Budget':[budget],
-        'MaxBudget':[500],
-        'Gift':["null"],
+        'Budget':[3000],
+        'MaxBudget':[4000],
+        'Gift':['Null'],
         'Rating':[2],
-        'Link':["null"],
-        'Image Link':["null"],
+        'Link':["https//instagram"],
+        'Image Link':['https'],
         'Interest':[intrest]
      }
-     # temp = pd.DataFrame(user_input)
      
-     # # print(user_input) 
-     # dataset = pd.read_csv(r"C:\Users\hp\OneDrive\Documents\Major Project\Recommendation\frontend_main\dataset.csv",error_bad_lines=False) 
-     # print(dataset)
-     # # dataset = pd.concat([dataset,temp],ignore_index=True)
-     # print(dataset)
+     temp = pd.DataFrame(user_input)
+     
+     # print(user_input) 
+     dataset = pd.read_csv(r"C:\Users\hp\OneDrive\Documents\Major Project\Recommendation\frontend_main\dataset.csv",) 
+     print(dataset)
+     dataset = pd.concat([dataset,temp],ignore_index=True)
+     print(dataset)
 
-     dataset = pd.read_csv(r"C:\Users\hp\OneDrive\Documents\Major Project\Recommendation\frontend_main\dataset.csv",error_bad_lines=False) 
-     neww = pdd.DataFrame(user_input);
-     neww.to_csv(r"C:\Users\hp\OneDrive\Documents\Major Project\Recommendation\frontend_main\dataset.csv", mode='a', index=False, header=False)
+
 
 
 
      df = pd.DataFrame(dataset)
      newdf = df.copy()
-     print(dataset)
+     
     
 
 
@@ -194,7 +188,8 @@ def ok():
      df.drop(['Relationship','Occasion','Budget','MaxBudget','Gift','Rating','Link','Image Link'],axis=1, inplace=True)
      
 
-     # print(df)
+     print(df)
+     print(df.shape)
 
 
 
@@ -208,7 +203,8 @@ def ok():
      model = KMeans()
      visualizer = KElbowVisualizer(model, k=(1, 10)) 
 
-# Fit the data to the visualizer
+# # Fit the data to the visualizer
+#      enc = OneHotEncoder(handle_unknown='ignore')
      visualizer.fit(df)
 
 # # Display the elbow plot
@@ -256,39 +252,54 @@ def ok():
      df2['Cluster']= customer_segments
      # print(df2)
 
+
+
+
      Newdata = pd.DataFrame()
      Newdata=df2[df2['Cluster'] == new_customer_segment[0]]
 # Newdata 
 
+
+
+ 
+
      Newdata.index.name = '_id'
 # dataset['Relationship'].iloc[-1]
    
+
+
+
+
+
+
      recommended_products = Newdata[Newdata['Rating'] >= 3]   
-     # recommended_products = recommended_products[recommended_products['Interest'] == intrest]
-     # print(recommended_products)
-     # recommended_products = recommended_products[recommended_products['Occasion'] == occasion]
-     # # recommended_products = recommended_products[recommended_products['Relationship'] == relatioship]
+     recommended_products = recommended_products[recommended_products['Interest'] == 'Sports']
+     print(recommended_products)
+     recommended_products = recommended_products[recommended_products['Occasion'] == 'Birthday']
+     # recommended_products = recommended_products[recommended_products['Relationship'] == relatioship]
      recommended_products = recommended_products.sort_values(by=['Rating'],ascending=False)
 # recommended_products  
      # print(recommended_products)
 
      print(recommended_products['Gift'])
-     final_data = []
+     data = {}
+     
+   
+
      # print(recommended_products['Gift'])
-     i=4
+     i=5
      for index, row in recommended_products.iterrows():
-      data = {}
       if i>0 :
-        data['Gift'] = row['Gift']
-        data['ImageLink'] = row['Image Link']
-        data['Link'] = row['Link'] 
-        data['Rating'] = row['Rating'] 
-        final_data.append(data)
+        data['Gift'+ str(i)] = row['Gift']
+        data['Image Link' + str(i)] = row['Image Link']
+        data['Link' + str(i)] = row['Link'] 
         i=i-1
-     return jsonify(final_data);
+
+    
+
+     
+     return jsonify(data);
+
 
 if __name__ == "__main__":
     app.run(debug=True)
-
-
-# image link, img, rating

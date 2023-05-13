@@ -4,7 +4,7 @@ import { UserContext, UserDispatchContext } from "./Context";
 import Toast from "./Toast";
 import toast from "react-hot-toast";
 
-const PrevNext = ({ input, alreadyFilled }) => {
+const PrevNext = ({ input, alreadyFilled,submitRelevancyRating }) => {
   const inputDetails = React.useContext(UserContext);
   const setUserDetails = useContext(UserDispatchContext);
 
@@ -39,13 +39,16 @@ const PrevNext = ({ input, alreadyFilled }) => {
         </div>
         <div
           className="items-start "
-          onClick={() => {
-            checkNext(input);
-          }}
         >
           {/* {console.log(alreadyFilled)} */}
-          <div className={`${inputDetails.activeStep == 7?"hidden":  null }`}>
-          <Button className={`p-4 font-bold `}  text="Next " /></div>
+          <div className={`${inputDetails.activeStep == 7 ? "hidden" : null}`} onClick={() => {
+            checkNext(input);
+          }}>
+            <Button className={`p-4 font-bold `} text="Next " />
+          </div>
+          <div className={`${inputDetails.activeStep == 7 ? null : "hidden"}`} onClick={()=>submitRelevancyRating()}>
+            <Button className={`p-4 font-bold `} text="Give Rating " />
+          </div>
         </div>
       </div>
     </>

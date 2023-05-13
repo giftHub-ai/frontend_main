@@ -7,6 +7,7 @@ import InterestInputStep from "../formSteps/Interest/InterestInputStep";
 import OccasionInputStep from "../formSteps/Occasion/OccasionInputStep";
 import RelationshipInputStep from "../formSteps/Relationship/RelationshipInputStep";
 import Result from "../formSteps/Result/Result";
+import PrevNext from "../PrevNext";
 const ActiveStepForm = ({ className, stepNames }) => {
   const inputDetails = React.useContext(UserContext);
   const setUserDetails = useContext(UserDispatchContext);
@@ -101,6 +102,11 @@ const StepToFormMapper = ({ stepNamesMap, activeStep, prevStep, nextStep }) => {
       return <Result nextStep={nextStep} prevStep={prevStep}></Result>;
     // 7
     default:
-      return <ErrorComponent message={"default case reached"}></ErrorComponent>;
+      return (
+        <>
+          <PrevNext/>
+          <ErrorComponent message={"default case reached"}></ErrorComponent>;
+        </>
+      );
   }
 };

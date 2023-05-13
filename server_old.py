@@ -29,54 +29,6 @@ api = Api(app)
 
 
 
-@app.route('/addEntry',methods=['POST'])
-@cross_origin()
-def okk():
-     
-     content = request.json
-     print(content)
-     age = content['age']
-     gender =content['gender']
-     intrest =content['interest']
-     relatioship = content['relationship']
-     occasion = content['occasion']
-     budget = content['budget']
-     rating =  content['rating']
-     Link =  content['Link']
-     Image_Link =  content['ImageLink']
-     MaxBudget =  content['budget']
-     GiftName =  content['Gift']
-     
-     user_input = {
-        'Age':[age],
-        'Gender':[gender],
-        'Relationship':[relatioship],
-        'Occasion':[occasion],
-        'Budget':[budget],
-        'MaxBudget':[MaxBudget],
-        'Gift':[GiftName],
-        'Rating':[rating],
-        'Link':[Link],
-        'Image Link':[Image_Link],
-        'Interest':[intrest]
-     }
-     
-     dataset = pd.read_csv(r"C:\Users\hp\OneDrive\Documents\Major Project\Recommendation\frontend_main\dataset.csv",error_bad_lines=False) 
-     neww = pdd.DataFrame(user_input);
-     neww.to_csv(r"C:\Users\hp\OneDrive\Documents\Major Project\Recommendation\frontend_main\dataset.csv", mode='a', index=False, header=False)
-
-     # dataset = dataset[dataset['Gift'] != 'null']
-     # dataset.to_csv(r"C:\Users\hp\OneDrive\Documents\Major Project\Recommendation\frontend_main\dataset.csv", mode='w', index=False, header=False)
-     
-
-     
-     return 'OK';
-     
-
-
-
-
-
 
 
 
@@ -91,10 +43,11 @@ def ok():
      relatioship = content['relationship']
      occasion = content['occasion']
      budget = content['budget']
-     # rating = request.form.get('Rating') 
+     # rating = request.form.get('Rating')
+     
      print(age)
      
-
+    
      user_input = {
         'Age':[age],
         'Gender':[gender],
@@ -107,24 +60,31 @@ def ok():
         'Link':["null"],
         'Image Link':["null"],
         'Interest':[intrest]
-     }
-     # temp = pd.DataFrame(user_input)
-     
-     # # print(user_input) 
-     # dataset = pd.read_csv(r"C:\Users\hp\OneDrive\Documents\Major Project\Recommendation\frontend_main\dataset.csv",error_bad_lines=False) 
-     # print(dataset)
-     # # dataset = pd.concat([dataset,temp],ignore_index=True)
-     # print(dataset)
 
+     }
+     # print(user_input) 
+
+     # dataset = pd.read_csv(r"C:\Users\hp\OneDrive\Documents\Major Project\Recommendation\frontend_main\dataset.csv") 
+     # neww = pdd.DataFrame(user_input);
+     # neww.to_csv(r"C:\Users\hp\OneDrive\Documents\Major Project\Recommendation\frontend_main\dataset.csv", mode='a', index=False, header=False)
+
+     temp = pd.DataFrame(user_input)
+     
+     # print(user_input) 
      dataset = pd.read_csv(r"C:\Users\hp\OneDrive\Documents\Major Project\Recommendation\frontend_main\dataset.csv",error_bad_lines=False) 
-     neww = pdd.DataFrame(user_input);
-     neww.to_csv(r"C:\Users\hp\OneDrive\Documents\Major Project\Recommendation\frontend_main\dataset.csv", mode='a', index=False, header=False)
+     print(dataset)
+     dataset = pd.concat([dataset,temp],ignore_index=True)
+     print(dataset)
+
+
+     # dataset.head(150)
+     print(dataset.iloc[:,9])
 
 
 
      df = pd.DataFrame(dataset)
      newdf = df.copy()
-     print(dataset)
+     # print(dataset)
     
 
 
@@ -194,13 +154,13 @@ def ok():
      df.drop(['Relationship','Occasion','Budget','MaxBudget','Gift','Rating','Link','Image Link'],axis=1, inplace=True)
      
 
-     # print(df)
+     print(df)
 
 
 
      new_headers = df.columns.values
 
-     print(df)
+     # print(df)
 
 
 
@@ -215,7 +175,7 @@ def ok():
 # visualizer.show()
      k= visualizer.elbow_value_
 
-     print(k)
+     # print(k)
 
     
 
@@ -251,44 +211,49 @@ def ok():
      df2['Interest']= newdf.iloc[:,10]
      df2['Gift']= newdf.iloc[:,6]
      df2['Rating']= newdf.iloc[:,7]
-     df2['Link'] = newdf.iloc[:,8]
-     df2['Image Link'] = newdf.iloc[:,9]
      df2['Cluster']= customer_segments
-     # print(df2)
+# df2
+
+
+
 
      Newdata = pd.DataFrame()
      Newdata=df2[df2['Cluster'] == new_customer_segment[0]]
 # Newdata 
 
+
+
+ 
+
      Newdata.index.name = '_id'
 # dataset['Relationship'].iloc[-1]
+     dataset2 = pd.read_csv('dataset.csv') 
+
+
+
+
+
+
+     recommended_products = Newdata[Newdata['Rating'] >= 3]
+     # recommended_products = recommended_products[recommended_products['Occasion'] == dataset2['Occasion'].iloc[-1]]
+     # recommended_products = recommended_products[recommended_products['Relationship'] == dataset2['Relationship'].iloc[-1]]
+     # recommended_products = recommended_products.sort_values(by=['Rating'],ascending=False)
+       
+     print(recommended_products)
+
+     # print(recommended_products['Gift'])
+     data = {}
+     
    
-     recommended_products = Newdata[Newdata['Rating'] >= 3]   
-     # recommended_products = recommended_products[recommended_products['Interest'] == intrest]
-     # print(recommended_products)
-     # recommended_products = recommended_products[recommended_products['Occasion'] == occasion]
-     # # recommended_products = recommended_products[recommended_products['Relationship'] == relatioship]
-     recommended_products = recommended_products.sort_values(by=['Rating'],ascending=False)
-# recommended_products  
-     # print(recommended_products)
 
      print(recommended_products['Gift'])
-     final_data = []
-     # print(recommended_products['Gift'])
-     i=4
+     i=5
      for index, row in recommended_products.iterrows():
-      data = {}
       if i>0 :
-        data['Gift'] = row['Gift']
-        data['ImageLink'] = row['Image Link']
-        data['Link'] = row['Link'] 
-        data['Rating'] = row['Rating'] 
-        final_data.append(data)
+        data['Gift'+ str(i)] = row['Gift']
         i=i-1
-     return jsonify(final_data);
+     return jsonify(data)
+
 
 if __name__ == "__main__":
     app.run(debug=True)
-
-
-# image link, img, rating

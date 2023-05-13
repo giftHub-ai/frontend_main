@@ -5,16 +5,16 @@ const UserDispatchContext = createContext(undefined);
 
 function UserProvider({ children }) {
   const [userInput, setUserInput] = useState({
-    age: -1,
-    gender: "",
-    interest: "",
-    relationship:"",
-    occasion:"",
-    budget:""
+    age: 50,
+    gender: "Male",
+    interest: "Sports",
+    relationship:"Friend",
+    occasion:"Friendship Day",
+    budget:"5000"
   });
 
   const [displayAgeInput, setDisplayAgeInput] = useState(false);
-  const [activeStep, setActiveStep] = useState(1);
+  const [activeStep, setActiveStep] = useState(7) ;
   const nextStep = () => setActiveStep((prev) => prev + 1);
   const prevStep = () => setActiveStep((prev) => prev - 1);
   return (

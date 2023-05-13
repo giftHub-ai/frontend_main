@@ -28,26 +28,31 @@ const fillColorArray = [
   "#f1d045",
 ];
 
-const GiftCard = () => {
+const GiftCard = ({ productData,setrelevancyData }) => {
   const [rating, setRating] = useState(0);
-  useEffect(() => console.log(rating), [rating]);
-
   // Catch Rating value
   const handleRating = (rate) => {
+    productData = {...productData,rating:rate}
+    setrelevancyData(productData);
+    console.log(productData);
     setRating(rate);
   };
   return (
     <div className="p-2 m-2 w-[20rem] max-w-sm rounded overflow-hidden shadow-lg bg-white">
       {/* image */}
       <div className="w-full rounded-md">
-        <img className="rounded-md" src={giftImage} alt="gift_image"></img>
+        <img
+          className="rounded-md mx-auto object-fill"
+          src={productData.ImageLink}
+          alt="gift_image"
+        ></img>
       </div>
       {/* name */}
-      <div className="py-4 text-xl font-semibold">Gift Name</div>
+      <div className="py-4 text-xl font-semibold">{productData.Gift}</div>
       {/* rating and buy button */}
       <div className="w-full flex flex-row items-center justify-between">
         <div className="rounded-md mr-1">
-          <h6 className="text-[1rem] font-thin">How helpful this is</h6>
+          <h6 className="text-[1rem] font-thin -mb-2">How helpful this is</h6>
           <Rating
             onClick={handleRating}
             initialValue={rating}
@@ -66,9 +71,11 @@ const GiftCard = () => {
             fillClassName={`inline-box`}
           ></Rating>
         </div>
-        <div className="border font-semibold hover:border-white hover:bg-light bg-white text-light hover:text-white border-light  hover:cursor-pointer py-2 px-4 rounded-md">
-          Buy
-        </div>
+        <a href={productData.Link} target="_blank" rel="noopener noreferrer">
+          <div className="border font-semibold hover:border-white hover:bg-light bg-white text-light hover:text-white border-light  hover:cursor-pointer py-2 px-4 rounded-md">
+            Explore
+          </div>
+        </a>
       </div>
     </div>
   );

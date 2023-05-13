@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
-import { UserContext,UserDispatchContext } from "../../Context";
+import React, {useEffect, useState } from "react";
+import { UserContext } from "../../Context";
 import PrevNext from "../../PrevNext";
 import InterestCard from "./InterestCard";
 const InterestArray = [
@@ -14,7 +14,7 @@ const InterestArray = [
   "Technology",
   "Movies",
   "Food",
-  "any",
+  "Any",
 ];
 const InterestInputStep = () => {
   const [selectedInterest, setInterest] = useState(undefined);

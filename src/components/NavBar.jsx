@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import giftLogo from "../assets/giftLogo1.png";
-
-const navKeys = ["Home", "About", "Tiger", "Elephant"];
+const navKeys = ["Home"];
 
 const NavBar = ({ className }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
