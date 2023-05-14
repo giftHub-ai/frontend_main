@@ -1,4 +1,4 @@
-import React, {useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { UserContext } from "../../Context";
 import PrevNext from "../../PrevNext";
 import InterestCard from "./InterestCard";
@@ -22,25 +22,27 @@ const InterestInputStep = () => {
   const [alreadyFilled, setAlreadyFilled] = useState(false);
   const inputDetails = React.useContext(UserContext);
 
-  const setSelectedInterest=(interest)=>{
+  const setSelectedInterest = (interest) => {
     inputDetails.userInput.interest = interest;
     setAlreadyFilled(true);
     console.log(inputDetails.userInput);
-  }
+  };
 
   let interestValue;
   useEffect(() => {
     interestValue = inputDetails.userInput.interest;
-    console.log("interest value",interestValue);
-    if (interestValue!== "") {
+    console.log("interest value", interestValue);
+    if (interestValue !== "") {
       setAlreadyFilled(true);
       setActiveInterest(InterestArray.indexOf(interestValue));
     }
-  }, []); 
+  }, []);
 
   return (
     <div className="w-full px-4  flex flex-col justify-between h-full ">
-      <h1 className="w-full py-4 heading-style">Pick Recipient's Interests</h1>
+      <h1 className="w-full py-4 heading-style text-white">
+        Pick Recipient's Interests
+      </h1>
       <div className="w-full py-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {InterestArray && InterestArray.length ? (
           InterestArray.map((interest, index) => {

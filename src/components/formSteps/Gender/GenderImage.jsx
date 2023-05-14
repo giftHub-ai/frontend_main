@@ -8,11 +8,11 @@ const GenderImage = ({ className, gender, imageGender, src, handleClick }) => {
   return (
     <div
       className={buildClassName(
-        `gender-img-style ${gender === imageGender ? "bg-dark" : ""}`
+        `gender-img-style ${gender === imageGender ? "bg-white" : ""}`
       )}
       onClick={() => handleClick(imageGender)}
     >
-      <img src={src} alt={imageGender}></img>
+      <img className="rounded-full" src={src} alt={imageGender}></img>
     </div>
   );
 };

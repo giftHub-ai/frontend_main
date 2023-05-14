@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { UserContext, UserDispatchContext } from "../Context";
+import PrevNext from "../PrevNext";
 import AgeInputStep from "../formSteps/Age/AgeInputStep";
 import BudgetInputStep from "../formSteps/Budget/BudgetInputStep";
 import GenderInputStep from "../formSteps/Gender/GenderInputStep";
@@ -7,7 +8,6 @@ import InterestInputStep from "../formSteps/Interest/InterestInputStep";
 import OccasionInputStep from "../formSteps/Occasion/OccasionInputStep";
 import RelationshipInputStep from "../formSteps/Relationship/RelationshipInputStep";
 import Result from "../formSteps/Result/Result";
-import PrevNext from "../PrevNext";
 const ActiveStepForm = ({ className, stepNames }) => {
   const inputDetails = React.useContext(UserContext);
   const setUserDetails = useContext(UserDispatchContext);
@@ -104,7 +104,7 @@ const StepToFormMapper = ({ stepNamesMap, activeStep, prevStep, nextStep }) => {
     default:
       return (
         <>
-          <PrevNext/>
+          <PrevNext />
           <ErrorComponent message={"default case reached"}></ErrorComponent>;
         </>
       );

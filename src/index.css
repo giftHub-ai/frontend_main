@@ -7,10 +7,10 @@
     @apply [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none;
   }
   .heading-style {
-    @apply font-bold text-2xl md:text-[3rem] text-[2rem] text-center;
+    @apply font-semibold text-3xl text-center text-background p-4;
   }
   .gender-img-style {
-    @apply p-2 m-2 hover:bg-light rounded-lg cursor-pointer;
+    @apply border-4 w-80 h-80 border-white hover:border-dark rounded-full cursor-pointer;
   }
   .rating_bar {
     width: 100px;
@@ -33,5 +33,28 @@
   .rating_bar > span:hover:before,
   .rating_bar span:hover ~ span:before {
     color: #f7db3c;
+  }
+}
+
+.square {
+  transform: rotateY(45deg);
+  animation: rotateAnimation 3s linear infinite;
+}
+
+@keyframes rotateAnimation {
+  0% {
+    transform: rotateY(0deg);
+  }
+  25% {
+    transform: rotateY(90deg);
+  }
+  50% {
+    transform: rotateY(180deg);
+  }
+  75% {
+    transform: rotateY(270deg);
+  }
+  100% {
+    transform: rotateY(360deg);
   }
 }

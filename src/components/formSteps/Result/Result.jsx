@@ -1,14 +1,12 @@
-import React, { useEffect, useState } from "react";
-import PrevNext from "../../PrevNext";
 import axios from "axios";
-import { UserContext } from "../../Context";
-import _ from "underscore";
+import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import Toast from "../../Toast";
+import _ from "underscore";
+import { UserContext } from "../../Context";
 import GiftCard from "../../GiftCard";
-import DummyData from "./DummyData";
-import Button from "../../Button";
-
+import PrevNext from "../../PrevNext";
+import Toast from "../../Toast";
+import dummyData from "./DummyData";
 const Result = () => {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState(null);
@@ -64,31 +62,46 @@ const Result = () => {
       });
   };
 
-  if (loading === true)
+  if (!loading)
     return (
       <>
-        <div className="">loading</div>
-        <PrevNext />
+        <div className="w-full h-full">
+          <Loader></Loader>
+        </div>
+        {/* <PrevNext /> */}
       </>
     );
   else
     return (
-      <div className="w-full  flex flex-col justify-evenly h-full ">
+      <div className="flex flex-col gap-4">
         <Toast />
-        <h1 className="text-center md:text-[3rem] text-[2rem] ">
-          Recommendation
-        </h1>
-        <div className="flex flex-col md:flex-row  sm:justify-between  items-center max-sm:my-4">
-          {console.log("data  ", data)}
-          {data.map((item, ind) => {
-            return (
-              <GiftCard
-                key={ind}
-                productData={item}
-                setrelevancyData={setrelevancyData}
-              />
-            );
-          })}
+        <div className="text-white heading-style">Recommendations</div>
+        <div className="flex flex-row flex-wrap gap-4 justify-center items-center">
+          {/* {console.log("data  ", data)}
+          {data && data.length
+            ? data.map((item, ind) => {
+                return (
+                  <GiftCard
+                    key={ind}
+                    productData={item}
+                    setrelevancyData={setrelevancyData}
+                  />
+                );
+              })
+            : null} */}
+
+          {/* for testing without API */}
+          {dummyData && dummyData.length
+            ? dummyData.map((item, ind) => {
+                return (
+                  <GiftCard
+                    key={ind}
+                    productData={item}
+                    setrelevancyData={setrelevancyData}
+                  />
+                );
+              })
+            : null}
         </div>
         <PrevNext
           alreadyFilled={true}
@@ -99,3 +112,12 @@ const Result = () => {
 };
 
 export default Result;
+
+const Loader = () => (
+  <div className="w-full">
+    <div className="py-4 text-white text-xl font-semibold text-center">
+      Your Gifts are loading..
+    </div>
+    <div className="mx-auto w-72 h-72 square bg-giftLoadIcon bg-cover bg-top bg-no-repeat rounded-full bg-white"></div>
+  </div>
+);

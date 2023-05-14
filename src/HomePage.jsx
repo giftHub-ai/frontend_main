@@ -12,10 +12,12 @@ const HomePage = ({ className }) => {
   return (
     <div className={buildClassName(``)}>
       {!formDisplay ? (
-       <><NavBar className="w-full"></NavBar>
-        <PageContent setFormDisplay={setFormDisplay}></PageContent></> 
+        <>
+          <NavBar className="w-full"></NavBar>
+          <PageContent setFormDisplay={setFormDisplay}></PageContent>
+        </>
       ) : (
-        <div className="w-screen min-h-screen overflow-y-scroll flex items-center justify-center font-sans bg-[url('/images/banner1.webp')]">
+        <div className="w-screen min-h-screen overflow-y-scroll flex items-center justify-center font-sans bg-formBg bg-bgWave bg-no-repeat bg-contain">
           <UserProvider>
             <MultiStepForm></MultiStepForm>
           </UserProvider>
@@ -51,10 +53,11 @@ const PageContent = ({ setFormDisplay }) => {
           <span>Gift</span>
           <span>Recommendation</span>
           <span>System</span>
-          <span>by Customer Segmentation</span>
+          <span>using Customer Segmentation</span>
         </div>
         <div className="w-full text-md">
-         An advanced recommendation system by customer segmentation using Machine Learning
+          An advanced recommendation system by customer segmentation using
+          Machine Learning
         </div>
         <StartButton setFormDisplay={setFormDisplay}></StartButton>
       </div>
