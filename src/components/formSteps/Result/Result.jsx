@@ -67,10 +67,6 @@ const Result = () => {
   if (loading === true)
     return (
       <>
-        <div class="bar">
-          <div class="circle"></div>
-          <p>Loading</p>
-        </div>
         <div className="">loading</div>
         <PrevNext />
       </>
