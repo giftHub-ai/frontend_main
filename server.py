@@ -214,7 +214,6 @@ def ok():
 # # Display the elbow plot
 # visualizer.show()
      k= visualizer.elbow_value_
-
      print(k)
 
     
@@ -266,18 +265,23 @@ def ok():
 
      recommended_products = Newdata[Newdata['Rating'] >= 2.5]
      temp = recommended_products
-     # print("occasion data",  df['Occasion'].iloc[-1])
-     # if( len(temp)>5): 
-          # temp = recommended_products[recommended_products['Occasion'] == df['Occasion'].iloc[-1]]
-     # if(len(temp)>=5):
-     #      recommended_products=temp
-     # if(len(temp)>5):
-     #      temp = recommended_products[recommended_products['Relationship'] == 'Wife']
-     # if(len(temp)>=5):
-     #      recommended_products=temp
+     print("occasion data",  occasion)
+     print("interest data",  intrest)
+     if( len(temp)>5): 
+          temp = recommended_products[recommended_products['Interest'] ==  intrest]
+     if(len(temp)>5):
+          recommended_products=temp     
+     if( len(recommended_products)>5): 
+          temp = recommended_products[recommended_products['Occasion'] ==  occasion]
+     if(len(temp)>5):
+          recommended_products=temp
+     if(len(recommended_products)>5): 
+          temp = recommended_products[recommended_products['Relationship'] == relatioship]
+     if(len(temp)>5):
+          recommended_products=temp
 
      # temp = recommended_products[recommended_products['Budget'] >= 0]
-     # if(len(temp)>=5):``
+     # if(len(temp)>=5):
      #           recommended_products=temp
      # temp = recommended_products[recommended_products['MaxBudget'] <= (50000+5000)]
      # if(len(temp)>=5):
@@ -288,10 +292,18 @@ def ok():
      print(recommended_products['Gift'])
      final_data = []
      # print(recommended_products['Gift'])
-     i=4
+     
+     def checkDuplicate(row):
+          for i in final_data:
+             if i['Gift']==row['Gift']:
+                 return False
+          return True
+
+
+     i=8
      for index, row in recommended_products.iterrows():
       data = {}
-      if i>0 :
+      if i>0 and checkDuplicate(row):
         data['Gift'] = row['Gift']
         data['ImageLink'] = row['Image Link']
         data['Link'] = row['Link'] 

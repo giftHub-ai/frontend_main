@@ -6,6 +6,7 @@ import { UserContext } from "../../Context";
 import GiftCard from "../../GiftCard";
 import PrevNext from "../../PrevNext";
 import Toast from "../../Toast";
+import GiftHamper from "../../../assets/gift_hamper.jpeg";
 // import dummyData from "./DummyData";
 const Result = () => {
   const [loading, setLoading] = useState(true);
@@ -30,7 +31,6 @@ const Result = () => {
           setData(res.data);
           console.log("response  ", res);
           setLoading(false);
-
         })
         .catch((err) => {
           console.log(err);
@@ -45,15 +45,14 @@ const Result = () => {
   }, []);
 
   const submitRelevancyRating = () => {
-    if(relevancyData===null)
-      {
-        toast.info("Provide ratings first!", {
-          duration: 2000,
-          position: "top-right",
-        });
-        return;
-      }
-    
+    if (relevancyData === null) {
+      toast.info("Provide ratings first!", {
+        duration: 2000,
+        position: "top-right",
+      });
+      return;
+    }
+
     let relevancyDataToSend = { ...userInputValues, ...relevancyData };
     const userRating = JSON.stringify(relevancyDataToSend);
     console.log("relevancy ", relevancyDataToSend);
@@ -69,7 +68,7 @@ const Result = () => {
         setLoading(false);
       })
       .catch((err) => {
-        console.log(err); 
+        console.log(err);
         toast.error(err.message, {
           duration: 2000,
           position: "top-right",
@@ -83,7 +82,7 @@ const Result = () => {
         <div className="w-full h-full">
           <Loader></Loader>
         </div>
-        <PrevNext />
+        {/* <PrevNext /> */}
       </>
     );
   else
@@ -92,19 +91,6 @@ const Result = () => {
         <Toast />
         <div className="text-white heading-style">Recommendations</div>
         <div className="flex flex-row flex-wrap gap-4 justify-center items-center">
-          {/* {console.log("data  ", data)}
-          {data && data.length
-            ? data.map((item, ind) => {
-                return (
-                  <GiftCard
-                    key={ind}
-                    productData={item}
-                    setrelevancyData={setrelevancyData}
-                  />
-                );
-              })
-            : null} */}
-
           {/* for testing without API */}
           {data && data.length
             ? data.map((item, ind) => {
@@ -122,6 +108,21 @@ const Result = () => {
           alreadyFilled={true}
           submitRelevancyRating={submitRelevancyRating}
         />
+        <div className="w-full p-8   rounded-lg shadow-lg bg-white flex  ">
+          <div className="">
+            <img src={GiftHamper} className="rounded-lg" alt="" />
+          </div>
+          <div className="text-light font-semibold p-8">
+            <h1 className="text-2xl mb-8">Check this, its something special for you!</h1>
+            We at WhatTheFruit! believe that a gift should be an experience, not
+            just an item. <br></br><br></br>
+            WhatTheFruit! has come up with a Luxuriously curated Fruit Gift
+            Hamper to surprise your loved ones. With a touch of luxury and full
+            of health✨ Fresh handpicked fruits, carefully packed and sent to
+            your loved ones on a special occasion.
+          </div>
+        </div>
+        
       </div>
     );
 };
