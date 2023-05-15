@@ -5,12 +5,12 @@ const UserDispatchContext = createContext(undefined);
 
 function UserProvider({ children }) {
   const [userInput, setUserInput] = useState({
-    age: 50,
-    gender: "Male",
-    interest: "Sports",
-    relationship:"Friend",
-    occasion:"Friendship Day",
-    budget:"5000"
+    age: -1,
+    gender: "",
+    interest: "",
+    relationship:"",
+    occasion:"",
+    budget:""
   });
 
   const [displayAgeInput, setDisplayAgeInput] = useState(false);
