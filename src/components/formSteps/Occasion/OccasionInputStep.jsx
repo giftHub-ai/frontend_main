@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { UserContext,UserDispatchContext } from "../../Context";
+import { UserContext, UserDispatchContext } from "../../Context";
 import PrevNext from "../../PrevNext";
 import InterestCard from "../Interest/InterestCard";
 const InterestArray = [
@@ -13,37 +13,37 @@ const InterestArray = [
   "Mother's Day",
   "New Year's",
   "Raksha Bandhan",
-  "Any"
+  "Any",
 ];
 const OccasionInputStep = () => {
   const [selectedInterest, setInterest] = useState();
   const [activeInterest, setActiveInterest] = useState(null);
   const [alreadyFilled, setAlreadyFilled] = useState(false);
-  
+
   const inputDetails = React.useContext(UserContext);
   const setUserDetails = useContext(UserDispatchContext);
 
-
-  const setSelectedInterest=(interest)=>{
+  const setSelectedInterest = (interest) => {
     inputDetails.userInput.occasion = interest;
     setAlreadyFilled(true);
     console.log(inputDetails.userInput);
-  }
+  };
 
- let interestValue;
+  let interestValue;
   useEffect(() => {
     interestValue = inputDetails.userInput.occasion;
     console.log(interestValue);
-    if (interestValue!== "") {
+    if (interestValue !== "") {
       setAlreadyFilled(true);
       setActiveInterest(InterestArray.indexOf(interestValue));
     }
-  }, []); 
+  }, []);
 
-  
   return (
-    <div className="w-full    px-4 flex flex-col justify-between h-full ">
-      <h1 className="w-full py-4 heading-style">Pick occasion which you'r buying in</h1>
+    <div className="w-full px-4 flex flex-col justify-between h-full ">
+      <h1 className="w-full py-4 heading-style text-white">
+        Select the occasion for your purchase
+      </h1>
       <div className="w-full py-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {InterestArray && InterestArray.length ? (
           InterestArray.map((interest, index) => {
@@ -66,8 +66,6 @@ const OccasionInputStep = () => {
         )}
       </div>
       <PrevNext input={selectedInterest} alreadyFilled={alreadyFilled} />
-
-    
     </div>
   );
 };

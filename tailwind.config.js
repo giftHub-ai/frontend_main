@@ -16,6 +16,7 @@ export default {
       white: "#ffffff",
       yellowStar: "#f7db3c",
       interestHover: "#f8fafc",
+      formBg: "#fbcfe8",
     },
 
     extend: {
@@ -37,9 +38,23 @@ export default {
             borderColor: "white",
           },
         },
+        load: {
+          "0%": { transform: "rotate(0deg)" },
+          "25%": { transform: "rotate(90deg)" },
+          "50%": { transform: "rotate(180deg)" },
+          "75%": { transform: "rotate(270deg)" },
+          "100%": { transform: "rotate(360deg)" },
+        },
       },
       animation: {
         typing: "typing 1s steps(18) infinite alternate, blink 1s infinite",
+        loading: "load 1s infinite",
+      },
+      backgroundImage: {
+        formBgImage: "url('./src/assets/AdobeStock_314884083.jpeg')",
+        bgWave: "url('./src/assets/wave.png')",
+        giftLoader: "url('./src/assets/giftLoader.gif')",
+        giftLoadIcon: "url('./src/assets/giftLoadIcon.png')",
       },
     },
   },

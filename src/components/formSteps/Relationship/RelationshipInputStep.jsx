@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
-import { UserContext, UserDispatchContext } from "../../Context";
+import React, { useEffect, useState } from "react";
+import { UserContext } from "../../Context";
 import PrevNext from "../../PrevNext";
 import InterestCard from "../Interest/InterestCard";
 const InterestArray = [
@@ -16,6 +16,7 @@ const InterestArray = [
   "Daughter",
   "Boss",
   "Colleague",
+  "Any"
 ];
 const RelationshipInputStep = () => {
   const [selectedInterest, setInterest] = useState();
@@ -41,8 +42,8 @@ const RelationshipInputStep = () => {
 
   return (
     <div className=" w-full px-4 flex flex-col justify-between h-full">
-      <h1 className="w-full py-4 heading-style">
-        Pick your relationship with recipient
+      <h1 className="w-full py-4 heading-style text-white">
+        Pick your Relationship with Recipient
       </h1>
       <div className="w-full py-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {InterestArray && InterestArray.length ? (

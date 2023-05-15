@@ -29,9 +29,11 @@ const GenderInputStep = () => {
   }, []);
 
   return (
-    <div className="w-full  flex flex-col justify-between h-full ">
-      <h1 className={`w-full heading-style`}>Pick Recipient's Gender</h1>
-      <div className="w-full flex justify-evenly ">
+    <div className="w-full flex flex-col gap-4 h-full justify-between">
+      <h1 className={`w-full heading-style text-white`}>
+        Pick Recipient's Gender
+      </h1>
+      <div className="flex flex-col sm:flex-row items-center justify-evenly">
         {genders && genders.length
           ? genders.map(({ imageGender, src }, index) => (
               <GenderImage

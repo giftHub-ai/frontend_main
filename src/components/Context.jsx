@@ -8,13 +8,13 @@ function UserProvider({ children }) {
     age: -1,
     gender: "",
     interest: "",
-    relationship:"",
-    occasion:"",
-    budget:""
+    relationship: "",
+    occasion: "",
+    budget: "",
   });
 
   const [displayAgeInput, setDisplayAgeInput] = useState(false);
-  const [activeStep, setActiveStep] = useState(7) ;
+  const [activeStep, setActiveStep] = useState(1);
   const nextStep = () => setActiveStep((prev) => prev + 1);
   const prevStep = () => setActiveStep((prev) => prev - 1);
   return (
@@ -35,4 +35,3 @@ function UserProvider({ children }) {
 }
 
 export { UserProvider, UserContext, UserDispatchContext };
-

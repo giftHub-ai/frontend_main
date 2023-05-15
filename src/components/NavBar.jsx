@@ -58,10 +58,11 @@ const AppLogo = () => (
   </div>
 );
 
-const NavButton = ({ option }) => (
+export const NavButton = ({ option }) => (
+  <a href="/">
   <div className="px-4 py-2 mx-4 font-semibold hover:text-light hover:cursor-pointer transition ease-linear delay-200 text-center">
     {option.toUpperCase()}
-  </div>
+  </div></a>
 );
 
 const NavOptions = ({ navKeys }) => (

@@ -263,14 +263,27 @@ def ok():
      Newdata.index.name = '_id'
 # dataset['Relationship'].iloc[-1]
    
-     recommended_products = Newdata[Newdata['Rating'] >= 3]   
-     # recommended_products = recommended_products[recommended_products['Interest'] == intrest]
-     # print(recommended_products)
-     # recommended_products = recommended_products[recommended_products['Occasion'] == occasion]
-     # # recommended_products = recommended_products[recommended_products['Relationship'] == relatioship]
+
+     recommended_products = Newdata[Newdata['Rating'] >= 2.5]
+     temp = recommended_products
+     # print("occasion data",  df['Occasion'].iloc[-1])
+     # if( len(temp)>5): 
+          # temp = recommended_products[recommended_products['Occasion'] == df['Occasion'].iloc[-1]]
+     # if(len(temp)>=5):
+     #      recommended_products=temp
+     # if(len(temp)>5):
+     #      temp = recommended_products[recommended_products['Relationship'] == 'Wife']
+     # if(len(temp)>=5):
+     #      recommended_products=temp
+
+     # temp = recommended_products[recommended_products['Budget'] >= 0]
+     # if(len(temp)>=5):``
+     #           recommended_products=temp
+     # temp = recommended_products[recommended_products['MaxBudget'] <= (50000+5000)]
+     # if(len(temp)>=5):
+     #           recommended_products=temp
+     
      recommended_products = recommended_products.sort_values(by=['Rating'],ascending=False)
-# recommended_products  
-     # print(recommended_products)
 
      print(recommended_products['Gift'])
      final_data = []
