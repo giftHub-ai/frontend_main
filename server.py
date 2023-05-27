@@ -108,14 +108,8 @@ def ok():
         'Image Link':["null"],
         'Interest':[intrest]
      }
-     # temp = pd.DataFrame(user_input)
-     
-     # # print(user_input) 
-     # dataset = pd.read_csv(r"C:\Users\hp\OneDrive\Documents\Major Project\Recommendation\frontend_main\dataset.csv",error_bad_lines=False) 
-     # print(dataset)
-     # # dataset = pd.concat([dataset,temp],ignore_index=True)
-     # print(dataset)
 
+     #reading dataset
      dataset = pd.read_csv(r"C:\Users\hp\OneDrive\Documents\Major Project\Recommendation\frontend_main\dataset.csv",error_bad_lines=False) 
      neww = pdd.DataFrame(user_input);
      neww.to_csv(r"C:\Users\hp\OneDrive\Documents\Major Project\Recommendation\frontend_main\dataset.csv", mode='a', index=False, header=False)
@@ -128,7 +122,7 @@ def ok():
     
 
 
-# function to create a dictionary of unique values of column mapped to numerical values
+     # function to create a dictionary of unique values of column mapped to numerical values
      def getMappingDictionary(unique_data):
        mappingDictionary = {}
        for i in range(len(unique_data)):

@@ -1,6 +1,7 @@
 /* name, image, rating input, Buy */
 import React, { useState } from "react";
 import { Rating } from "react-simple-star-rating";
+import Modal from "./formSteps/Result/Modal";
 
 const tooltipArray = [
   "0.5",
@@ -27,7 +28,7 @@ const fillColorArray = [
   "#f1d045",
 ];
 
-const GiftCard = ({ productData, setrelevancyData }) => {
+const GiftCard = ({ productData, setrelevancyData ,setIsOpenModal,setCurrModalData}) => {
   const [rating, setRating] = useState(0);
   // Catch Rating value
   const handleRating = (rate) => {
@@ -46,7 +47,7 @@ const GiftCard = ({ productData, setrelevancyData }) => {
           handleRating={handleRating}
         ></RatingComponent>
       </div>
-        <ExploreLink link={productData.Link}></ExploreLink>
+        <ExploreLink productData={productData} setIsOpenModal={setIsOpenModal} setCurrModalData={setCurrModalData} ></ExploreLink>
     </div>
   );
 };
@@ -93,8 +94,9 @@ const RatingComponent = ({ rating, handleRating }) => {
   );
 };
 
-const ExploreLink = ({ link }) => {
-  return (<a href={link} target="_blank" rel="noopener noreferrer">
+const ExploreLink = ({ productData,setIsOpenModal,setCurrModalData }) => {
+  console.log(productData);
+  return (<a href={productData.Link} target="_blank" rel="noopener noreferrer" onClick={()=>{setIsOpenModal(true); setCurrModalData(productData)}}>
     <div className="w-full border font-semibold hover:border-white hover:bg-light bg-white text-light hover:text-white border-light  hover:cursor-pointer py-2 px-4 rounded-md text-center">
       
         Explore
