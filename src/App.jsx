@@ -1,14 +1,25 @@
-import HomePage from "./HomePage";
-import { UserProvider } from "./components/Context";
-import "./index.css";
-import MultiStepForm from "./components/form/MultiStepForm";
 import { useState } from "react";
+import { Route, Routes } from "react-router-dom";
+import HomePage from "./components/Pages/HomePage";
+import LoginPage from "./components/Pages/LoginPage";
+import "./index.css";
 
 function App() {
   const [formDisplay, setFormDisplay] = useState(false);
 
   return (
-    <HomePage className="w-full" setFormDisplay={setFormDisplay}></HomePage>
+    <Routes>
+      <Route
+        path="/"
+        element={
+          <HomePage
+            className="w-full"
+            setFormDisplay={setFormDisplay}
+          ></HomePage>
+        }
+      ></Route>
+      <Route path="/login" element={<LoginPage></LoginPage>}></Route>
+    </Routes>
   );
 }
 

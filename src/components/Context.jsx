@@ -18,7 +18,13 @@ function UserProvider({ children }) {
   const nextStep = () => setActiveStep((prev) => prev + 1);
   const prevStep = () => setActiveStep((prev) => prev - 1);
   return (
-    <UserContext.Provider value={{ userInput, activeStep, displayAgeInput }}>
+    <UserContext.Provider
+      value={{
+        userInput,
+        activeStep,
+        displayAgeInput,
+      }}
+    >
       <UserDispatchContext.Provider
         value={{
           setUserInput,

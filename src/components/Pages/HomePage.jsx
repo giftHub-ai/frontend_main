@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import homeBackground from "./assets/HomePageBG/8307.jpg";
-import { UserProvider } from "./components/Context";
-import NavBar from "./components/NavBar";
-import MultiStepForm from "./components/form/MultiStepForm";
+import homeBackground from "../../assets/HomePageBG/8307.jpg";
+import { UserProvider } from "../Context";
+import NavBar from "../NavBar";
+import MultiStepForm from "../form/MultiStepForm";
 const HomePage = ({ className }) => {
   const buildClassName = (appClassName) => {
     const defaultClassName = "";
