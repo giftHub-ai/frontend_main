@@ -95,7 +95,7 @@ const RatingComponent = ({ rating, handleRating }) => {
 };
 
 const ExploreLink = ({ productData,setIsOpenModal,setCurrModalData }) => {
-  console.log(productData);
+  // console.log(productData);
   return (<a href={productData.Link} target="_blank" rel="noopener noreferrer" onClick={()=>{setIsOpenModal(true); setCurrModalData(productData)}}>
     <div className="w-full border font-semibold hover:border-white hover:bg-light bg-white text-light hover:text-white border-light  hover:cursor-pointer py-2 px-4 rounded-md text-center">
       

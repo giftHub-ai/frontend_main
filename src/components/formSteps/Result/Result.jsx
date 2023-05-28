@@ -8,7 +8,7 @@ import PrevNext from "../../PrevNext";
 import Toast from "../../Toast";
 import GiftHamper from "../../../assets/gift_hamper.jpeg";
 import Modal from "./Modal";
-// import dummyData from "./DummyData";
+import dummyData from "./DummyData";
 const Result = () => {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState(null);
@@ -16,7 +16,8 @@ const Result = () => {
   const inputDetails = React.useContext(UserContext);
 
   const [isOpenModal, setIsOpenModal] = useState(false);
-  const [currModalData, setCurrModalData] = useState(null);
+  const [currModalData, setCurrModalData] = useState({});
+
 
   let customConfig = {
     headers: {
@@ -51,7 +52,7 @@ const Result = () => {
 
   const submitRelevancyRating = () => {
     if (relevancyData === null) {
-      toast.info("Provide ratings first!", {
+      toast.info("Product Data not found!", {
         duration: 2000,
         position: "top-right",
       });
@@ -60,7 +61,7 @@ const Result = () => {
 
     let relevancyDataToSend = { ...userInputValues, ...relevancyData };
     const userRating = JSON.stringify(relevancyDataToSend);
-    console.log("relevancy ", relevancyDataToSend);
+    console.log("relevancy rating ", relevancyDataToSend);
 
     axios
       .post("http://127.0.0.1:5000/addEntry", userRating, customConfig)
@@ -68,9 +69,8 @@ const Result = () => {
         console.log("relevancy rating", res);
         toast.success("Thanks for feedback!", {
           duration: 2000,
-          position: "top-right",
+          position: "top-right"
         });
-        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
@@ -81,7 +81,11 @@ const Result = () => {
       });
   };
 
-  if (loading)
+  
+
+
+
+  if (!loading)
     return (
       <>
         <div className="w-full h-full">
@@ -95,12 +99,12 @@ const Result = () => {
       <>
         <div className="flex flex-col gap-4 border">
           <Toast />
-          {isOpenModal && <Modal setIsOpenModal={setIsOpenModal} currModalData={currModalData}/>}
+          {isOpenModal && <Modal setIsOpenModal={setIsOpenModal} currModalData={currModalData} setCurrModalData={setCurrModalData}/>}
           <div className="text-white heading-style">Recommendations</div>
           <div className="flex flex-row flex-wrap gap-4 justify-center items-center">
             {/* for testing without API */}
-            {data && data.length
-              ? data.map((item, ind) => {
+            {dummyData && dummyData.length
+              ? dummyData.map((item, ind) => {
                   return (
                     <GiftCard
                       key={ind}
