@@ -56,8 +56,8 @@ const PageContent = ({ setFormDisplay }) => {
           <span>using Customer Segmentation</span>
         </div>
         <div className="w-full text-md">
-          An advanced recommendation system by customer segmentation using
-          Machine Learning
+          Tired of giving traditional gifts? Try new e-gifts, gift-cards to
+          share with loved ones.
         </div>
         <StartButton setFormDisplay={setFormDisplay}></StartButton>
       </div>
