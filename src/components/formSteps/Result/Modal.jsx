@@ -7,9 +7,9 @@ const Modal = ({ setIsOpenModal, currModalData,setCurrModalData }) => {
 
   return (
     <div className="absolute h-[80vh] w-[83vw] flex justify-center items-center">
-      <div className="bg-white px-8 shadow-2xl w-[40%] min-h-fit   absolute top-1/2  rounded-lg z-50 ">
+      <div className="bg-white p-8 shadow-2xl min-w-fit min-h-fit   absolute top-1/2  rounded-lg z-50 ">
         {showModalForm ? (
-          <ModalForm currModalData={currModalData} setCurrModalData={setCurrModalData} />
+          <ModalForm currModalData={currModalData} setCurrModalData={setCurrModalData} setIsOpenModal={setIsOpenModal} />
         ) : (
           <>
             <h2 className="text-center mt-8 text-2xl">

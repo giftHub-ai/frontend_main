@@ -1,31 +1,34 @@
 import React from "react";
 import Button from "../../Button";
+import axios from "axios";
+import toast from "react-hot-toast";
+import Toast from "../../Toast";
+const ModalForm = ({ currModalData, setCurrModalData, setIsOpenModal }) => {
+    let customConfig = {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
 
-const ModalForm = ({ currModalData, setCurrModalData }) => {
   const submitBoughtGiftData = (obj) => {
-    if (relevancyData === null) {
-      toast.info("Provide ratings first!", {
-        duration: 2000,
-        position: "top-right",
-      });
-      return;
-    }
+    delete obj.rating;
+
+    console.log(obj);  
 
     const userRating = JSON.stringify(obj);
     console.log("to send ", obj);
 
     axios
-      .post("http://127.0.0.1:5000/addEntry", userRating, customConfig)
+      .post("http://localhost:3000/user/addUser", userRating, customConfig)
       .then((res) => {
-        toast.success("Data added successfully!", {
+        toast.success("Gift sent successfully!", {
           duration: 2000,
           position: "top-right",
         });
-        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
-        toast.error(err.message, {
+        toast.error(err.response.data, {
           duration: 2000,
           position: "top-right",
         });
@@ -33,6 +36,7 @@ const ModalForm = ({ currModalData, setCurrModalData }) => {
   };
   return (
     <div className="p-4 z-50">
+        <Toast/>
       <h2 className="text-xl font-semibold text-center mb-4">
         Enter required details to send to Recipient{" "}
       </h2>
@@ -67,7 +71,7 @@ const ModalForm = ({ currModalData, setCurrModalData }) => {
         }}
       ></input>
       <div className="flex justify-center gap-x-8 mt-4">
-        <div onClick={() => {submitBoughtGiftData(currModalData)}}>
+        <div onClick={() => {submitBoughtGiftData(currModalData); setIsOpenModal(false)}}>
           <Button text="Send Gift" />
         </div>
         <div onClick={() => setIsOpenModal(false)}>

@@ -14,7 +14,6 @@ const Result = () => {
   const [data, setData] = useState(null);
   const [relevancyData, setrelevancyData] = useState(null);
   const inputDetails = React.useContext(UserContext);
-
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [currModalData, setCurrModalData] = useState({});
 
@@ -97,7 +96,7 @@ const Result = () => {
   else
     return (
       <>
-        <div className="flex flex-col gap-4 border">
+        <div className="flex flex-col gap-4 ">
           <Toast />
           {isOpenModal && <Modal setIsOpenModal={setIsOpenModal} currModalData={currModalData} setCurrModalData={setCurrModalData}/>}
           <div className="text-white heading-style">Recommendations</div>
