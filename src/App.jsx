@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import HomePage from "./components/Pages/HomePage";
 import LoginPage from "./components/Pages/LoginPage";
+import SignupPage from "./components/Pages/SignupPage";
 import "./index.css";
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
         }
       ></Route>
       <Route path="/login" element={<LoginPage></LoginPage>}></Route>
+      <Route path="/signup" element={<SignupPage></SignupPage>} />
     </Routes>
   );
 }
