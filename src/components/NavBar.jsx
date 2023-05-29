@@ -1,7 +1,7 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import giftLogo from "../assets/giftLogo1.png";
 const navKeys = ["Home"];
-
 const NavBar = ({ className }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const handleMenuClick = () => setIsMenuOpen((prev) => !prev);
@@ -32,7 +32,7 @@ const NavBar = ({ className }) => {
             className="m-4 p-2 hover:bg-background hover:bg-opacity-20 rounded-md"
             handleMenuClick={handleMenuClick}
           ></MenuIcon>
-          <LoginButton buttonText={''}></LoginButton>
+          <LoginButton buttonText={""}></LoginButton>
         </div>
       )}
       {/* for screen-width >= sm */}
@@ -40,7 +40,7 @@ const NavBar = ({ className }) => {
         <AppLogo></AppLogo>
         <div className="flex flex-row items-baseline">
           <NavOptions navKeys={navKeys}></NavOptions>
-          <LoginButton buttonText={``}></LoginButton>
+          <LoginButton buttonText={`Login`}></LoginButton>
         </div>
       </div>
     </div>
@@ -59,10 +59,9 @@ const AppLogo = () => (
 );
 
 export const NavButton = ({ option }) => (
-  <a href="/">
   <div className="px-4 py-2 mx-4 font-semibold hover:text-light hover:cursor-pointer transition ease-linear delay-200 text-center">
-    {option.toUpperCase()}
-  </div></a>
+    <Link to="/">{option.toUpperCase()}</Link>
+  </div>
 );
 
 const NavOptions = ({ navKeys }) => (
@@ -76,7 +75,7 @@ const NavOptions = ({ navKeys }) => (
 
 const LoginButton = ({ buttonText }) => (
   <button className="text-light rounded-md px-4 mx-4 py-2 text-2xl font-semibold hover:text-dark hover:bg-background hover:bg-opacity-5 hover:border-white">
-    {buttonText}
+    <Link to="/login">{buttonText}</Link>
   </button>
 );
 

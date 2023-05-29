@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import homeBackground from "./assets/HomePageBG/8307.jpg";
-import { UserProvider } from "./components/Context";
-import NavBar from "./components/NavBar";
-import MultiStepForm from "./components/form/MultiStepForm";
+import homeBackground from "../../assets/HomePageBG/8307.jpg";
+import { UserProvider } from "../Context";
+import NavBar from "../NavBar";
+import MultiStepForm from "../form/MultiStepForm";
 const HomePage = ({ className }) => {
   const buildClassName = (appClassName) => {
     const defaultClassName = "";
@@ -56,7 +56,8 @@ const PageContent = ({ setFormDisplay }) => {
           <span>using Customer Segmentation</span>
         </div>
         <div className="w-full text-md">
-          Tired of giving traditional gifts? Try new e-gifts, gift-cards to share with loved ones.
+          Tired of giving traditional gifts? Try new e-gifts, gift-cards to
+          share with loved ones.
         </div>
         <StartButton setFormDisplay={setFormDisplay}></StartButton>
       </div>

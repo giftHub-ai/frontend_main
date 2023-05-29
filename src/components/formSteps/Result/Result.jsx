@@ -6,9 +6,10 @@ import { UserContext } from "../../Context";
 import GiftCard from "../../GiftCard";
 import PrevNext from "../../PrevNext";
 import Toast from "../../Toast";
+import dummyData from "./DummyData";
 import GiftHamper from "../../../assets/gift_hamper.jpeg";
 import Modal from "./Modal";
-import dummyData from "./DummyData";
+
 const Result = () => {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState(null);
@@ -79,10 +80,6 @@ const Result = () => {
         });
       });
   };
-
-  
-
-
 
   if (!loading)
     return (
