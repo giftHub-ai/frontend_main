@@ -12,12 +12,7 @@ const ModalForm = ({ currModalData, setCurrModalData, setIsOpenModal }) => {
 
   const submitBoughtGiftData = (obj) => {
     delete obj.rating;
-
-    console.log(obj);  
-
     const userRating = JSON.stringify(obj);
-    console.log("to send ", obj);
-
     axios
       .post("http://localhost:3000/user/addUser", userRating, customConfig)
       .then((res) => {
