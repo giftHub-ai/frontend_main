@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState } from "react";
 import FormAction from "./FormAction";
 import FormExtra from "./FormExtra";
@@ -17,11 +18,21 @@ export default function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    authenticateUser();
+    // console.log(loginState);
+    authenticateUser(loginState);
   };
 
   //Handle Login API Integration here
-  const authenticateUser = () => {};
+  const authenticateUser = (userData) => {
+    axios
+      .post("http://localhost:3000/user/login", userData)
+      .then((res) => {
+        console.log("response  ", res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <form className="mx-auto sm:mt-16" onSubmit={handleSubmit}>

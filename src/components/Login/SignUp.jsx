@@ -1,4 +1,6 @@
+import axios from "axios";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import FormAction from "./FormAction";
 import Input from "./Input";
 import { signupFields } from "./formFields";
@@ -10,18 +12,27 @@ fields.forEach((field) => (fieldsState[field.id] = ""));
 
 export default function SignUp() {
   const [signupState, setSignupState] = useState(fieldsState);
-
+  const navigate = useNavigate();
   const handleChange = (e) =>
     setSignupState({ ...signupState, [e.target.id]: e.target.value });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(signupState);
-    createAccount();
+    createAccount(signupState);
   };
 
   //handle Signup API Integration here
-  const createAccount = () => {};
+  const createAccount = (regUserData) => {
+    axios
+      .post("http://localhost:3000/user/register", regUserData)
+      .then((res) => {
+        // console.log("response  ", res);
+        navigate("/login");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
