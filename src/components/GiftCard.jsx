@@ -1,6 +1,7 @@
 /* name, image, rating input, Buy */
 import React, { useState } from "react";
 import { Rating } from "react-simple-star-rating";
+import Modal from "./formSteps/Result/Modal";
 
 const tooltipArray = [
   "0.5",
@@ -27,7 +28,7 @@ const fillColorArray = [
   "#f1d045",
 ];
 
-const GiftCard = ({ productData, setrelevancyData }) => {
+const GiftCard = ({ productData, setrelevancyData ,setIsOpenModal,setCurrModalData}) => {
   const [rating, setRating] = useState(0);
   // Catch Rating value
   const handleRating = (rate) => {
@@ -37,16 +38,16 @@ const GiftCard = ({ productData, setrelevancyData }) => {
     setRating(rate);
   };
   return (
-    <div className="px-3 py-2 w-72 h-92 rounded-md overflow-hidden shadow-lg bg-white">
+    <div className="px-3 py-2 w-72  min-h-[28rem] rounded-md overflow-hidden shadow-lg bg-white flex flex-col justify-evenly">
       <GiftImage imageLink={productData.ImageLink}></GiftImage>
       <GiftName giftName={productData.Gift}></GiftName>
-      <div className="w-full py-4 flex flex-col gap-2 justify-center items-start">
+      <div className="w-full py-4 flex flex-col gap-2 justify-evenly  items-start">
         <RatingComponent
           rating={rating}
           handleRating={handleRating}
         ></RatingComponent>
-        <ExploreLink link={productData.Link}></ExploreLink>
       </div>
+        <ExploreLink productData={productData} setIsOpenModal={setIsOpenModal} setCurrModalData={setCurrModalData} ></ExploreLink>
     </div>
   );
 };
@@ -66,12 +67,12 @@ const GiftImage = ({ imageLink }) => {
 };
 
 const GiftName = ({ giftName }) => {
-  return <div className="py-4 text-xl font-semibold">{giftName}</div>;
+  return <div className="py-4 text-xl font-semibold min-h-[8rem]">{giftName}</div>;
 };
 const RatingComponent = ({ rating, handleRating }) => {
   return (
     <div className="w-full">
-      <div className="font-medium">How helpful is this ?</div>
+      <div className="font-medium">How helpful is this? </div>
       <Rating
         onClick={handleRating}
         initialValue={rating}
@@ -93,12 +94,13 @@ const RatingComponent = ({ rating, handleRating }) => {
   );
 };
 
-const ExploreLink = ({ link }) => {
-  return (
+const ExploreLink = ({ productData,setIsOpenModal,setCurrModalData }) => {
+  // console.log(productData);
+  return (<a href={productData.Link} target="_blank" rel="noopener noreferrer" onClick={()=>{setIsOpenModal(true); setCurrModalData(productData)}}>
     <div className="w-full border font-semibold hover:border-white hover:bg-light bg-white text-light hover:text-white border-light  hover:cursor-pointer py-2 px-4 rounded-md text-center">
-      <a href={link} target="_blank" rel="noopener noreferrer">
+      
         Explore
-      </a>
-    </div>
+     
+    </div> </a>
   );
 };

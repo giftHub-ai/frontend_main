@@ -38,7 +38,7 @@ const AgeInputStep = () => {
   };
 
   return (
-    <div className="w-full px-4 flex flex-col h-full">
+    <div className="w-full px-4 flex flex-col h-full justify-between">
       <Toast />
       <div className="p-4 mx-auto max-w-sm max-h-sm rounded-full bg-white">
         <div className={`heading-style`}>

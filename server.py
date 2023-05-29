@@ -108,14 +108,8 @@ def ok():
         'Image Link':["null"],
         'Interest':[intrest]
      }
-     # temp = pd.DataFrame(user_input)
-     
-     # # print(user_input) 
-     # dataset = pd.read_csv(r"C:\Users\hp\OneDrive\Documents\Major Project\Recommendation\frontend_main\dataset.csv",error_bad_lines=False) 
-     # print(dataset)
-     # # dataset = pd.concat([dataset,temp],ignore_index=True)
-     # print(dataset)
 
+     #reading dataset
      dataset = pd.read_csv(r"C:\Users\hp\OneDrive\Documents\Major Project\Recommendation\frontend_main\dataset.csv",error_bad_lines=False) 
      neww = pdd.DataFrame(user_input);
      neww.to_csv(r"C:\Users\hp\OneDrive\Documents\Major Project\Recommendation\frontend_main\dataset.csv", mode='a', index=False, header=False)
@@ -128,7 +122,7 @@ def ok():
     
 
 
-# function to create a dictionary of unique values of column mapped to numerical values
+     # function to create a dictionary of unique values of column mapped to numerical values
      def getMappingDictionary(unique_data):
        mappingDictionary = {}
        for i in range(len(unique_data)):
@@ -214,7 +208,6 @@ def ok():
 # # Display the elbow plot
 # visualizer.show()
      k= visualizer.elbow_value_
-
      print(k)
 
     
@@ -263,22 +256,48 @@ def ok():
      Newdata.index.name = '_id'
 # dataset['Relationship'].iloc[-1]
    
-     recommended_products = Newdata[Newdata['Rating'] >= 3]   
-     # recommended_products = recommended_products[recommended_products['Interest'] == intrest]
-     # print(recommended_products)
-     # recommended_products = recommended_products[recommended_products['Occasion'] == occasion]
-     # # recommended_products = recommended_products[recommended_products['Relationship'] == relatioship]
+
+     recommended_products = Newdata[Newdata['Rating'] >= 2.5]
+     temp = recommended_products
+     print("occasion data",  occasion)
+     print("interest data",  intrest)
+     if( len(temp)>5): 
+          temp = recommended_products[recommended_products['Interest'] ==  intrest]
+     if(len(temp)>5):
+          recommended_products=temp     
+     if( len(recommended_products)>5): 
+          temp = recommended_products[recommended_products['Occasion'] ==  occasion]
+     if(len(temp)>5):
+          recommended_products=temp
+     if(len(recommended_products)>5): 
+          temp = recommended_products[recommended_products['Relationship'] == relatioship]
+     if(len(temp)>5):
+          recommended_products=temp
+
+     # temp = recommended_products[recommended_products['Budget'] >= 0]
+     # if(len(temp)>=5):
+     #           recommended_products=temp
+     # temp = recommended_products[recommended_products['MaxBudget'] <= (50000+5000)]
+     # if(len(temp)>=5):
+     #           recommended_products=temp
+     
      recommended_products = recommended_products.sort_values(by=['Rating'],ascending=False)
-# recommended_products  
-     # print(recommended_products)
 
      print(recommended_products['Gift'])
      final_data = []
      # print(recommended_products['Gift'])
-     i=4
+     
+     def checkDuplicate(row):
+          for i in final_data:
+             if i['Gift']==row['Gift']:
+                 return False
+          return True
+
+
+     i=8
      for index, row in recommended_products.iterrows():
       data = {}
-      if i>0 :
+      if i>0 and checkDuplicate(row):
         data['Gift'] = row['Gift']
         data['ImageLink'] = row['Image Link']
         data['Link'] = row['Link'] 

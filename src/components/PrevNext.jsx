@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
 import Button from "./Button";
 import { UserContext, UserDispatchContext } from "./Context";
-import Toast from "./Toast";
+
 import toast from "react-hot-toast";
+import Toast from "./Toast";
 
 const PrevNext = ({ input, alreadyFilled,submitRelevancyRating }) => {
   const inputDetails = React.useContext(UserContext);
@@ -25,7 +26,7 @@ const PrevNext = ({ input, alreadyFilled,submitRelevancyRating }) => {
 
   return (
     <>
-      <Toast />
+      <Toast/>
       <div className="flex justify-between">
         <div
           className={`items-start ${
