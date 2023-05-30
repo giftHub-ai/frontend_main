@@ -1,5 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import _ from "underscore";
 import FormAction from "./FormAction";
 import FormExtra from "./FormExtra";
 import Input from "./Input";
@@ -11,6 +13,7 @@ fields.forEach((field) => (fieldsState[field.id] = ""));
 
 export default function Login() {
   const [loginState, setLoginState] = useState(fieldsState);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setLoginState({ ...loginState, [e.target.id]: e.target.value });
@@ -28,6 +31,12 @@ export default function Login() {
       .post("http://localhost:3000/user/login", userData)
       .then((res) => {
         console.log("response  ", res);
+        const recipientId = res.data.user._id;
+        if (_.isEmpty(recipientId)) {
+          throw new Error("Recipient id not found in api response");
+        } else {
+          navigate(`/recipientGifts/${recipientId}`);
+        }
       })
       .catch((err) => {
         console.log(err);
