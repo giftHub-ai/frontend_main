@@ -40,7 +40,7 @@ const NavBar = ({ className }) => {
         <AppLogo></AppLogo>
         <div className="flex flex-row items-baseline">
           <NavOptions navKeys={navKeys}></NavOptions>
-          <LoginButton buttonText={`Login`}></LoginButton>
+          <LoginButton buttonText={`Login/Recieve Gift`}></LoginButton>
         </div>
       </div>
     </div>
@@ -52,7 +52,7 @@ export default NavBar;
 const AppLogo = () => (
   <div className="hidden sm:flex flex-row items-center">
     <div className="hidden lg:block mx-2 text-2xl font-semibold text-dark">
-      Gift Store
+      GiftHub.ai
     </div>
     <img className="w-16 h-16" src={giftLogo} alt="giftLogo"></img>
   </div>

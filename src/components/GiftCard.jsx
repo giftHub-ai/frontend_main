@@ -56,9 +56,9 @@ export default GiftCard;
 
 const GiftImage = ({ imageLink }) => {
   return (
-    <div className="w-full rounded-md">
+    <div className="w-full max-h-[10rem] rounded-md">
       <img
-        className="rounded-md mx-auto object-fill"
+        className="rounded-md w-full max-h-[10rem] object-cover"
         src={imageLink}
         alt="gift_image"
       ></img>

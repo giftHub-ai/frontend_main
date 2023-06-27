@@ -6,7 +6,7 @@ import { UserContext } from "../../Context";
 import GiftCard from "../../GiftCard";
 import PrevNext from "../../PrevNext";
 import Toast from "../../Toast";
-import dummyData from "./DummyData";
+// import dummyData from "./DummyData";
 import GiftHamper from "../../../assets/gift_hamper.jpeg";
 import Modal from "./Modal";
 
@@ -17,7 +17,6 @@ const Result = () => {
   const inputDetails = React.useContext(UserContext);
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [currModalData, setCurrModalData] = useState({});
-
 
   let customConfig = {
     headers: {
@@ -69,11 +68,10 @@ const Result = () => {
         console.log("relevancy rating", res);
         toast.success("Thanks for feedback!", {
           duration: 2000,
-          position: "top-right"
+          position: "top-right",
         });
       })
       .catch((err) => {
-        console.log(err);
         toast.error(err.message, {
           duration: 2000,
           position: "top-right",
@@ -81,13 +79,13 @@ const Result = () => {
       });
   };
 
-  if (!loading)
+  if (loading)
     return (
       <>
         <div className="w-full h-full">
           <Loader></Loader>
+          {/* <PrevNext/> */}
         </div>
-        {/* <PrevNext /> */}
       </>
     );
   else
@@ -95,12 +93,18 @@ const Result = () => {
       <>
         <div className="flex flex-col gap-4 ">
           <Toast />
-          {isOpenModal && <Modal setIsOpenModal={setIsOpenModal} currModalData={currModalData} setCurrModalData={setCurrModalData}/>}
-          <div className="text-white heading-style">Recommendations</div>
+          {/* <Link to="/">Home</Link> */}
+          {isOpenModal && (
+            <Modal
+              setIsOpenModal={setIsOpenModal}
+              currModalData={currModalData}
+              setCurrModalData={setCurrModalData}
+            />
+          )}
+          <div className="text-white heading-style text-6xl">Recommendations</div>
           <div className="flex flex-row flex-wrap gap-4 justify-center items-center">
-            {/* for testing without API */}
-            {dummyData && dummyData.length
-              ? dummyData.map((item, ind) => {
+            {data && data.length
+              ? data.map((item, ind) => {
                   return (
                     <GiftCard
                       key={ind}

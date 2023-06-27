@@ -11,6 +11,7 @@ const ModalForm = ({ currModalData, setCurrModalData, setIsOpenModal }) => {
       };
 
   const submitBoughtGiftData = (obj) => {
+    console.log(obj);
     delete obj.rating;
     const userRating = JSON.stringify(obj);
     axios
@@ -23,7 +24,7 @@ const ModalForm = ({ currModalData, setCurrModalData, setIsOpenModal }) => {
       })
       .catch((err) => {
         console.log(err);
-        toast.error(err.response.data, {
+        toast.error(err.code, {
           duration: 2000,
           position: "top-right",
         });

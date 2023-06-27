@@ -24,7 +24,7 @@ const RecipientGiftCard = ({ gift }) => {
       </div>
       {/* gift link */}
       <div className="pb-2 flex flex-row items-baseline">
-        <div className="font-semibold ">Gift Link:</div>
+        <div className="font-semibold ">Reedem Link:</div>
         <a
           href={giftLink}
           target="_blank"
