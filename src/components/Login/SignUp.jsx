@@ -32,6 +32,7 @@ export default function SignUp() {
       .catch((err) => {
         console.log(err);
       });
+      // .post("https://gifthub-ai.onrender.com/user/register", regUserData)
   };
 
   return (

@@ -62,7 +62,7 @@ export default function Login() {
         ))}
       </div>
 
-      <FormExtra></FormExtra>
+      {/* <FormExtra></FormExtra> */}
       <FormAction handleSubmit={handleSubmit} text="Login"></FormAction>
     </form>
   );

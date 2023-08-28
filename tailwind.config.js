@@ -32,7 +32,7 @@ export default {
         },
         blink: {
           "50%": {
-            borderColor: "transparent",
+          borderColor: "transparent",
           },
           "100%": {
             borderColor: "white",
@@ -51,10 +51,10 @@ export default {
         loading: "load 1s infinite",
       },
       backgroundImage: {
-        formBgImage: "url('./src/assets/AdobeStock_314884083.jpeg')",
-        bgWave: "url('./src/assets/wave.png')",
-        giftLoader: "url('./src/assets/giftLoader.gif')",
-        giftLoadIcon: "url('./src/assets/giftLoadIcon.png')",
+        formBgImage: "url('/src/assets/AdobeStock_314884083.jpeg')",
+        bgWave: "url('/src/assets/wave.png')",
+        giftLoader: "url('/src/assets/giftLoader.gif')",
+        giftLoadIcon: "url('/src/assets/giftLoadIcon.png')",
       },
     },
   },

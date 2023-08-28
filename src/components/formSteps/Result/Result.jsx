@@ -32,6 +32,7 @@ const Result = () => {
     if (_.isEmpty(data)) {
       axios
         .post("http://127.0.0.1:5000/getGift", usersName, customConfig)
+        // .post("https://recommender-ru6q.onrender.com/getGift", usersName, customConfig)
         .then((res) => {
           setData(res.data);
           console.log("response  ", res);

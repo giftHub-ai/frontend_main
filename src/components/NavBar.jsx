@@ -40,7 +40,7 @@ const NavBar = ({ className }) => {
         <AppLogo></AppLogo>
         <div className="flex flex-row items-baseline">
           <NavOptions navKeys={navKeys}></NavOptions>
-          <LoginButton buttonText={`Login/Recieve Gift`}></LoginButton>
+          <LoginButton buttonText={`Login/Receive Gift`}></LoginButton>
         </div>
       </div>
     </div>
