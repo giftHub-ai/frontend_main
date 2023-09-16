@@ -28,7 +28,7 @@ export default function Login() {
   //Handle Login API Integration here
   const authenticateUser = (userData) => {
     axios
-      .post("http://localhost:3000/user/login", userData)
+      .post("http://localhost:5000/user/login", userData)
       .then((res) => {
         console.log("response  ", res);
         const recipientId = res.data.user._id;

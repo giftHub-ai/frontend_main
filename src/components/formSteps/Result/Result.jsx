@@ -10,6 +10,8 @@ import Toast from "../../Toast";
 import GiftHamper from "../../../assets/gift_hamper.jpeg";
 import Modal from "./Modal";
 
+
+
 const Result = () => {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState(null);

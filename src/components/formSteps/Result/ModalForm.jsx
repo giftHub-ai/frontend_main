@@ -3,6 +3,41 @@ import Button from "../../Button";
 import axios from "axios";
 import toast from "react-hot-toast";
 import Toast from "../../Toast";
+import Razorpay from 'razorpay';
+const checkoutHandler = async (amount) => {
+
+  const { data: { key } } = await axios.get("http://localhost:5000/api/getkey",)
+
+  const { data: { PaymentsDetails } } = await axios.post("http://localhost:5000/payment/buyGift", {
+      email: 'twinshup@gmail.com',link: 'http//', Amount: 343, Name: 'kartik'}
+  )
+  console.log(PaymentsDetails)
+
+  const options = {
+      key,
+      amount: PaymentsDetails.amount,
+      currency: "INR",
+      name: "Githu.ai",
+      description: "Tutorial of RazorPay",
+      image: "https://avatars.githubusercontent.com/u/25058652?v=4",
+      order_id: PaymentsDetails.id,
+      callback_url: "http://localhost:5000/payment/paymentverification",
+      prefill: {
+          name: "Kartik gamot",
+          email: "k@gmail.com",
+          contact: "123456"
+      },
+      notes: {
+          "address": "Razorpay Corporate Office"
+      },
+      theme: {
+          "color": "#121212"
+      }
+  };
+  const razor = new Razorpay(options);
+  razor.open();
+}
+
 const ModalForm = ({ currModalData, setCurrModalData, setIsOpenModal }) => {
     let customConfig = {
         headers: {
@@ -67,7 +102,7 @@ const ModalForm = ({ currModalData, setCurrModalData, setIsOpenModal }) => {
         }}
       ></input>
       <div className="flex justify-center gap-x-8 mt-4">
-        <div onClick={() => {submitBoughtGiftData(currModalData); setIsOpenModal(false)}}>
+        <div onClick={() => {checkoutHandler(); setIsOpenModal(false)}}>
           <Button text="Send Gift" />
         </div>
         <div onClick={() => setIsOpenModal(false)}>

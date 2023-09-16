@@ -24,7 +24,7 @@ export default function SignUp() {
   //handle Signup API Integration here
   const createAccount = (regUserData) => {
     axios
-      .post("http://localhost:3000/user/register", regUserData)
+      .post("http://localhost:5000/user/register", regUserData)
       .then((res) => {
         // console.log("response  ", res);
         navigate("/login");
