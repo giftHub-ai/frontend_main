@@ -2,17 +2,24 @@ import React, { useEffect, useState } from "react";
 import { UserContext } from "../../Context";
 import PrevNext from "../../PrevNext";
 import InterestCard from "../Interest/InterestCard";
-const InterestArray = [
+
+const maleArray = [
   "For Him",
-  "For Her",
   "Husband",
-  "Wife",
   "Father",
-  "Mother",
   "Brother",
-  "Sister",
   "Friend",
   "Son",
+  "Boss",
+  "Colleague",
+  "Any"
+];
+const femaleArray = [
+  "For Her",
+  "Wife",
+  "Mother",
+  "Sister",
+  "Friend",
   "Daughter",
   "Boss",
   "Colleague",
@@ -22,8 +29,10 @@ const RelationshipInputStep = () => {
   const [selectedInterest, setInterest] = useState();
   const [activeInterest, setActiveInterest] = useState(null);
   const [alreadyFilled, setAlreadyFilled] = useState(false);
-
   const inputDetails = React.useContext(UserContext);
+  const InterestArray =  inputDetails.userInput.gender=='Male'?maleArray:femaleArray;
+  
+  console.log(inputDetails);
   const setSelectedInterest = (interest) => {
     inputDetails.userInput.relationship = interest;
     setAlreadyFilled(true);

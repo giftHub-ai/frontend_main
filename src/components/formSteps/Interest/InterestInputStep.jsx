@@ -3,9 +3,9 @@ import { UserContext } from "../../Context";
 import PrevNext from "../../PrevNext";
 import InterestCard from "./InterestCard";
 const InterestArray = [
-  "Art",
-  "Writing",
-  "Reading",
+  // "Art",
+  // "Writing",
+  // "Reading",
   "Fashion",
   "Travel",
   "Sports",

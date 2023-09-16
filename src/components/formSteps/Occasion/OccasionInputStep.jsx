@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { UserContext, UserDispatchContext } from "../../Context";
 import PrevNext from "../../PrevNext";
 import InterestCard from "../Interest/InterestCard";
-const InterestArray = [
+const maleArray = [
   "Anniversary",
   "Baby & Expecting",
   "Birthday",
@@ -10,11 +10,22 @@ const InterestArray = [
   "Diwali",
   "Father's Day",
   "Friendship Day",
+  "New Year's",
+  "Any",
+];
+const femaleArray = [
+  "Anniversary",
+  "Baby & Expecting",
+  "Birthday",
+  "Christmas",
+  "Diwali",
+  "Friendship Day",
   "Mother's Day",
   "New Year's",
   "Raksha Bandhan",
   "Any",
 ];
+
 const OccasionInputStep = () => {
   const [selectedInterest, setInterest] = useState();
   const [activeInterest, setActiveInterest] = useState(null);
@@ -28,7 +39,7 @@ const OccasionInputStep = () => {
     setAlreadyFilled(true);
     console.log(inputDetails.userInput);
   };
-
+  const InterestArray =  inputDetails.userInput.gender=='Male'?maleArray:femaleArray;
   let interestValue;
   useEffect(() => {
     interestValue = inputDetails.userInput.occasion;
