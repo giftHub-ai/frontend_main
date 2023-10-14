@@ -1,8 +1,11 @@
 import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
+import ChoicePage from "./components/Pages/ChoicePage";
 import HomePage from "./components/Pages/HomePage";
 import LoginPage from "./components/Pages/LoginPage";
+import ReceivedGifts from "./components/Pages/ReceivedGifts";
 import RecipientGiftsPage from "./components/Pages/RecipientGiftsPage";
+import SentGifts from "./components/Pages/SentGIfts";
 import SignupPage from "./components/Pages/SignupPage";
 import "./index.css";
 
@@ -26,6 +29,12 @@ function App() {
         path="/recipientGifts/:id"
         element={<RecipientGiftsPage></RecipientGiftsPage>}
       />
+      <Route path="/timepass" element={<ChoicePage></ChoicePage>}></Route>
+      <Route
+        path="/receivedGifts"
+        element={<ReceivedGifts></ReceivedGifts>}
+      ></Route>
+      <Route path="/sentGifts" element={<SentGifts></SentGifts>}></Route>
     </Routes>
   );
 }
