@@ -5,6 +5,7 @@ import LoginPage from "./components/Pages/LoginPage";
 import RecipientGiftsPage from "./components/Pages/RecipientGiftsPage";
 import SignupPage from "./components/Pages/SignupPage";
 import "./index.css";
+import ProductPage from "./components/Pages/ProductPage";
 
 function App() {
   const [formDisplay, setFormDisplay] = useState(false);
@@ -25,6 +26,10 @@ function App() {
       <Route
         path="/recipientGifts/:id"
         element={<RecipientGiftsPage></RecipientGiftsPage>}
+      />
+      <Route
+        path="/gift"
+        element={<ProductPage></ProductPage>}
       />
     </Routes>
   );

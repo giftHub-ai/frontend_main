@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import giftLogo from "../assets/giftLogo1.png";
 const navKeys = ["Home"];
-const NavBar = ({ className }) => {
+const NavBar = ({ className, showLogin }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const handleMenuClick = () => setIsMenuOpen((prev) => !prev);
 
@@ -40,7 +40,8 @@ const NavBar = ({ className }) => {
         <AppLogo></AppLogo>
         <div className="flex flex-row items-baseline">
           <NavOptions navKeys={navKeys}></NavOptions>
-          <LoginButton buttonText={`Login/Receive Gift`}></LoginButton>
+          {showLogin &&
+          <LoginButton buttonText={`Login/Receive Gift`}></LoginButton>}
         </div>
       </div>
     </div>

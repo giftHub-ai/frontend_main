@@ -8,15 +8,12 @@ import PrevNext from "../../PrevNext";
 import Toast from "../../Toast";
 // import dummyData from "./DummyData";
 import GiftHamper from "../../../assets/gift_hamper.jpeg";
-import Modal from "./Modal";
 
 const Result = () => {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState(null);
   const [relevancyData, setrelevancyData] = useState(null);
   const inputDetails = React.useContext(UserContext);
-  const [isOpenModal, setIsOpenModal] = useState(false);
-  const [currModalData, setCurrModalData] = useState({});
 
   let customConfig = {
     headers: {
@@ -95,13 +92,7 @@ const Result = () => {
         <div className="flex flex-col gap-4 ">
           <Toast />
           {/* <Link to="/">Home</Link> */}
-          {isOpenModal && (
-            <Modal
-              setIsOpenModal={setIsOpenModal}
-              currModalData={currModalData}
-              setCurrModalData={setCurrModalData}
-            />
-          )}
+    
           <div className="text-white heading-style text-6xl">Recommendations</div>
           <div className="flex flex-row flex-wrap gap-4 justify-center items-center">
             {data && data.length
@@ -111,8 +102,7 @@ const Result = () => {
                       key={ind}
                       productData={item}
                       setrelevancyData={setrelevancyData}
-                      setIsOpenModal={setIsOpenModal}
-                      setCurrModalData={setCurrModalData}
+                     
                     />
                   );
                 })
