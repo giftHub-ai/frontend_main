@@ -2,22 +2,25 @@ import React, { useState } from "react";
 import Button from "../../Button";
 import ModalForm from "./ModalForm";
 
-const Modal = ({ setIsOpenModal, currModalData,setCurrModalData }) => {
+const Modal = ({ setIsOpenModal, currModalData, setCurrModalData }) => {
   const [showModalForm, setShowModalForm] = useState(false);
 
   return (
-    <div className="absolute h-[80vh] w-[83vw] flex justify-center items-center">
-      <div className="bg-white p-8 shadow-2xl min-w-fit min-h-fit   absolute top-1/2  rounded-lg z-50 ">
+    <div className="absolute h-full w-screen flex justify-center items-center">
+      <div className="bg-white p-8 shadow-2xl min-w-fit min-h-fit      rounded-lg z-50 ">
         {showModalForm ? (
-          <ModalForm currModalData={currModalData} setCurrModalData={setCurrModalData} setIsOpenModal={setIsOpenModal} />
+          <ModalForm
+            currModalData={currModalData}
+            setCurrModalData={setCurrModalData}
+            setIsOpenModal={setIsOpenModal}
+          />
         ) : (
           <>
             <h2 className="text-center mt-8 text-2xl">
-              {" "}
-              Did you bought this gift :{" "}
+              Do you want to send this gift {" "}
               <span className="text-light font-semibold">
-                {" "}
-                {currModalData.Gift}
+               
+                {currModalData}
               </span>
               ?
             </h2>

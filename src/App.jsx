@@ -8,6 +8,7 @@ import RecipientGiftsPage from "./components/Pages/RecipientGiftsPage";
 import SentGifts from "./components/Pages/SentGIfts";
 import SignupPage from "./components/Pages/SignupPage";
 import "./index.css";
+import ProductPage from "./components/Pages/ProductPage";
 
 function App() {
   const [formDisplay, setFormDisplay] = useState(false);
@@ -35,6 +36,10 @@ function App() {
         element={<ReceivedGifts></ReceivedGifts>}
       ></Route>
       <Route path="/sentGifts" element={<SentGifts></SentGifts>}></Route>
+      <Route
+        path="/gift"
+        element={<ProductPage></ProductPage>}
+      />
     </Routes>
   );
 }

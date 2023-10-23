@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { Rating } from "react-simple-star-rating";
 import Modal from "./formSteps/Result/Modal";
+import { Link } from "react-router-dom";
 
 const tooltipArray = [
   "0.5",
@@ -28,13 +29,17 @@ const fillColorArray = [
   "#f1d045",
 ];
 
-const GiftCard = ({ productData, setrelevancyData ,setIsOpenModal,setCurrModalData}) => {
+const GiftCard = ({
+  productData,
+  setrelevancyData,
+  setIsOpenModal,
+  setCurrModalData,
+}) => {
   const [rating, setRating] = useState(0);
   // Catch Rating value
   const handleRating = (rate) => {
     productData = { ...productData, rating: rate };
     setrelevancyData(productData);
-    console.log(productData);
     setRating(rate);
   };
   return (
@@ -47,7 +52,11 @@ const GiftCard = ({ productData, setrelevancyData ,setIsOpenModal,setCurrModalDa
           handleRating={handleRating}
         ></RatingComponent>
       </div>
-        <ExploreLink productData={productData} setIsOpenModal={setIsOpenModal} setCurrModalData={setCurrModalData} ></ExploreLink>
+      <ExploreLink
+        productData={productData}
+        setIsOpenModal={setIsOpenModal}
+        setCurrModalData={setCurrModalData}
+      ></ExploreLink>
     </div>
   );
 };
@@ -67,7 +76,9 @@ const GiftImage = ({ imageLink }) => {
 };
 
 const GiftName = ({ giftName }) => {
-  return <div className="py-4 text-xl font-semibold min-h-[8rem]">{giftName}</div>;
+  return (
+    <div className="py-4 text-xl font-semibold min-h-[8rem]">{giftName}</div>
+  );
 };
 const RatingComponent = ({ rating, handleRating }) => {
   return (
@@ -94,13 +105,16 @@ const RatingComponent = ({ rating, handleRating }) => {
   );
 };
 
-const ExploreLink = ({ productData,setIsOpenModal,setCurrModalData }) => {
+const ExploreLink = ({ productData, setIsOpenModal, setCurrModalData }) => {
   // console.log(productData);
-  return (<a href={productData.Link} target="_blank" rel="noopener noreferrer" onClick={()=>{setIsOpenModal(true); setCurrModalData(productData)}}>
-    <div className="w-full border font-semibold hover:border-white hover:bg-light bg-white text-light hover:text-white border-light  hover:cursor-pointer py-2 px-4 rounded-md text-center">
-      
+  return (
+    <Link
+      to="/gift"
+      state={productData}
+    >
+      <div className="w-full border font-semibold hover:border-white hover:bg-light bg-white text-light hover:text-white border-light  hover:cursor-pointer py-2 px-4 rounded-md text-center">
         Explore
-     
-    </div> </a>
+      </div>
+    </Link>
   );
 };

@@ -3,52 +3,12 @@ import Button from "../../Button";
 import axios from "axios";
 import toast from "react-hot-toast";
 import Toast from "../../Toast";
-const checkoutHandler = async (amount = 500) => {
-  const {
-    data: { key },
-  } = await axios.get("http://localhost:5000/api/getkey");
-
-  const {
-    data: { PaymentsDetails },
-  } = await axios.post("http://localhost:5000/payment/buyGift", {
-    email: "twinshup@gmail.com",
-    link: "http//",
-    Amount: 343,
-    Name: "kartik",
-  });
-  console.log(PaymentsDetails);
-
-  const options = {
-    key,
-    amount: PaymentsDetails.amount,
-    currency: "INR",
-    name: "GiftHub",
-    description: "GiftHub Payment Razorpay Integration",
-    image: "https://avatars.githubusercontent.com/u/131351645?s=96&v=4",
-    order_id: PaymentsDetails.id,
-    callback_url: "http://localhost:5000/payment/paymentverification",
-    prefill: {
-      name: "",
-      email: "",
-      contact: "",
-    },
-    notes: {
-      address: "Razorpay Corporate Office",
-    },
-    theme: {
-      color: "#121212",
-    },
-  };
-  const razor = new window.Razorpay(options);
-  razor.open();
-};
-
 const ModalForm = ({ currModalData, setCurrModalData, setIsOpenModal }) => {
-  let customConfig = {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  };
+    let customConfig = {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
 
   const submitBoughtGiftData = (obj) => {
     console.log(obj);
@@ -72,7 +32,7 @@ const ModalForm = ({ currModalData, setCurrModalData, setIsOpenModal }) => {
   };
   return (
     <div className="p-4 z-50">
-      <Toast />
+        <Toast/>
       <h2 className="text-xl font-semibold text-center mb-4">
         Enter required details to send to Recipient{" "}
       </h2>
@@ -107,12 +67,7 @@ const ModalForm = ({ currModalData, setCurrModalData, setIsOpenModal }) => {
         }}
       ></input>
       <div className="flex justify-center gap-x-8 mt-4">
-        <div
-          onClick={() => {
-            checkoutHandler();
-            setIsOpenModal(false);
-          }}
-        >
+        <div onClick={() => {submitBoughtGiftData(currModalData); setIsOpenModal(false)}}>
           <Button text="Send Gift" />
         </div>
         <div onClick={() => setIsOpenModal(false)}>
