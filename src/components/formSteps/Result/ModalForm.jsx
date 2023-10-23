@@ -28,9 +28,9 @@ const checkoutHandler = async (amount = 500) => {
     order_id: PaymentsDetails.id,
     callback_url: "http://localhost:5000/payment/paymentverification",
     prefill: {
-      name: "Kartik gamot",
-      email: "kartik@gmail.com",
-      contact: "123456",
+      name: "",
+      email: "",
+      contact: "",
     },
     notes: {
       address: "Razorpay Corporate Office",

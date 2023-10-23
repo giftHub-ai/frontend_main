@@ -20,8 +20,9 @@ const Result = () => {
       "Content-Type": "application/json",
     },
   };
-  const userInputValues = inputDetails.userInput;
+  const oldUserInputValues = inputDetails.userInput;
   useEffect(() => {
+   let userInputValues = {...oldUserInputValues, age:Number(oldUserInputValues.age)}
     const usersName = JSON.stringify(userInputValues);
     console.log(usersName);
 

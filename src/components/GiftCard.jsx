@@ -111,7 +111,6 @@ const ExploreLink = ({ productData, setIsOpenModal, setCurrModalData }) => {
     <Link
       to="/gift"
       state={productData}
-
     >
       <div className="w-full border font-semibold hover:border-white hover:bg-light bg-white text-light hover:text-white border-light  hover:cursor-pointer py-2 px-4 rounded-md text-center">
         Explore

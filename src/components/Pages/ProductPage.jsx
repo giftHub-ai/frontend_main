@@ -7,6 +7,7 @@ import Modal from "../formSteps/Result/Modal";
 
 const ProductPage = () => {
   const location = useLocation();
+  console.log(location.state);
     const { Gift, ImageLink, Rating } = location.state;
   console.log(location);
   const [amount, setAmount] = useState(1);
@@ -20,7 +21,7 @@ const [currModalData, setCurrModalData] = useState({});
       {isOpenModal && (
         <Modal
           setIsOpenModal={setIsOpenModal}
-          currModalData={currModalData}
+          currModalData={Gift}
           setCurrModalData={setCurrModalData}
         />
       )}
