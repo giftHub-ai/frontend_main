@@ -7,13 +7,17 @@ import GiftCard from "../../GiftCard";
 import PrevNext from "../../PrevNext";
 import Toast from "../../Toast";
 // import dummyData from "./DummyData";
+import { useNavigate } from "react-router-dom";
 import GiftHamper from "../../../assets/gift_hamper.jpeg";
+import { api_base_url } from "../../../config/api";
 
 const Result = () => {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState(null);
   const [relevancyData, setrelevancyData] = useState(null);
   const inputDetails = React.useContext(UserContext);
+
+  const navigate = useNavigate();
 
   let customConfig = {
     headers: {
@@ -22,22 +26,34 @@ const Result = () => {
   };
   const oldUserInputValues = inputDetails.userInput;
   useEffect(() => {
-   let userInputValues = {...oldUserInputValues, age:Number(oldUserInputValues.age)}
+    let userInputValues = {
+      ...oldUserInputValues,
+      age: Number(oldUserInputValues.age),
+    };
     const usersName = JSON.stringify(userInputValues);
     console.log(usersName);
 
     console.log(typeof userInputValues);
     if (_.isEmpty(data)) {
       axios
-        .post("http://127.0.0.1:5000/getGift", usersName, customConfig)
+        .post(`${api_base_url}/getGift`, usersName, customConfig)
         // .post("https://recommender-ru6q.onrender.com/getGift", usersName, customConfig)
         .then((res) => {
+          if (_.isEmpty(localStorage.getItem("token"))) {
+            navigate("/login");
+          }
           setData(res.data);
-          console.log("response  ", res);
+          // console.log("response  ", res);
           setLoading(false);
         })
         .catch((err) => {
-          console.log(err);
+          if (_.isEmpty(localStorage.getItem("token"))) {
+            navigate("/login");
+          }
+          setLoading(false);
+          // if (err.response.status == 401) {
+          //   navigate("/login");
+          // }
           toast.error(err.message, {
             duration: 2000,
             position: "top-right",
@@ -93,8 +109,10 @@ const Result = () => {
         <div className="flex flex-col gap-4 ">
           <Toast />
           {/* <Link to="/">Home</Link> */}
-    
-          <div className="text-white heading-style text-6xl">Recommendations</div>
+
+          <div className="text-white heading-style text-6xl">
+            Recommendations
+          </div>
           <div className="flex flex-row flex-wrap gap-4 justify-center items-center">
             {data && data.length
               ? data.map((item, ind) => {
@@ -103,7 +121,6 @@ const Result = () => {
                       key={ind}
                       productData={item}
                       setrelevancyData={setrelevancyData}
-                     
                     />
                   );
                 })
