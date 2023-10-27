@@ -22,10 +22,11 @@ const Result = () => {
   };
   const oldUserInputValues = inputDetails.userInput;
   useEffect(() => {
-   let userInputValues = {...oldUserInputValues, age:Number(oldUserInputValues.age)}
+    let userInputValues = {
+      ...oldUserInputValues,
+      age: Number(oldUserInputValues.age),
+    };
     const usersName = JSON.stringify(userInputValues);
-    console.log(usersName);
-
     console.log(typeof userInputValues);
     if (_.isEmpty(data)) {
       axios
@@ -64,7 +65,6 @@ const Result = () => {
     axios
       .post("http://127.0.0.1:5000/addEntry", userRating, customConfig)
       .then((res) => {
-        console.log("relevancy rating", res);
         toast.success("Thanks for feedback!", {
           duration: 2000,
           position: "top-right",
@@ -90,11 +90,11 @@ const Result = () => {
   else
     return (
       <>
-        <div className="flex flex-col gap-4 ">
+        <div className="flex flex-col gap-4 overflow-x-hidden">
           <Toast />
-          {/* <Link to="/">Home</Link> */}
-    
-          <div className="text-white heading-style text-6xl">Recommendations</div>
+          <div className="text-white heading-style text-6xl">
+            Recommendations
+          </div>
           <div className="flex flex-row flex-wrap gap-4 justify-center items-center">
             {data && data.length
               ? data.map((item, ind) => {
@@ -103,7 +103,6 @@ const Result = () => {
                       key={ind}
                       productData={item}
                       setrelevancyData={setrelevancyData}
-                     
                     />
                   );
                 })
@@ -112,27 +111,8 @@ const Result = () => {
           <PrevNext
             alreadyFilled={true}
             submitRelevancyRating={submitRelevancyRating}
-          />
-          <div className="w-full p-8   rounded-lg shadow-lg bg-white flex  ">
-            <div className="">
-              <img src={GiftHamper} className="rounded-lg" alt="" />
-            </div>
-            <div className="text-light font-semibold p-8">
-              <h1 className="text-2xl mb-8">
-                Check this, its something special for you!
-              </h1>
-              We at WhatTheFruit! believe that a gift should be an experience,
-              not just an item. <br></br>
-              <br></br>
-              WhatTheFruit! has come up with a Luxuriously curated Fruit Gift
-              Hamper to surprise your loved ones. With a touch of luxury and
-              full of health✨ Fresh handpicked fruits, carefully packed and
-              sent to your loved ones on a special occasion.
-              <br></br>
-              <br></br>
-              Go to <b> whatthefruit.in </b>to explore more.
-            </div>
-          </div>
+            />
+            <GiftAdv/>   
         </div>
       </>
     );
@@ -146,5 +126,28 @@ const Loader = () => (
       Your Gifts are loading..
     </div>
     <div className="mx-auto w-72 h-72 square bg-giftLoadIcon bg-cover bg-top bg-no-repeat rounded-full bg-white"></div>
+  </div>
+);
+
+const GiftAdv = () => (
+  <div className="w-full p-8   rounded-lg shadow-lg bg-white flex  mb-8">
+    <div className="">
+      <img src={GiftHamper} className="rounded-lg" alt="" />
+    </div>
+    <div className="text-light font-semibold p-8">
+      <h1 className="text-2xl mb-8">
+        Check this, its something special for you!
+      </h1>
+      We at WhatTheFruit! believe that a gift should be an experience, not just
+      an item. <br></br>
+      <br></br>
+      WhatTheFruit! has come up with a Luxuriously curated Fruit Gift Hamper to
+      surprise your loved ones. With a touch of luxury and full of health✨
+      Fresh handpicked fruits, carefully packed and sent to your loved ones on a
+      special occasion.
+      <br></br>
+      <br></br>
+      Go to <b> whatthefruit.in </b>to explore more.
+    </div>
   </div>
 );

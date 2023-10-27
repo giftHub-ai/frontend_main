@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import homeBackground from "../../assets/HomePageBG/8307.jpg";
-import { UserProvider } from "../Context";
 import NavBar from "../NavBar";
 import MultiStepForm from "../form/MultiStepForm";
 const HomePage = ({ className }) => {
@@ -18,9 +17,9 @@ const HomePage = ({ className }) => {
         </>
       ) : (
         <div className="w-screen min-h-screen overflow-y-scroll flex items-center justify-center font-sans bg-formBg bg-bgWave bg-no-repeat bg-contain">
-          <UserProvider>
+          {/* <UserProvider> */}
             <MultiStepForm></MultiStepForm>
-          </UserProvider>
+          {/* </UserProvider> */}
           {/* <img
         src={maleGift}
         className="hidden lg:block absolute right-0 top-24"

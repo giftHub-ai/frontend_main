@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Button from "../../Button";
 import ModalForm from "./ModalForm";
 
-const Modal = ({ setIsOpenModal, currModalData, setCurrModalData }) => {
+const Modal = ({ setIsOpenModal, giftName, selectedGift }) => {
   const [showModalForm, setShowModalForm] = useState(false);
 
   return (
@@ -10,8 +10,7 @@ const Modal = ({ setIsOpenModal, currModalData, setCurrModalData }) => {
       <div className="bg-white p-8 shadow-2xl min-w-fit min-h-fit      rounded-lg z-50 ">
         {showModalForm ? (
           <ModalForm
-            currModalData={currModalData}
-            setCurrModalData={setCurrModalData}
+          selectedGift={selectedGift}
             setIsOpenModal={setIsOpenModal}
           />
         ) : (
@@ -20,7 +19,7 @@ const Modal = ({ setIsOpenModal, currModalData, setCurrModalData }) => {
               Do you want to send this gift {" "}
               <span className="text-light font-semibold">
                
-                {currModalData}
+                {giftName}
               </span>
               ?
             </h2>

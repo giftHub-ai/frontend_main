@@ -3,73 +3,58 @@ import Button from "../../Button";
 import axios from "axios";
 import toast from "react-hot-toast";
 import Toast from "../../Toast";
-const checkoutHandler = async (amount = 500) => {
-  const {
-    data: { key },
-  } = await axios.get("http://localhost:5000/api/getkey");
+import { useState } from "react";
 
-  const {
-    data: { PaymentsDetails },
-  } = await axios.post("http://localhost:5000/payment/buyGift", {
-    email: "twinshup@gmail.com",
-    link: "http//",
-    Amount: 343,
-    Name: "kartik",
-  });
-  console.log(PaymentsDetails);
 
-  const options = {
-    key,
-    amount: PaymentsDetails.amount,
-    currency: "INR",
-    name: "GiftHub",
-    description: "GiftHub Payment Razorpay Integration",
-    image: "https://avatars.githubusercontent.com/u/131351645?s=96&v=4",
-    order_id: PaymentsDetails.id,
-    callback_url: "http://localhost:5000/payment/paymentverification",
-    prefill: {
-      name: "",
-      email: "",
-      contact: "",
-    },
-    notes: {
-      address: "Razorpay Corporate Office",
-    },
-    theme: {
-      color: "#121212",
-    },
+const ModalForm = ({ selectedGift,  setIsOpenModal }) => {
+  const [senderName, setSenderName ] = useState('');
+  const [recieverEmail, setRecieverEmail ] = useState('');
+  const checkoutHandler = async (amount = 500) => {
+    const {
+      data: { key },
+    } = await axios.get("http://localhost:5000/api/getkey");
+  
+    const {
+      data: { PaymentsDetails },
+    } = await axios.post("http://localhost:5000/payment/buyGift", {
+      email: recieverEmail,
+      link: "http//",
+      Amount: selectedGift.Budget,
+      Name:senderName,
+    });
+    console.log(PaymentsDetails);
+  
+    const options = {
+      key,
+      amount: selectedGift.Budget,
+      currency: "INR",
+      name: selectedGift.Gift,
+      description: `GiftHub Payment using Razorpay Payment Gateway ${selectedGift.Gift}` ,
+      image:selectedGift['Image Link'],
+      order_id: PaymentsDetails.id,
+      callback_url: "http://localhost:5000/payment/paymentverification",
+      prefill: {
+        name: "",
+        email: "",
+        contact: "",
+      },
+      notes: {
+        address: "Razorpay Corporate Office",
+      },
+      theme: {
+        color: "#121212",
+      },
+    };
+    const razor = new window.Razorpay(options);
+    razor.open();
   };
-  const razor = new window.Razorpay(options);
-  razor.open();
-};
 
-const ModalForm = ({ currModalData, setCurrModalData, setIsOpenModal }) => {
   let customConfig = {
     headers: {
       "Content-Type": "application/json",
     },
   };
-
-  const submitBoughtGiftData = (obj) => {
-    console.log(obj);
-    delete obj.rating;
-    const userRating = JSON.stringify(obj);
-    axios
-      .post("http://localhost:3000/user/addUser", userRating, customConfig)
-      .then((res) => {
-        toast.success("Gift sent successfully!", {
-          duration: 2000,
-          position: "top-right",
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-        toast.error(err.code, {
-          duration: 2000,
-          position: "top-right",
-        });
-      });
-  };
+ 
   return (
     <div className="p-4 z-50">
       <Toast />
@@ -79,32 +64,18 @@ const ModalForm = ({ currModalData, setCurrModalData, setIsOpenModal }) => {
       <label htmlFor="">Enter your name : </label>
       <input
         placeholder="John Deo"
+        required
         className="modal-form-input"
-        onChange={(e) => {
-          let obj = { ...currModalData, SenderName: e.target.value };
-          setCurrModalData(obj);
-        }}
+        onChange={(e) => setSenderName(e.target.value)}
       ></input>
-      <br />
-      <label htmlFor="">Enter your email : </label>
-      <input
-        placeholder="abc@gmail.com"
-        className="modal-form-input"
-        onChange={(e) => {
-          let obj = { ...currModalData, SenderEmail: e.target.value };
-          setCurrModalData(obj);
-        }}
-      ></input>
+
       <br />
       <label htmlFor="">Enter Recipient email : </label>
       <input
-        placeholder="xyz@gmail.com"
+        placeholder="johndeo@gmail.com"
         className="modal-form-input"
-        onChange={(e) => {
-          let obj = { ...currModalData, RecipientEmail: e.target.value };
-          setCurrModalData(obj);
-          console.log(currModalData);
-        }}
+        required
+        onChange={(e) => setRecieverEmail(e.target.value)}
       ></input>
       <div className="flex justify-center gap-x-8 mt-4">
         <div
