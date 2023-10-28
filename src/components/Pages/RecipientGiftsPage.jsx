@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { api_base_url } from "../../config/api";
 import RecipientGiftCard from "../RecipientGiftCard";
 
 const RecipientGiftsPage = () => {
@@ -8,7 +9,7 @@ const RecipientGiftsPage = () => {
   const [gifts, setGifts] = useState([]);
   const getRecipientGifts = (id) => {
     axios
-      .post(`http://localhost:3000/user/search/${id}`)
+      .post(`${api_base_url}/user/search/${id}`)
       .then((res) => {
         console.log(res);
         setGifts(res.data);

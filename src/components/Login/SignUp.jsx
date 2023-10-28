@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { api_base_url } from "../../config/api";
 import FormAction from "./FormAction";
 import Input from "./Input";
 import { signupFields } from "./formFields";
@@ -24,15 +25,17 @@ export default function SignUp() {
   //handle Signup API Integration here
   const createAccount = (regUserData) => {
     axios
-      .post("http://localhost:3000/user/register", regUserData)
+      .post(`${api_base_url}/user/register`, regUserData, {
+        withCredentials: true,
+      })
       .then((res) => {
-        // console.log("response  ", res);
-        navigate("/login");
+        console.log("response  ", res);
+        // navigate("/login");
       })
       .catch((err) => {
         console.log(err);
       });
-      // .post("https://gifthub-ai.onrender.com/user/register", regUserData)
+    // .post("https://gifthub-ai.onrender.com/user/register", regUserData)
   };
 
   return (

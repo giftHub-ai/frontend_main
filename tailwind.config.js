@@ -17,6 +17,8 @@ export default {
       yellowStar: "#f7db3c",
       interestHover: "#f8fafc",
       formBg: "#fbcfe8",
+      orange: "#F59E0B",
+      red: "#EF4444",
     },
 
     extend: {
@@ -32,7 +34,7 @@ export default {
         },
         blink: {
           "50%": {
-          borderColor: "transparent",
+            borderColor: "transparent",
           },
           "100%": {
             borderColor: "white",
