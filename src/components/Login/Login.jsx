@@ -4,7 +4,7 @@ import { api_base_url } from "../../config/api";
 import FormAction from "./FormAction";
 import Input from "./Input";
 import { loginFields } from "./formFields";
-
+import { useNavigate } from "react-router-dom";
 const fields = loginFields;
 let fieldsState = {};
 fields.forEach((field) => (fieldsState[field.id] = ""));
@@ -20,13 +20,15 @@ export default function Login() {
     e.preventDefault();
     console.log(loginState);
     authenticateUser(loginState);
+
   };
+  const navigate = useNavigate();
 
   //Handle Login API Integration here
   const authenticateUser = (userData) => {
     axios
       .post(`${api_base_url}/user/login`, userData, {
-        withCredentials: true,
+        // withCredentials: true,
       })
       .then((res) => {
         console.log("response  ", res);
@@ -37,14 +39,14 @@ export default function Login() {
           throw new Error("Recipient id not found in api response");
         }
         else {
-          navigate(`/recipientGifts/${recipientId}`);
         } */
+        navigate('../');
       })
       .catch((err) => {});
   };
 
   return (
-    <form className="mx-auto sm:mt-16" onSubmit={handleSubmit}>
+    <form className="mx-auto sm:mt-16 p-4 lg:p-0" onSubmit={handleSubmit}>
       <div className="">
         {fields.map((field) => (
           <Input

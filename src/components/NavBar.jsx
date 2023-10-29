@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import giftLogo from "../assets/giftLogo1.png";
+import _ from "underscore";
 const navKeys = ["Home"];
 const NavBar = ({ className, showLogin }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const handleMenuClick = () => setIsMenuOpen((prev) => !prev);
-
+  const navigate = useNavigate();
   const buildClassName = (appClassName) => {
     const defaultClassName = "w-full";
     return `${defaultClassName} ${appClassName} ${className}`;
@@ -17,7 +18,7 @@ const NavBar = ({ className, showLogin }) => {
         /* display nav menu if menu is open */
         <div className="sm:hidden w-full flex flex-row justify-between drop-shadow-none shadow-md">
           <div className={"py-4 px-8 flex flex-col items-start"}>
-            <AppLogo></AppLogo>
+            <AppLogo navigate={navigate}></AppLogo>
             <NavOptions navKeys={navKeys}></NavOptions>
           </div>
           <CloseIcon
@@ -40,8 +41,19 @@ const NavBar = ({ className, showLogin }) => {
         <AppLogo></AppLogo>
         <div className="flex flex-row items-baseline">
           <NavOptions navKeys={navKeys}></NavOptions>
-          {showLogin &&
-          <LoginButton buttonText={`Login/Receive Gift`}></LoginButton>}
+          {_.isEmpty(localStorage.getItem("token")) ? (
+            <LoginButton buttonText={`Login/Receive Gift`}></LoginButton>
+          ) : (
+            <div className="text-light text-xl flex gap-x-8 items-center ">
+              <div
+                className="border-2 p-1 px-2 rounded-lg cursor-pointer hover:bg-dark hover:text-white transition-all hover:border-white"
+                onClick={() => navigate("/dashboard")}
+              >
+                Dashboard{"   "}
+              </div>
+              <div className="border-2 p-1 px-2 rounded-lg cursor-pointer hover:bg-dark hover:text-white transition-all " onClick={()=>{localStorage.removeItem("token")}}>Logout</div>
+            </div>
+          )}
         </div>
       </div>
     </div>
@@ -50,13 +62,13 @@ const NavBar = ({ className, showLogin }) => {
 
 export default NavBar;
 
-const AppLogo = () => (
-  <div className="hidden sm:flex flex-row items-center">
+const AppLogo = ({navigate}) => (
+  <Link to="/" className="hidden sm:flex flex-row items-center cursor-pointer" >
     <div className="hidden lg:block mx-2 text-2xl font-semibold text-dark">
       GiftHub.ai
     </div>
     <img className="w-16 h-16" src={giftLogo} alt="giftLogo"></img>
-  </div>
+  </Link>
 );
 
 export const NavButton = ({ option }) => (

@@ -9,7 +9,7 @@ import Toast from "../../Toast";
 // import dummyData from "./DummyData";
 import { useNavigate } from "react-router-dom";
 import GiftHamper from "../../../assets/gift_hamper.jpeg";
-import { api_base_url } from "../../../config/api";
+import { api_base_url_django } from "../../../config/api";
 
 const Result = () => {
   const [loading, setLoading] = useState(true);
@@ -34,7 +34,7 @@ const Result = () => {
     console.log(typeof userInputValues);
     if (_.isEmpty(data)) {
       axios
-        .post(`${api_base_url}/getGift`, usersName, customConfig)
+        .post(`${api_base_url_django}/getGift`, usersName, customConfig)
         // .post("https://recommender-ru6q.onrender.com/getGift", usersName, customConfig)
         .then((res) => {
           if (_.isEmpty(localStorage.getItem("token"))) {

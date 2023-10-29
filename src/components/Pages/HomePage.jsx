@@ -33,7 +33,7 @@ const HomePage = ({ className }) => {
 
 export default HomePage;
 
-const StartButton = ({ setFormDisplay }) => {
+export const StartButton = ({ setFormDisplay }) => {
   return (
     <button
       className="my-4 text-2xl font-semibold py-2 px-6 border border-light bg-light text-white rounded-md hover:text-light hover:bg-white"

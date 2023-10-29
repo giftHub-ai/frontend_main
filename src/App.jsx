@@ -8,8 +8,8 @@ import RecipientGiftsPage from "./components/Pages/RecipientGiftsPage";
 import SentGifts from "./components/Pages/SentGifts";
 import SignupPage from "./components/Pages/SignupPage";
 import "./index.css";
-import ProductPage from "./components/Pages/ProductPage";
 import { UserProvider } from "./components/Context";
+import Dashboard from "./components/Pages/Dashboard";
 
 function App() {
   return (
@@ -35,7 +35,7 @@ function App() {
         element={<ReceivedGifts></ReceivedGifts>}
       ></Route>
       <Route path="/sentGifts" element={<SentGifts></SentGifts>}></Route>
-      <Route path="/gift" element={<ProductPage></ProductPage>} />
+      <Route path="/dashboard" element={<Dashboard></Dashboard>}></Route>
     </Routes>
     </UserProvider>
   );
