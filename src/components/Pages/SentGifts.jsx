@@ -19,7 +19,7 @@ const sentGifts = [
     giftId: "GFT67890",
     status: "rejected",
     sentDate: "2023-09-15",
-  }
+  },
 ];
 const monthNames = [
   "Jan",
@@ -39,14 +39,12 @@ const monthNames = [
 export default function SentGifts() {
   // console.log(sentGifts);
   return (
-    <div className="w-full px-4">
-      <h2 className="p-4 mb-4 text-2xl tracking-wide font-bold text-center ">
-        Sent Gifts
-      </h2>
+    <div className="w-full px-4 py-2 bg-interestHover">
       <div className="w-full mx-auto max-w-3xl">
-        {sentGifts.length>0 && sentGifts.map((gift, index) => {
-          return <GiftCard key={index} {...gift}></GiftCard>;
-        })}
+        {sentGifts.length > 0 &&
+          sentGifts.map((gift, index) => {
+            return <GiftCard key={index} {...gift}></GiftCard>;
+          })}
       </div>
     </div>
   );
@@ -75,7 +73,7 @@ function GiftCard({ giftName, giftId, sentDate, status }) {
   };
 
   return (
-    <div className="w-full p-4 my-2 rounded-md flex flex-col bg-interestHover">
+    <div className="w-full p-4 my-2 rounded-md flex flex-col bg-white">
       <div className="w-full flex flex-row items-center justify-between">
         <h3 className="font-bold hover:underline hover:cursor-pointer">
           {giftName}

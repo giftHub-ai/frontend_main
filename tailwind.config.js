@@ -7,21 +7,20 @@ export default {
     padding: ["responsive", "direction"],
   },
   theme: {
-    colors: {
-      background: "#FF5F9E",
-      dark: "#B3005E",
-      light: "#E90064",
-      text: "#060047",
-      green: "#008000",
-      white: "#ffffff",
-      yellowStar: "#f7db3c",
-      interestHover: "#f8fafc",
-      formBg: "#fbcfe8",
-      orange: "#F59E0B",
-      red: "#EF4444",
-    },
-
     extend: {
+      colors: {
+        background: "#FF5F9E",
+        dark: "#B3005E",
+        light: "#E90064",
+        text: "#060047",
+        green: "#008000",
+        white: "#ffffff",
+        yellowStar: "#f7db3c",
+        interestHover: "#f8fafc",
+        formBg: "#fbcfe8",
+        orange: "#F59E0B",
+        red: "#EF4444",
+      },
       keyframes: {
         typing: {
           "0%": {

@@ -46,13 +46,13 @@ const NavBar = ({ className, showLogin }) => {
           ) : (
             <div className="text-light text-xl flex gap-x-8 items-center ">
               <div
-                className="border-2 p-1 px-2 rounded-lg cursor-pointer hover:bg-dark hover:text-white transition-all hover:border-white"
+                className="py-2 px-4 cursor-pointer  hover:opacity-60 text-light font-semibold transition-all hover:border-white"
                 onClick={() => navigate("/dashboard")}
               >
                 {`Dashboard `}
               </div>
               <div
-                className="border-2 p-1 px-2 rounded-lg cursor-pointer hover:bg-dark hover:text-white transition-all "
+                className="py-2 px-4 cursor-pointer bg-opacity-20 border-2 border-light hover:bg-light hover:text-white transition-all "
                 onClick={() => {
                   localStorage.removeItem("token");
                 }}
