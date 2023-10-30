@@ -18,13 +18,7 @@ const HomePage = ({ className }) => {
       ) : (
         <div className="w-screen min-h-screen overflow-y-scroll flex items-center justify-center font-sans bg-formBg bg-bgWave bg-no-repeat bg-contain">
           {/* <UserProvider> */}
-            <MultiStepForm></MultiStepForm>
-          {/* </UserProvider> */}
-          {/* <img
-        src={maleGift}
-        className="hidden lg:block absolute right-0 top-24"
-      ></img>*/}
-          {/* <img src={girlGift} className="absolute left-0 top-16 "></img>  */}
+          <MultiStepForm></MultiStepForm>
         </div>
       )}
     </div>

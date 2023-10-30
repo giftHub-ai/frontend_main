@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
-import giftLogo from "../assets/giftLogo1.png";
+import { Link, useNavigate } from "react-router-dom";
 import _ from "underscore";
+import giftLogo from "../assets/giftLogo1.png";
 const navKeys = ["Home"];
 const NavBar = ({ className, showLogin }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -49,9 +49,16 @@ const NavBar = ({ className, showLogin }) => {
                 className="border-2 p-1 px-2 rounded-lg cursor-pointer hover:bg-dark hover:text-white transition-all hover:border-white"
                 onClick={() => navigate("/dashboard")}
               >
-                Dashboard{"   "}
+                {`Dashboard `}
               </div>
-              <div className="border-2 p-1 px-2 rounded-lg cursor-pointer hover:bg-dark hover:text-white transition-all " onClick={()=>{localStorage.removeItem("token")}}>Logout</div>
+              <div
+                className="border-2 p-1 px-2 rounded-lg cursor-pointer hover:bg-dark hover:text-white transition-all "
+                onClick={() => {
+                  localStorage.removeItem("token");
+                }}
+              >
+                Logout
+              </div>
             </div>
           )}
         </div>
@@ -62,8 +69,8 @@ const NavBar = ({ className, showLogin }) => {
 
 export default NavBar;
 
-const AppLogo = ({navigate}) => (
-  <Link to="/" className="hidden sm:flex flex-row items-center cursor-pointer" >
+const AppLogo = ({ navigate }) => (
+  <Link to="/" className="hidden sm:flex flex-row items-center cursor-pointer">
     <div className="hidden lg:block mx-2 text-2xl font-semibold text-dark">
       GiftHub.ai
     </div>

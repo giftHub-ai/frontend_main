@@ -1,10 +1,10 @@
 import axios from "axios";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { api_base_url } from "../../config/api";
 import FormAction from "./FormAction";
 import Input from "./Input";
 import { loginFields } from "./formFields";
-import { useNavigate } from "react-router-dom";
 const fields = loginFields;
 let fieldsState = {};
 fields.forEach((field) => (fieldsState[field.id] = ""));
@@ -20,7 +20,6 @@ export default function Login() {
     e.preventDefault();
     console.log(loginState);
     authenticateUser(loginState);
-
   };
   const navigate = useNavigate();
 
@@ -31,18 +30,10 @@ export default function Login() {
         // withCredentials: true,
       })
       .then((res) => {
-        console.log("response  ", res);
-
         localStorage.setItem("token", res.data.token);
-        /* const recipientId = res.data.user._id;
-        if (_.isEmpty(recipientId)) {
-          throw new Error("Recipient id not found in api response");
-        }
-        else {
-        } */
-        navigate('../');
+        navigate("../");
       })
-      .catch((err) => {});
+      .catch((error) => console.log(error));
   };
 
   return (
