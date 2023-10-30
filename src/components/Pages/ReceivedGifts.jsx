@@ -42,7 +42,7 @@ const monthNames = [
 
 
 
-export default function ReceivedGifts({setGiftStatus}) {
+export default function ReceivedGifts({setGiftStatus,receivedGifts}) {
   return (
     <div className="w-full px-4">
       <h2 className="p-4 mb-4 text-2xl tracking-wide font-bold text-center ">
@@ -57,7 +57,7 @@ export default function ReceivedGifts({setGiftStatus}) {
   );
 }
 
-function GiftCard({ giftName, giftId, receivedDate, senderName, status,setGiftStatus }) {
+function GiftCard({ giftName, giftId, receivedDate, Sender, Status,setGiftStatus,_id,createdAt}) {
   const formatDate = (date) => {
     const inputDate = new Date(date);
 
@@ -78,26 +78,26 @@ function GiftCard({ giftName, giftId, receivedDate, senderName, status,setGiftSt
         <h3 className="font-bold hover:underline hover:cursor-pointer">
           {giftName}
         </h3>
-        <p className="text-xs">{formatDate(receivedDate)}</p>
+        <p className="text-xs">{formatDate(createdAt)}</p>
       </div>
       <div className="w-full">
-        Sender: <span className="font-semibold">{senderName}</span>
+        Sender: <span className="font-semibold">{Sender}</span>
       </div>
    
-        {status === "ordered" ? (
+        {Status === "ordered" ? (
           <>
              <div className="mt-4 flex flex-row items-center justify-around">
-            <button className="px-2 py-1 text-sm tracking-wider border-2 border-green hover:bg-green hover:text-white" onClick={()=>setGiftStatus("Accepted")}>
+            <button className="px-2 py-1 text-sm tracking-wider border-2 border-green hover:bg-green hover:text-white" onClick={()=>setGiftStatus("Accepted",_id)}>
               <span className="pr-2">✓</span>Accept
             </button>
-            <button className="px-2 py-1 text-sm tracking-wider border-2 border-light hover:bg-light hover:text-white" onClick={()=>setGiftStatus("Rejected")}>
+            <button className="px-2 py-1 text-sm tracking-wider border-2 border-light hover:bg-light hover:text-white" onClick={()=>setGiftStatus("Rejected",_id)}>
               <span className="pr-2">✕</span>Reject
             </button>{" "}
             </div>
           </>
         ) : (
           <div className="text-left w-full">
-            Current Status: <span className="font-semibold">{status}</span>
+            Current Status: <span className="font-semibold">{Status}</span>
           </div>
         )}
     

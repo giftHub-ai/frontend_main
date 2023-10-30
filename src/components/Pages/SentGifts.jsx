@@ -36,7 +36,7 @@ const monthNames = [
   "Dec",
 ];
 
-export default function SentGifts() {
+export default function SentGifts({sentGifts}) {
   // console.log(sentGifts);
   return (
     <div className="w-full px-4">
@@ -44,15 +44,17 @@ export default function SentGifts() {
         Sent Gifts
       </h2>
       <div className="w-full mx-auto max-w-3xl">
-        {sentGifts.length>0 && sentGifts.map((gift, index) => {
+        {sentGifts.length>0 ? (sentGifts.map((gift, index) => {
           return <GiftCard key={index} {...gift}></GiftCard>;
-        })}
+        })): <div className="text-center font-semibold">No Gifts Sent Yet.</div>
+      }
       </div>
+      <hr />
     </div>
   );
 }
 
-function GiftCard({ giftName, giftId, sentDate, status }) {
+function GiftCard({ giftName, giftId, sentDate, Status }) {
   const formatDate = (date) => {
     const inputDate = new Date(date);
 
@@ -66,7 +68,7 @@ function GiftCard({ giftName, giftId, sentDate, status }) {
     return formattedDate;
   };
 
-  const buildStatusClassName = (status) => {
+  const buildStatusClassName = (Status) => {
     let defaultClassName = "font-semibold ";
     if (status == "accepted") defaultClassName += "text-green";
     else if (status == "rejected") defaultClassName += "text-red";

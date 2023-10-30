@@ -51,7 +51,7 @@ const NavBar = ({ className, showLogin }) => {
               >
                 Dashboard{"   "}
               </div>
-              <div className="border-2 p-1 px-2 rounded-lg cursor-pointer hover:bg-dark hover:text-white transition-all " onClick={()=>{localStorage.removeItem("token")}}>Logout</div>
+              <Link to='/' className="border-2 p-1 px-2 rounded-lg cursor-pointer hover:bg-dark hover:text-white transition-all " onClick={()=>{localStorage.removeItem("token")}}>Logout</Link>
             </div>
           )}
         </div>
