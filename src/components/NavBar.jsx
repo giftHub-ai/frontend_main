@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import _ from "underscore";
 import giftLogo from "../assets/giftLogo1.png";
 const navKeys = ["Home"];
+
 const NavBar = ({ className, showLogin }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const handleMenuClick = () => setIsMenuOpen((prev) => !prev);
@@ -51,14 +52,18 @@ const NavBar = ({ className, showLogin }) => {
               >
                 {`Dashboard `}
               </div>
-              <div
-                className="py-2 px-4 cursor-pointer bg-opacity-20 border-2 border-light hover:bg-light hover:text-white transition-all "
+
+              <Link
+                to="/"
+                // className="border-2 p-1 px-2 rounded-lg cursor-pointer hover:bg-dark hover:text-white transition-all "
                 onClick={() => {
                   localStorage.removeItem("token");
                 }}
               >
-                Logout
-              </div>
+                <div className="py-2 px-4 cursor-pointer bg-opacity-20 border-2 border-light hover:bg-light hover:text-white transition-all ">
+                  Logout
+                </div>
+              </Link>
             </div>
           )}
         </div>

@@ -36,21 +36,28 @@ const monthNames = [
   "Dec",
 ];
 
-export default function SentGifts() {
+export default function SentGifts({ sentGifts }) {
   // console.log(sentGifts);
   return (
-    <div className="w-full px-4 py-2 bg-interestHover">
+    <div className="max-w-3xl mx-auto px-4 py-2 bg-interestHover my-4">
+      <div className="text-3xl font-semibold text-center">Sent Gifts</div>
       <div className="w-full mx-auto max-w-3xl">
-        {sentGifts.length > 0 &&
+        {sentGifts.length > 0 ? (
           sentGifts.map((gift, index) => {
             return <GiftCard key={index} {...gift}></GiftCard>;
-          })}
+          })
+        ) : (
+          <div className="text-xl text-center font-semibold my-4">
+            No Gifts Sent Yet!
+          </div>
+        )}
       </div>
+      <hr />
     </div>
   );
 }
 
-function GiftCard({ giftName, giftId, sentDate, status }) {
+function GiftCard({ giftName, giftId, sentDate, Status }) {
   const formatDate = (date) => {
     const inputDate = new Date(date);
 
@@ -64,7 +71,7 @@ function GiftCard({ giftName, giftId, sentDate, status }) {
     return formattedDate;
   };
 
-  const buildStatusClassName = (status) => {
+  const buildStatusClassName = (Status) => {
     let defaultClassName = "font-semibold ";
     if (status == "accepted") defaultClassName += "text-green";
     else if (status == "rejected") defaultClassName += "text-red";

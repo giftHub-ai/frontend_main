@@ -1,4 +1,5 @@
-import React from "react";
+import axios from "axios";
+import React, { useState } from "react";
 
 const receivedGifts = [
   {
@@ -39,32 +40,26 @@ const monthNames = [
   "Dec",
 ];
 
-export default function ReceivedGifts({ setGiftStatus }) {
+export default function ReceivedGifts({ receivedGifts }) {
   return (
-    <div className="w-full px-4 py-2 bg-interestHover">
+    <div className="max-w-3xl mx-auto px-4 py-2 bg-interestHover">
+      <div className="text-3xl font-semibold text-center">Received Gifts</div>
       <div className="w-full mx-auto max-w-3xl">
         {receivedGifts.map((gift, index) => {
-          return (
-            <GiftCard
-              key={index}
-              {...gift}
-              setGiftStatus={setGiftStatus}
-            ></GiftCard>
-          );
+          return <GiftCard key={index} {...gift}></GiftCard>;
         })}
       </div>
     </div>
   );
 }
 
-function GiftCard({
-  giftName,
-  giftId,
-  receivedDate,
-  senderName,
-  status,
-  setGiftStatus,
-}) {
+function GiftCard({ giftName, Sender, Status, _id, createdAt }) {
+  // Status, _id
+  const [currGiftStatus, setCurrGiftStatus] = useState(Status);
+  const token = localStorage.getItem("token");
+  const config = {
+    headers: { Authorization: `Bearer ${token}` },
+  };
   const formatDate = (date) => {
     const inputDate = new Date(date);
 
@@ -77,40 +72,62 @@ function GiftCard({
 
     return formattedDate;
   };
-  const buildStatusClassName = (status) => {
-    let defaultClassName = "font-semibold ";
-    if (status == "accepted") defaultClassName += "text-green";
-    else if (status == "rejected") defaultClassName += "text-red";
-    if (status == "pending") defaultClassName += "text-orange";
-    return defaultClassName;
+
+  const setGiftStatusAccepted = async (giftStatus, id) => {
+    console.log(id);
+    axios
+      .post(
+        `http://localhost:5000/gift/status/${id}`,
+        { status: giftStatus },
+        config
+      )
+      .then((res) => {
+        setCurrGiftStatus("Accepted");
+        console.log(res);
+      });
+
+    // console.log("set gift status   ", data);
+  };
+  const setGiftStatusRejected = async (giftStatus, id) => {
+    console.log(id);
+    axios
+      .post(
+        `http://localhost:5000/gift/status/${id}`,
+        { status: giftStatus },
+        config
+      )
+      .then((res) => {
+        setCurrGiftStatus("Rejected");
+        console.log(res);
+      });
+
+    // console.log("set gift status   ", data);
   };
 
-  /* const handleAccept = () => {} */
-  /* const handleReject = () => {} */
   return (
-    <div className="w-full p-4 my-2 rounded-md flex flex-col bg-white">
+    <div className="w-full p-4 my-4 rounded-md flex flex-col bg-white">
       <div className="w-full flex flex-row items-center justify-between">
         <h3 className="font-bold hover:underline hover:cursor-pointer">
           {giftName}
         </h3>
-        <p className="text-xs">{formatDate(receivedDate)}</p>
+        <p className="text-xs">{formatDate(createdAt)}</p>
       </div>
       <div className="w-full">
-        Sender: <span className="font-semibold">{senderName}</span>
+        Sender: <span className="font-semibold">{Sender}</span>
       </div>
 
-      {status === "ordered" ? (
+      {Status === currGiftStatus ? (
         <>
           <div className="mt-4 flex flex-row items-center justify-around">
             <button
               className="px-2 py-1 text-sm tracking-wider border-2 border-green hover:bg-green hover:text-white"
-              onClick={() => setGiftStatus("accepted")}
+              onClick={() => setGiftStatusAccepted("Accepted", _id)}
             >
               <span className="pr-2">✓</span>Accept
             </button>
             <button
               className="px-2 py-1 text-sm tracking-wider border-2 border-light hover:bg-light hover:text-white"
-              onClick={() => setGiftStatus("rejected")}
+              onClick={() => setGiftStatusRejected("Rejected", _id)}
             >
               <span className="pr-2">✕</span>Reject
             </button>{" "}
@@ -118,9 +135,14 @@ function GiftCard({
         </>
       ) : (
         <div className="text-left w-full">
-          {/* Current Status: <span className="font-semibold">{status}</span> */}
           Current Status:{" "}
-          <span className={buildStatusClassName(status)}>{status}</span>
+          <span
+            className={`font-semibold ${
+              currGiftStatus == "Accepted" && "text-green"
+            } ${currGiftStatus == "Rejected" && "text-red"}`}
+          >
+            {currGiftStatus}
+          </span>
         </div>
       )}
     </div>

@@ -50,7 +50,7 @@ def findd():
        product = next(product_cursor, None)
        product['_id'] = str(product['_id'])
        return jsonify(product);
-
+     
 
 def getMappingDictionary(unique_data):
     mappingDictionary = {}
