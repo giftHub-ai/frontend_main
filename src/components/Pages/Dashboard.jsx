@@ -37,10 +37,20 @@ const Dashboard = () => {
     setLoading(false);
   }, []);
 
-  const setGiftStatus = async (giftStatus,id) => {
+  const setGiftStatusAccepted = async (giftStatus,id) => {
     console.log(id);
     axios.post(
-      `http://localhost:5000/gift/giftstatus/${id}`,
+      `http://localhost:5000/gift/status/${id}`,
+      { status: giftStatus },
+      config
+    ).then((res)=>console.log(res));
+
+    // console.log("set gift status   ", data);
+  };
+  const setGiftStatusRejected = async (giftStatus,id) => {
+    console.log(id);
+    axios.post(
+      `http://localhost:5000/gift/status/${id}`,
       { status: giftStatus },
       config
     ).then((res)=>console.log(res));
@@ -57,7 +67,8 @@ const Dashboard = () => {
         </Link>
         <SentGifts sentGifts={sentGifts} />
         <ReceivedGifts
-          setGiftStatus={setGiftStatus}
+          setGiftStatusAccepted={setGiftStatusAccepted}
+          setGiftStatusRejected={setGiftStatusRejected}
           receivedGifts={receivedGifts}
         />
       </div>

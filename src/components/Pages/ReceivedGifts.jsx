@@ -42,7 +42,7 @@ const monthNames = [
 
 
 
-export default function ReceivedGifts({setGiftStatus,receivedGifts}) {
+export default function ReceivedGifts({setGiftStatusAccepted,setGiftStatusRejected,receivedGifts}) {
   return (
     <div className="w-full px-4">
       <h2 className="p-4 mb-4 text-2xl tracking-wide font-bold text-center ">
@@ -50,14 +50,14 @@ export default function ReceivedGifts({setGiftStatus,receivedGifts}) {
       </h2>
       <div className="w-full mx-auto max-w-3xl">
         {receivedGifts.map((gift, index) => {
-          return <GiftCard key={index} {...gift} setGiftStatus={setGiftStatus}></GiftCard>;
+          return <GiftCard key={index} {...gift} setGiftStatusRejected={setGiftStatusRejected} setGiftStatusAccepted={setGiftStatusAccepted} ></GiftCard>;
         })}
       </div>
     </div>
   );
 }
 
-function GiftCard({ giftName, giftId, receivedDate, Sender, Status,setGiftStatus,_id,createdAt}) {
+function GiftCard({ giftName, giftId, receivedDate, Sender, Status,setGiftStatusAccepted, setGiftStatusRejected,_id,createdAt}) {
   const formatDate = (date) => {
     const inputDate = new Date(date);
 
@@ -87,10 +87,10 @@ function GiftCard({ giftName, giftId, receivedDate, Sender, Status,setGiftStatus
         {Status === "ordered" ? (
           <>
              <div className="mt-4 flex flex-row items-center justify-around">
-            <button className="px-2 py-1 text-sm tracking-wider border-2 border-green hover:bg-green hover:text-white" onClick={()=>setGiftStatus("Accepted",_id)}>
+            <button className="px-2 py-1 text-sm tracking-wider border-2 border-green hover:bg-green hover:text-white" onClick={()=>setGiftStatusAccepted("Accepted",_id)}>
               <span className="pr-2">✓</span>Accept
             </button>
-            <button className="px-2 py-1 text-sm tracking-wider border-2 border-light hover:bg-light hover:text-white" onClick={()=>setGiftStatus("Rejected",_id)}>
+            <button className="px-2 py-1 text-sm tracking-wider border-2 border-light hover:bg-light hover:text-white" onClick={()=>setGiftStatusRejected("Rejected",_id)}>
               <span className="pr-2">✕</span>Reject
             </button>{" "}
             </div>
