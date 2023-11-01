@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
+import _ from "underscore";
 
 const receivedGifts = [
   {
@@ -45,9 +46,14 @@ export default function ReceivedGifts({ receivedGifts }) {
     <div className="max-w-3xl mx-auto px-4 py-2 bg-interestHover">
       <div className="text-3xl font-semibold text-center">Received Gifts</div>
       <div className="w-full mx-auto max-w-3xl">
-        {receivedGifts.map((gift, index) => {
+        {receivedGifts && receivedGifts.length ?(receivedGifts.map((gift, index) => {
+         if(_.isEmpty(gift.Sender))
+            return null;
+          
           return <GiftCard key={index} {...gift}></GiftCard>;
-        })}
+        })):      <div className="text-xl text-center font-semibold my-4">
+        No Gifts Received Yet!
+      </div>}
       </div>
     </div>
   );
