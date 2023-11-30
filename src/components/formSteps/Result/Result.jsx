@@ -13,7 +13,7 @@ import { api_base_url_django } from "../../../config/api";
 
 const Result = () => {
   const [loading, setLoading] = useState(true);
-  const [data, setData] = useState(null);
+  const [data, setData] = useState([]);
   const [relevancyData, setrelevancyData] = useState(null);
   const inputDetails = React.useContext(UserContext);
 
@@ -49,9 +49,7 @@ const Result = () => {
             navigate("/login");
           }
           setLoading(false);
-          // if (err.response.status == 401) {
-          //   navigate("/login");
-          // }
+       
           toast.error(err.message, {
             duration: 2000,
             position: "top-right",
@@ -121,7 +119,10 @@ const Result = () => {
                     />
                   );
                 })
-              : null}
+              : 
+              
+              <div className="text-white underline">Something went wrong, We have got 0 products</div>
+              }
           </div>
           <PrevNext
             alreadyFilled={true}
