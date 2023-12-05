@@ -5,6 +5,8 @@ import { api_base_url } from "../../config/api";
 import FormAction from "./FormAction";
 import Input from "./Input";
 import { signupFields } from "./formFields";
+import Toast from "../Toast";
+import toast from "react-hot-toast";
 
 const fields = signupFields;
 let fieldsState = {};
@@ -36,12 +38,16 @@ export default function SignUp() {
         withCredentials: true,
       })
       .then((res) => handleSuccess(res))
-      .catch((err) => console.log(err));
+      .catch((err) => {console.log(err);
+      
+        toast.error("Network error occurred, try again!")
+      });
     // .post("https://gifthub-ai.onrender.com/user/register", regUserData)
   };
 
   return (
     <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
+      <Toast/>
       <div className="">
         {fields.map((field) => (
           <Input

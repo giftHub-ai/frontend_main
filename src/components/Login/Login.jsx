@@ -5,6 +5,8 @@ import FormAction from "./FormAction";
 import Input from "./Input";
 import { loginFields } from "./formFields";
 import { useNavigate } from "react-router-dom";
+import Toast from "../Toast";
+import toast from "react-hot-toast";
 const fields = loginFields;
 let fieldsState = {};
 fields.forEach((field) => (fieldsState[field.id] = ""));
@@ -42,11 +44,14 @@ export default function Login() {
         } */
         navigate('../');
       })
-      .catch((err) => {});
+      .catch((err) => {
+        toast.error("Email or password is wrong")
+      });
   };
 
   return (
     <form className="mx-auto sm:mt-16 p-4 lg:p-0" onSubmit={handleSubmit}>
+      <Toast/>
       <div className="">
         {fields.map((field) => (
           <Input
