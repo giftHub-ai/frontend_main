@@ -4,7 +4,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import Toast from "../../Toast";
 import { useState } from "react";
-
+import { api_base_url } from "../../../config/api";
 
 const ModalForm = ({ selectedGift,  setIsOpenModal }) => {
   const token =localStorage.getItem("token");
@@ -14,14 +14,14 @@ const ModalForm = ({ selectedGift,  setIsOpenModal }) => {
   const checkoutHandler = async (amount = 500) => {
     const {
       data: { key },
-    } = await axios.get("http://localhost:5000/api/getkey");
+    } = await axios.get(`${api_base_url}/api/getkey`);
       const config = {
         headers: { Authorization: `Bearer ${token}` }
     };
 
       const {
         data: { PaymentsDetails },
-      } = await axios.post("http://localhost:5000/payment/buyGift", {
+      } = await axios.post(`${api_base_url}/payment/buyGift`, {
         email: recieverEmail,
         ImageLink:selectedGift['Image Link'],
         Amount: selectedGift.Budget *100,
@@ -39,7 +39,7 @@ const ModalForm = ({ selectedGift,  setIsOpenModal }) => {
       description: `GiftHub Payment using Razorpay Payment Gateway ${selectedGift.Gift}` ,
       image:selectedGift['Image Link'],
       order_id: PaymentsDetails.id,
-      callback_url:`http://localhost:5000/payment/paymentverification/${token}`,
+      callback_url:`${api_base_url}/payment/paymentverification/${token}`,
       prefill: {
         name: "Kartik Gamot",
         email: "",

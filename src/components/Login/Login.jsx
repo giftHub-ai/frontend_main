@@ -5,6 +5,7 @@ import FormAction from "./FormAction";
 import Input from "./Input";
 import { loginFields } from "./formFields";
 import { useNavigate } from "react-router-dom";
+import toast, { ToastBar, Toaster } from "react-hot-toast";
 const fields = loginFields;
 let fieldsState = {};
 fields.forEach((field) => (fieldsState[field.id] = ""));
@@ -24,11 +25,11 @@ export default function Login() {
   };
   const navigate = useNavigate();
 
-  //Handle Login API Integration here
+  //Handle Login API Integration herepo
   const authenticateUser = (userData) => {
     axios
       .post(`${api_base_url}/user/login`, userData, {
-        // withCredentials: true,
+        withCredentials: true,
       })
       .then((res) => {
         console.log("response  ", res);
@@ -42,11 +43,15 @@ export default function Login() {
         } */
         navigate('../');
       })
-      .catch((err) => {});
+      .catch((err) => {
+        console.log(err.message);
+        toast.error('Email Id or password is wrong! ');
+      });
   };
 
   return (
     <form className="mx-auto sm:mt-16 p-4 lg:p-0" onSubmit={handleSubmit}>
+      <Toaster/>
       <div className="">
         {fields.map((field) => (
           <Input

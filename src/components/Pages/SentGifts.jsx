@@ -49,12 +49,13 @@ export default function SentGifts({sentGifts}) {
         })): <div className="text-center font-semibold">No Gifts Sent Yet.</div>
       }
       </div>
-      <hr />
+      {/* <hr /> */}
+      <div className="h-0.5 w-full bg-background my-16"></div>
     </div>
   );
 }
 
-function GiftCard({ giftName, giftId, sentDate, Status }) {
+function GiftCard({ giftName, giftId, updatedAt, Status }) {
   const formatDate = (date) => {
     const inputDate = new Date(date);
 
@@ -68,7 +69,7 @@ function GiftCard({ giftName, giftId, sentDate, Status }) {
     return formattedDate;
   };
 
-  const buildStatusClassName = (Status) => {
+  const buildStatusClassName = (status) => {
     let defaultClassName = "font-semibold ";
     if (status == "accepted") defaultClassName += "text-green";
     else if (status == "rejected") defaultClassName += "text-red";
@@ -82,10 +83,10 @@ function GiftCard({ giftName, giftId, sentDate, Status }) {
         <h3 className="font-bold hover:underline hover:cursor-pointer">
           {giftName}
         </h3>
-        <p className="text-xs">{formatDate(sentDate)}</p>
+        <p className="text-xs">{formatDate(updatedAt)}</p>
       </div>
       <div className="w-full">
-        Status: <span className={buildStatusClassName(status)}>{status}</span>
+        Status: <span className={buildStatusClassName(Status)}>{Status}</span>
       </div>
     </div>
   );

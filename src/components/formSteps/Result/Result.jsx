@@ -9,7 +9,7 @@ import Toast from "../../Toast";
 // import dummyData from "./DummyData";
 import { useNavigate } from "react-router-dom";
 import GiftHamper from "../../../assets/gift_hamper.jpeg";
-import { api_base_url_django } from "../../../config/api";
+import { api_base_url_django,  } from "../../../config/api";
 
 const Result = () => {
   const [loading, setLoading] = useState(true);

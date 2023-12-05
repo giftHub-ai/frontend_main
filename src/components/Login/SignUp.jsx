@@ -5,6 +5,7 @@ import { api_base_url } from "../../config/api";
 import FormAction from "./FormAction";
 import Input from "./Input";
 import { signupFields } from "./formFields";
+import toast, { Toaster } from "react-hot-toast";
 
 const fields = signupFields;
 let fieldsState = {};
@@ -36,12 +37,16 @@ export default function SignUp() {
         withCredentials: true,
       })
       .then((res) => handleSuccess(res))
-      .catch((err) => console.log(err));
+      .catch((err) =>{ console.log(err);
+      
+      toast.error(err.message);
+      });
     // .post("https://gifthub-ai.onrender.com/user/register", regUserData)
   };
 
   return (
     <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
+      <Toaster/>
       <div className="">
         {fields.map((field) => (
           <Input

@@ -5,6 +5,7 @@ import NavBar from "../NavBar";
 import { StartButton } from "./HomePage";
 import _ from "underscore";
 import { Link, useNavigate } from "react-router-dom";
+import { api_base_url } from "../../config/api";
 import axios from "axios";
 const Dashboard = () => {
   const [loading, setLoading] = useState(true);
@@ -22,25 +23,23 @@ const Dashboard = () => {
       navigate("../");
     }
 
-    axios.get("http://localhost:5000/gift/getgift", config).then((res) => {
+    axios.get(`${api_base_url}/gift/mygift`, config).then((res) => {
       console.log(res.data.gifts);
       setSentGifts(res.data.gifts);
     });
     // const d = await data.json();
 
-   axios.get("http://localhost:5000/gift/mygift", config).then((res) => {
+   axios.get(`${api_base_url}/gift/getgift`, config).then((res) => {
     console.log(res.data.gifts);
     setRecievedGifts(res.data.gifts)
   });
-
-
     setLoading(false);
   }, []);
 
   const setGiftStatusAccepted = async (giftStatus,id) => {
     console.log(id);
     axios.post(
-      `http://localhost:5000/gift/status/${id}`,
+      `${api_base_url}/gift/status/${id}`,
       { status: giftStatus },
       config
     ).then((res)=>console.log(res));
@@ -50,7 +49,7 @@ const Dashboard = () => {
   const setGiftStatusRejected = async (giftStatus,id) => {
     console.log(id);
     axios.post(
-      `http://localhost:5000/gift/status/${id}`,
+      `${api_base_url}/gift/status/${id}`,
       { status: giftStatus },
       config
     ).then((res)=>console.log(res));
@@ -60,7 +59,7 @@ const Dashboard = () => {
   if (loading) return <div className="">Loading</div>;
   else {
     return (
-      <div className="bg-">
+      <div className="">
         <NavBar />
         <Link to='/' className="w-full flex justify-center" >
           <StartButton />
