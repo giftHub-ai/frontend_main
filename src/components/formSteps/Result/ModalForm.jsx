@@ -7,21 +7,28 @@ import { useState } from "react";
 
 
 const ModalForm = ({ selectedGift,  setIsOpenModal }) => {
+  const token =localStorage.getItem("token");
+  console.log(token);
   const [senderName, setSenderName ] = useState('');
   const [recieverEmail, setRecieverEmail ] = useState('');
   const checkoutHandler = async (amount = 500) => {
     const {
       data: { key },
     } = await axios.get("http://localhost:5000/api/getkey");
-  
-    const {
-      data: { PaymentsDetails },
-    } = await axios.post("http://localhost:5000/payment/buyGift", {
-      email: recieverEmail,
-      link: "http//",
-      Amount: selectedGift.Budget,
-      Name:senderName,
-    });
+      const config = {
+        headers: { Authorization: `Bearer ${token}` }
+    };
+
+      const {
+        data: { PaymentsDetails },
+      } = await axios.post("http://localhost:5000/payment/buyGift", {
+        email: recieverEmail,
+        ImageLink:selectedGift['Image Link'],
+        Amount: selectedGift.Budget *100,
+        giftName:selectedGift.Gift,
+      },
+      config
+      );
     console.log(PaymentsDetails);
   
     const options = {
@@ -32,11 +39,11 @@ const ModalForm = ({ selectedGift,  setIsOpenModal }) => {
       description: `GiftHub Payment using Razorpay Payment Gateway ${selectedGift.Gift}` ,
       image:selectedGift['Image Link'],
       order_id: PaymentsDetails.id,
-      callback_url: "http://localhost:5000/payment/paymentverification",
+      callback_url:`http://localhost:5000/payment/paymentverification/${token}`,
       prefill: {
-        name: "",
+        name: "Kartik Gamot",
         email: "",
-        contact: "",
+        contact: "8963089123",
       },
       notes: {
         address: "Razorpay Corporate Office",

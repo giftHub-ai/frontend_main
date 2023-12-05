@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { api_base_url } from "../../config/api";
 import FormAction from "./FormAction";
 import Input from "./Input";
 import { signupFields } from "./formFields";
@@ -13,6 +14,7 @@ fields.forEach((field) => (fieldsState[field.id] = ""));
 export default function SignUp() {
   const [signupState, setSignupState] = useState(fieldsState);
   const navigate = useNavigate();
+  const location = useLocation();
   const handleChange = (e) =>
     setSignupState({ ...signupState, [e.target.id]: e.target.value });
 
@@ -21,18 +23,21 @@ export default function SignUp() {
     createAccount(signupState);
   };
 
+  const handleSuccess = (res) => {
+    localStorage.setItem("token", res.data.token);
+    const path = location.state?.from ? location.state.from : "/";
+    navigate(path);
+  };
+
   //handle Signup API Integration here
   const createAccount = (regUserData) => {
     axios
-      .post("http://localhost:3000/user/register", regUserData)
-      .then((res) => {
-        // console.log("response  ", res);
-        navigate("/login");
+      .post(`${api_base_url}/user/register`, regUserData, {
+        withCredentials: true,
       })
-      .catch((err) => {
-        console.log(err);
-      });
-      // .post("https://gifthub-ai.onrender.com/user/register", regUserData)
+      .then((res) => handleSuccess(res))
+      .catch((err) => console.log(err));
+    // .post("https://gifthub-ai.onrender.com/user/register", regUserData)
   };
 
   return (

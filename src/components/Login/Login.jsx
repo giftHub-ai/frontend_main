@@ -1,19 +1,16 @@
 import axios from "axios";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import _ from "underscore";
+import { api_base_url } from "../../config/api";
 import FormAction from "./FormAction";
-import FormExtra from "./FormExtra";
 import Input from "./Input";
 import { loginFields } from "./formFields";
-
+import { useNavigate } from "react-router-dom";
 const fields = loginFields;
 let fieldsState = {};
 fields.forEach((field) => (fieldsState[field.id] = ""));
 
 export default function Login() {
   const [loginState, setLoginState] = useState(fieldsState);
-  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setLoginState({ ...loginState, [e.target.id]: e.target.value });
@@ -21,30 +18,35 @@ export default function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log(loginState);
+    console.log(loginState);
     authenticateUser(loginState);
+
   };
+  const navigate = useNavigate();
 
   //Handle Login API Integration here
   const authenticateUser = (userData) => {
     axios
-      .post("http://localhost:3000/user/login", userData)
+      .post(`${api_base_url}/user/login`, userData, {
+        // withCredentials: true,
+      })
       .then((res) => {
         console.log("response  ", res);
-        const recipientId = res.data.user._id;
+
+        localStorage.setItem("token", res.data.token);
+        /* const recipientId = res.data.user._id;
         if (_.isEmpty(recipientId)) {
           throw new Error("Recipient id not found in api response");
-        } else {
-          navigate(`/recipientGifts/${recipientId}`);
         }
+        else {
+        } */
+        navigate('../');
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch((err) => {});
   };
 
   return (
-    <form className="mx-auto sm:mt-16" onSubmit={handleSubmit}>
+    <form className="mx-auto sm:mt-16 p-4 lg:p-0" onSubmit={handleSubmit}>
       <div className="">
         {fields.map((field) => (
           <Input
