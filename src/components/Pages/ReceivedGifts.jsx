@@ -49,9 +49,9 @@ export default function ReceivedGifts({setGiftStatusAccepted,setGiftStatusReject
         Received Gifts
       </h2>
       <div className="w-full mx-auto max-w-3xl">
-        {receivedGifts.map((gift, index) => {
-          return <GiftCard key={index} {...gift} setGiftStatusRejected={setGiftStatusRejected} setGiftStatusAccepted={setGiftStatusAccepted} ></GiftCard>;
-        })}
+        { receivedGifts.length>0 ? receivedGifts.map((gift, index) => {
+          return <GiftCard key={index} {...gift} setGiftStatusRejected={setGiftStatusRejected} setGiftStatusAccepted={setGiftStatusAccepted} ></GiftCard>
+        }): <div className="text-center font-semibold">No Gifts Received Yet.</div>}
       </div>
     </div>
   );

@@ -32,8 +32,7 @@ const ProductPage = () => {
   }, []);
 
   const [isOpenModal, setIsOpenModal] = useState(false);
-
-  if (loading) return <div className="">Loading</div>;
+  if (loading) return <div className="h-screen w-screen"><div className=" absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-3xl ">Loading...</div></div> ;
   else {
     return (
       <>
